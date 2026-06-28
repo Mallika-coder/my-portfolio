@@ -14,39 +14,27 @@ export default function Contact() {
   const [submitted, setSubmitted] = useState(false);
   const [sending, setSending] = useState(false);
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setSending(true);
 
-    try {
-      const res = await fetch("https://api.web3forms.com/submit", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          access_key: process.env.NEXT_PUBLIC_WEB3FORMS_KEY || "YOUR_ACCESS_KEY_HERE",
-          name: formState.name,
-          email: formState.email,
-          message: formState.message,
-          subject: `Portfolio message from ${formState.name}`,
-        }),
-      });
+    const subject = `Portfolio message from ${formState.name}`;
+    const body = `Name: ${formState.name}\nEmail: ${formState.email}\n\nMessage:\n${formState.message}`;
 
-      if (res.ok) {
-        setSubmitted(true);
-        confetti({
-          particleCount: 100,
-          spread: 80,
-          origin: { y: 0.6 },
-          colors: ["#7dd3fc", "#c4b5fd", "#f9a8d4", "#6ee7b7"],
-        });
-        setFormState({ name: "", email: "", message: "" });
-        setTimeout(() => setSubmitted(false), 4000);
-      }
-    } catch {
-      alert("Something went wrong. Please try again or email me directly.");
-    } finally {
-      setSending(false);
-    }
+    window.open(
+      `mailto:sonimallikav@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`,
+      "_self"
+    );
+
+    setSubmitted(true);
+    confetti({
+      particleCount: 100,
+      spread: 80,
+      origin: { y: 0.6 },
+      colors: ["#7dd3fc", "#c4b5fd", "#f9a8d4", "#6ee7b7"],
+    });
+    setFormState({ name: "", email: "", message: "" });
+    setTimeout(() => { setSubmitted(false); setSending(false); }, 4000);
   };
 
   const socials = [
