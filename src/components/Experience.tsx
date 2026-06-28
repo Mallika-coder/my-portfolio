@@ -8,129 +8,128 @@ const experienceCards = [
     description:
       "Engineered 2 autonomous AI agents on Amazon's AgentZ platform using Claude Sonnet 4.5 + Cybernaut browser automation. Automated competitor feasibility evaluation across 14 SOP criteria. Iterated v1→v7 in 2 days. Achieved 100% accuracy across 26 competitors in 8 global marketplaces.",
     metrics: ["100% accuracy", "26 competitors", "11 min vs 60 min", "$0.55/run"],
-    accent: "from-amber-400 to-orange-500",
+    gradient: "from-purple-400/20 to-sky-400/20",
+    iconGradient: "from-purple-500 to-sky-500",
   },
   {
     title: "Distributed Pipeline Across 22 Global Marketplaces",
     description:
       "Onboarded LMS into GAIA governance framework. CDK TypeScript infrastructure, 22 blast-radius-isolated EventBridge schedulers, 88 Cradle/Dryad ingestion jobs, Spark transformation on EMR.",
     metrics: ["22 marketplaces", "88 ingestion jobs", "CDK + EMR"],
-    accent: "from-indigo-400 to-purple-500",
+    gradient: "from-sky-400/20 to-mint-400/20",
+    iconGradient: "from-sky-500 to-emerald-500",
   },
   {
     title: "Legacy to Modern Event-Driven Architecture",
     description:
       "Migrated Spark transformation from legacy Sagittarius workflow to modern event-driven architecture in Scala. Factory-pattern routing across enricher types.",
     metrics: ["Scala", "Apache Spark", "EMR"],
-    accent: "from-green-400 to-emerald-500",
+    gradient: "from-pink-400/20 to-purple-400/20",
+    iconGradient: "from-pink-500 to-purple-500",
   },
   {
-    title: "System Reliability Fix",
+    title: "System Reliability Fix — First CR Shipped",
     description:
       "Replaced hardcoded individual email with team distribution list in Cognitum alerting system. Eliminated single-point-of-failure for 15+ report notifications/quarter. 100% new line test coverage.",
     metrics: ["Java", "100% coverage", "First CR shipped"],
-    accent: "from-blue-400 to-cyan-500",
+    gradient: "from-amber-400/20 to-pink-400/20",
+    iconGradient: "from-amber-500 to-pink-500",
   },
 ];
 
 export default function Experience() {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
-  const [expandedCard, setExpandedCard] = useState<number | null>(null);
+  const isInView = useInView(ref, { once: true, margin: "-80px" });
+  const [activeCard, setActiveCard] = useState<number | null>(0);
 
   return (
-    <section id="experience" className="py-24 md:py-32 px-6 md:px-12" ref={ref}>
+    <section id="experience" className="py-32 md:py-40 px-6 md:px-12 lg:px-20 relative" ref={ref}>
+      {/* Background */}
+      <div className="absolute inset-0 mesh-gradient-2 -z-10" />
+
       <div className="max-w-7xl mx-auto">
         <motion.h2
-          className="text-4xl md:text-6xl font-[var(--font-playfair)] font-bold mb-4"
-          initial={{ opacity: 0, y: 30 }}
+          className="text-4xl md:text-6xl lg:text-7xl font-[var(--font-playfair)] font-bold mb-6"
+          initial={{ opacity: 0, y: 40 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
         >
-          Where I&apos;ve Worked
+          Where I&apos;ve <span className="text-gradient">Worked</span>
         </motion.h2>
 
+        {/* Company header */}
         <motion.div
-          className="mt-16 relative"
-          initial={{ opacity: 0 }}
-          animate={isInView ? { opacity: 1 } : {}}
-          transition={{ duration: 0.8, delay: 0.3 }}
+          className="flex items-center gap-4 mb-16"
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ delay: 0.2 }}
         >
-          {/* Timeline line */}
-          <div className="absolute left-0 md:left-8 top-0 bottom-0 w-[2px] bg-gradient-to-b from-amber-400 via-amber-400/50 to-transparent" />
-
-          {/* Company header */}
-          <div className="ml-6 md:ml-20 mb-12">
-            <div className="flex items-center gap-4">
-              <div className="w-12 h-12 bg-[#0d0f1a] border border-amber-400/30 rounded-xl flex items-center justify-center">
-                <span className="text-amber-400 font-bold text-lg">A</span>
-              </div>
-              <div>
-                <h3 className="text-2xl font-bold text-[#f5f5f0]">Amazon</h3>
-                <p className="text-[#f5f5f0]/60">
-                  Software Development Engineer Intern · May 2026 – July 2026 · Bengaluru, India
-                </p>
-              </div>
-            </div>
+          <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-purple-500 to-sky-500 flex items-center justify-center text-white font-bold text-lg shadow-lg shadow-purple-200/30">
+            A
           </div>
+          <div>
+            <h3 className="text-xl font-bold text-[#1a1035]">Amazon</h3>
+            <p className="text-sm text-[#1a1035]/50">
+              SDE Intern · May 2026 – July 2026 · Bengaluru
+            </p>
+          </div>
+        </motion.div>
 
-          {/* Cards */}
-          <div className="ml-6 md:ml-20 grid gap-6">
-            {experienceCards.map((card, i) => (
-              <motion.div
-                key={i}
-                className="card-hover relative p-6 md:p-8 rounded-2xl bg-[#0d0f1a]/80 border border-white/5 cursor-pointer overflow-hidden group"
-                initial={{ opacity: 0, x: -30 }}
-                animate={isInView ? { opacity: 1, x: 0 } : {}}
-                transition={{ duration: 0.6, delay: 0.4 + i * 0.15 }}
-                onClick={() => setExpandedCard(expandedCard === i ? null : i)}
-              >
-                {/* Gradient accent line */}
-                <div
-                  className={`absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r ${card.accent} opacity-50 group-hover:opacity-100 transition-opacity`}
-                />
+        {/* Interactive timeline cards */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          {experienceCards.map((card, i) => (
+            <motion.div
+              key={i}
+              className={`card-hover relative p-8 rounded-3xl cursor-pointer overflow-hidden transition-all duration-500 ${
+                activeCard === i
+                  ? "glass-strong shadow-xl shadow-purple-100/20 scale-[1.02]"
+                  : "glass hover:shadow-lg"
+              }`}
+              initial={{ opacity: 0, y: 30 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6, delay: 0.3 + i * 0.12 }}
+              onClick={() => setActiveCard(activeCard === i ? null : i)}
+            >
+              {/* Gradient background on active */}
+              <div className={`absolute inset-0 bg-gradient-to-br ${card.gradient} opacity-0 transition-opacity duration-500 ${activeCard === i ? "opacity-100" : ""}`} />
 
-                <div className="flex items-start justify-between">
-                  <h4 className="text-lg md:text-xl font-semibold text-[#f5f5f0] group-hover:text-amber-400 transition-colors pr-4">
-                    {card.title}
-                  </h4>
-                  <motion.span
-                    className="text-[#f5f5f0]/40 text-xl flex-shrink-0"
-                    animate={{ rotate: expandedCard === i ? 180 : 0 }}
-                  >
-                    ↓
-                  </motion.span>
-                </div>
+              <div className="relative z-10">
+                {/* Timeline dot */}
+                <div className={`w-3 h-3 rounded-full bg-gradient-to-r ${card.iconGradient} mb-4`} />
+
+                <h4 className="text-lg font-bold text-[#1a1035] mb-3 leading-snug">
+                  {card.title}
+                </h4>
 
                 <motion.div
                   initial={false}
                   animate={{
-                    height: expandedCard === i ? "auto" : 0,
-                    opacity: expandedCard === i ? 1 : 0,
+                    height: activeCard === i ? "auto" : 0,
+                    opacity: activeCard === i ? 1 : 0,
                   }}
                   className="overflow-hidden"
-                  transition={{ duration: 0.3 }}
+                  transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
                 >
-                  <p className="text-[#f5f5f0]/70 mt-4 leading-relaxed">
+                  <p className="text-[#1a1035]/60 leading-relaxed mb-4 text-sm">
                     {card.description}
                   </p>
                 </motion.div>
 
                 {/* Metrics */}
-                <div className="flex flex-wrap gap-2 mt-4">
+                <div className="flex flex-wrap gap-2 mt-2">
                   {card.metrics.map((metric) => (
                     <span
                       key={metric}
-                      className="px-3 py-1 text-xs font-[var(--font-mono)] bg-amber-400/10 text-amber-400 rounded-full border border-amber-400/20"
+                      className="px-3 py-1 text-xs font-medium bg-white/60 text-[#1a1035]/70 rounded-full border border-white/80"
                     >
                       {metric}
                     </span>
                   ))}
                 </div>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
       </div>
     </section>
   );

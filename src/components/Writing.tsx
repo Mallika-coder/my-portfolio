@@ -28,21 +28,23 @@ const articles = [
 
 export default function Writing() {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const isInView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section id="writing" className="py-24 md:py-32 px-6 md:px-12" ref={ref}>
+    <section id="writing" className="py-32 md:py-40 px-6 md:px-12 lg:px-20 relative" ref={ref}>
+      <div className="absolute top-20 right-0 w-[400px] h-[400px] bg-gradient-to-bl from-pink-100/40 to-purple-100/20 rounded-full blur-3xl -z-10" />
+
       <div className="max-w-7xl mx-auto">
         <motion.h2
-          className="text-4xl md:text-6xl font-[var(--font-playfair)] font-bold mb-4"
-          initial={{ opacity: 0, y: 30 }}
+          className="text-4xl md:text-6xl lg:text-7xl font-[var(--font-playfair)] font-bold mb-4"
+          initial={{ opacity: 0, y: 40 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
         >
-          I Also <span className="text-amber-400">Write</span>
+          I Also <span className="text-gradient">Write</span>
         </motion.h2>
         <motion.p
-          className="text-lg text-[#f5f5f0]/60 mb-16 max-w-xl"
+          className="text-lg text-[#1a1035]/50 mb-16 max-w-lg"
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, delay: 0.2 }}
@@ -54,30 +56,30 @@ export default function Writing() {
           {articles.map((article, i) => (
             <motion.a
               key={i}
-              href="https://medium.com/@sonimallikav"
+              href="https://medium.com/@mallikav"
               target="_blank"
               rel="noopener noreferrer"
-              className={`card-hover block p-8 rounded-2xl bg-[#0d0f1a]/80 border border-white/5 hover:border-amber-400/30 transition-all duration-300 ${
-                article.featured ? "md:col-span-2 md:row-span-1" : ""
+              className={`card-hover block p-8 rounded-3xl glass-strong hover:shadow-xl hover:shadow-purple-100/20 transition-all duration-400 group ${
+                article.featured ? "md:col-span-2" : ""
               }`}
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: 0.3 + i * 0.15 }}
+              transition={{ duration: 0.6, delay: 0.3 + i * 0.12 }}
             >
-              <div className="flex items-center gap-2 mb-4">
-                <span className="text-xs font-[var(--font-mono)] text-amber-400/70 px-2 py-0.5 bg-amber-400/10 rounded">
+              <div className="flex items-center gap-2 mb-5">
+                <span className="text-xs font-semibold text-purple-500 bg-purple-50 px-2.5 py-1 rounded-full">
                   {article.readTime}
                 </span>
                 {article.featured && (
-                  <span className="text-xs font-[var(--font-mono)] text-indigo-400/70 px-2 py-0.5 bg-indigo-400/10 rounded">
+                  <span className="text-xs font-semibold text-sky-500 bg-sky-50 px-2.5 py-1 rounded-full">
                     Featured
                   </span>
                 )}
               </div>
-              <h3 className="text-xl font-[var(--font-playfair)] font-bold text-[#f5f5f0] mb-3 group-hover:text-amber-400">
+              <h3 className="text-xl font-[var(--font-playfair)] font-bold text-[#1a1035] mb-3 group-hover:text-gradient transition-all duration-300 leading-snug">
                 {article.title}
               </h3>
-              <p className="text-[#f5f5f0]/60 text-sm leading-relaxed">
+              <p className="text-[#1a1035]/50 text-sm leading-relaxed">
                 {article.preview}
               </p>
             </motion.a>
@@ -85,16 +87,16 @@ export default function Writing() {
         </div>
 
         <motion.div
-          className="mt-8 text-center"
+          className="mt-10 text-center"
           initial={{ opacity: 0 }}
           animate={isInView ? { opacity: 1 } : {}}
           transition={{ delay: 0.8 }}
         >
           <a
-            href="https://medium.com/@sonimallikav"
+            href="https://medium.com/@mallikav"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-6 py-3 text-amber-400 border border-amber-400/30 rounded-full hover:bg-amber-400/10 transition-all duration-300"
+            className="magnetic-btn inline-flex items-center gap-2 px-7 py-3.5 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-medium rounded-full hover:shadow-lg hover:shadow-purple-200/30 transition-all duration-300 hover:scale-105"
           >
             Read on Medium →
           </a>

@@ -21,6 +21,7 @@ const jetbrains = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://portfolio-web-booster12.vercel.app"),
   title: "Mallika Verma — Writer Who Codes",
   description:
     "Portfolio of Mallika Verma — CSE @ MNNIT Allahabad, SDE Intern @ Amazon. Writer who codes. Engineer who thinks in stories.",
@@ -59,7 +60,8 @@ export default function RootLayout({
       lang="en"
       className={`${inter.variable} ${playfair.variable} ${jetbrains.variable}`}
     >
-      <body className="min-h-screen bg-[#0a0a0a] text-[#f5f5f0] font-[var(--font-inter)] antialiased">
+      <body className="min-h-screen bg-[#faf8ff] text-[#1a1035] font-[var(--font-inter)] antialiased overflow-x-hidden">
+        <div className="noise-overlay" />
         {children}
       </body>
     </html>

@@ -23,20 +23,17 @@ export default function Navbar() {
   return (
     <>
       <motion.nav
-        className={`fixed top-0 left-0 right-0 z-[100] px-6 md:px-12 py-4 transition-all duration-300 ${
+        className={`fixed top-0 left-0 right-0 z-[100] px-6 md:px-12 py-4 transition-all duration-500 ${
           scrolled
-            ? "bg-[#0a0a0a]/80 backdrop-blur-xl border-b border-white/5"
+            ? "glass-strong shadow-sm"
             : "bg-transparent"
         }`}
         initial={{ y: -100 }}
         animate={{ y: 0 }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
+        transition={{ duration: 0.8, ease: [0.4, 0, 0.2, 1] }}
       >
         <div className="max-w-7xl mx-auto flex items-center justify-between">
-          <a
-            href="#"
-            className="text-2xl font-[var(--font-playfair)] font-bold text-amber-400"
-          >
+          <a href="#" className="text-2xl font-[var(--font-playfair)] font-bold text-gradient">
             MV
           </a>
 
@@ -45,9 +42,10 @@ export default function Navbar() {
               <a
                 key={link.name}
                 href={link.href}
-                className="text-sm text-[#f5f5f0]/70 hover:text-amber-400 transition-colors duration-200"
+                className="text-sm text-[#1a1035]/60 hover:text-[#1a1035] transition-colors duration-300 relative group"
               >
                 {link.name}
+                <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-gradient-to-r from-sky-400 to-purple-400 group-hover:w-full transition-all duration-300" />
               </a>
             ))}
           </div>
@@ -58,15 +56,15 @@ export default function Navbar() {
             aria-label="Toggle menu"
           >
             <motion.span
-              className="w-6 h-[2px] bg-[#f5f5f0] block"
+              className="w-6 h-[2px] bg-[#1a1035] block rounded-full"
               animate={mobileOpen ? { rotate: 45, y: 5.5 } : { rotate: 0, y: 0 }}
             />
             <motion.span
-              className="w-6 h-[2px] bg-[#f5f5f0] block"
+              className="w-6 h-[2px] bg-[#1a1035] block rounded-full"
               animate={mobileOpen ? { opacity: 0 } : { opacity: 1 }}
             />
             <motion.span
-              className="w-6 h-[2px] bg-[#f5f5f0] block"
+              className="w-6 h-[2px] bg-[#1a1035] block rounded-full"
               animate={mobileOpen ? { rotate: -45, y: -5.5 } : { rotate: 0, y: 0 }}
             />
           </button>
@@ -76,10 +74,11 @@ export default function Navbar() {
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
-            className="fixed inset-0 z-[99] bg-[#0a0a0a]/95 backdrop-blur-xl flex items-center justify-center"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[99] bg-[#faf8ff]/95 backdrop-blur-2xl flex items-center justify-center"
+            initial={{ opacity: 0, clipPath: "circle(0% at calc(100% - 40px) 40px)" }}
+            animate={{ opacity: 1, clipPath: "circle(150% at calc(100% - 40px) 40px)" }}
+            exit={{ opacity: 0, clipPath: "circle(0% at calc(100% - 40px) 40px)" }}
+            transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
           >
             <div className="flex flex-col items-center gap-8">
               {navLinks.map((link, i) => (
@@ -87,10 +86,10 @@ export default function Navbar() {
                   key={link.name}
                   href={link.href}
                   onClick={() => setMobileOpen(false)}
-                  className="text-3xl font-[var(--font-playfair)] text-[#f5f5f0] hover:text-amber-400 transition-colors"
-                  initial={{ opacity: 0, y: 20 }}
+                  className="text-4xl font-[var(--font-playfair)] text-[#1a1035] hover:text-gradient-warm transition-colors"
+                  initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: i * 0.1 }}
+                  transition={{ delay: 0.1 + i * 0.08 }}
                 >
                   {link.name}
                 </motion.a>

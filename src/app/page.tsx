@@ -1,4 +1,5 @@
 "use client";
+import { useEffect } from "react";
 import dynamic from "next/dynamic";
 import LoadingScreen from "@/components/LoadingScreen";
 import ScrollProgress from "@/components/ScrollProgress";
@@ -19,6 +20,27 @@ const EasterEgg = dynamic(() => import("@/components/EasterEgg"), { ssr: false }
 const Terminal = dynamic(() => import("@/components/Terminal"), { ssr: false });
 
 export default function Home() {
+  useEffect(() => {
+    // Lenis smooth scroll
+    const initLenis = async () => {
+      const Lenis = (await import("@studio-freight/lenis")).default;
+      const lenis = new Lenis({
+        duration: 1.2,
+        easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      });
+
+      function raf(time: number) {
+        lenis.raf(time);
+        requestAnimationFrame(raf);
+      }
+      requestAnimationFrame(raf);
+
+      return () => lenis.destroy();
+    };
+
+    initLenis();
+  }, []);
+
   return (
     <>
       <LoadingScreen />
@@ -27,7 +49,7 @@ export default function Home() {
       <EasterEgg />
       <Terminal />
       <Navbar />
-      <main>
+      <main className="relative">
         <Hero />
         <About />
         <Experience />

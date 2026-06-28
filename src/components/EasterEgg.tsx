@@ -22,9 +22,9 @@ export default function EasterEgg() {
         setShowMessage(true);
         confetti({
           particleCount: 200,
-          spread: 100,
+          spread: 120,
           origin: { y: 0.5 },
-          colors: ["#f59e0b", "#6366f1", "#22c55e", "#f5f5f0"],
+          colors: ["#7dd3fc", "#c4b5fd", "#f9a8d4", "#6ee7b7", "#fda4af"],
         });
         setTimeout(() => setShowMessage(false), 4000);
         setSequence([]);
@@ -39,23 +39,23 @@ export default function EasterEgg() {
     <AnimatePresence>
       {showMessage && (
         <motion.div
-          className="fixed inset-0 z-[300] flex items-center justify-center bg-black/60 backdrop-blur-sm"
+          className="fixed inset-0 z-[300] flex items-center justify-center bg-white/60 backdrop-blur-xl"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           onClick={() => setShowMessage(false)}
         >
           <motion.div
-            className="bg-[#0d0f1a] border border-amber-400/30 rounded-2xl p-8 max-w-md mx-4 text-center"
-            initial={{ scale: 0.5, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
+            className="glass-strong rounded-3xl p-10 max-w-md mx-4 text-center shadow-2xl shadow-purple-100/30"
+            initial={{ scale: 0.5, opacity: 0, rotateY: -15 }}
+            animate={{ scale: 1, opacity: 1, rotateY: 0 }}
             exit={{ scale: 0.5, opacity: 0 }}
             transition={{ type: "spring", stiffness: 300, damping: 25 }}
           >
-            <p className="text-2xl font-[var(--font-playfair)] text-[#f5f5f0] mb-2">
+            <p className="text-2xl font-[var(--font-playfair)] font-bold text-[#1a1035] mb-3">
               You found the Easter egg.
             </p>
-            <p className="text-[#f5f5f0]/60">
+            <p className="text-[#1a1035]/60">
               Clearly you&apos;re as detail-oriented as I am. 👀
             </p>
           </motion.div>
