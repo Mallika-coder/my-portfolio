@@ -78,7 +78,7 @@ export default function Home() {
                   Building AI agents and distributed pipelines for 22 global marketplaces.
                 </p>
 
-                {/* Navigation buttons — interactive cards */}
+                {/* Navigation buttons — interactive, animated */}
                 <div className="grid grid-cols-2 gap-3">
                   {navButtons.map((btn, i) => (
                     <motion.div
@@ -86,15 +86,20 @@ export default function Home() {
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: 2.2 + i * 0.1, duration: 0.5 }}
+                      whileHover={{ y: -4, scale: 1.02 }}
                     >
                       <Link
                         href={btn.href}
-                        className="group block p-4 border border-white/8 rounded-lg hover:border-white/20 hover:bg-white/[0.03] transition-all duration-300"
+                        className="group relative block p-5 border border-white/8 rounded-xl hover:border-purple-500/30 hover:bg-gradient-to-br hover:from-purple-500/5 hover:to-sky-500/5 transition-all duration-400 overflow-hidden"
                       >
-                        <span className="text-xs font-medium text-white/60 group-hover:text-white transition-colors">
-                          {btn.label}
-                        </span>
-                        <p className="text-[10px] text-white/20 mt-1">{btn.desc}</p>
+                        <div className="absolute inset-0 bg-gradient-to-r from-purple-500/0 to-sky-500/0 group-hover:from-purple-500/5 group-hover:to-sky-500/5 transition-all duration-500" />
+                        <div className="relative">
+                          <span className="text-sm font-medium text-white/60 group-hover:text-white transition-colors">
+                            {btn.label}
+                          </span>
+                          <span className="inline-block ml-2 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-300 text-white/40">→</span>
+                          <p className="text-[10px] text-white/20 mt-1.5">{btn.desc}</p>
+                        </div>
                       </Link>
                     </motion.div>
                   ))}
@@ -220,24 +225,38 @@ export default function Home() {
           </div>
         </section>
 
-        {/* ===== BENGALURU STRIP ===== */}
-        <section className="py-20 overflow-hidden">
-          <div className="px-8 md:px-16 lg:px-24 mb-10">
-            <h3 className="text-2xl font-[var(--font-playfair)] font-bold text-white/80">Bengaluru, 2026</h3>
-            <p className="text-xs text-white/25 mt-2">8 weeks at Amazon. A lot changed.</p>
+        {/* ===== BENGALURU — with story captions ===== */}
+        <section className="py-28 overflow-hidden">
+          <div className="px-8 md:px-16 lg:px-24 mb-12">
+            <h3 className="text-3xl font-[var(--font-playfair)] font-bold text-white/80">Bengaluru, 2026</h3>
+            <p className="text-sm text-white/25 mt-2">8 weeks. Most of it wasn&apos;t in the job description.</p>
           </div>
-          <div className="flex gap-4 overflow-x-auto no-scrollbar px-8 md:px-16 lg:px-24">
-            {["/images/i7.jpeg", "/images/i3.jpeg", "/images/i4.jpeg", "/images/i1.jpeg", "/images/i5.jpeg", "/images/i2.jpeg"].map((src, i) => (
+          <div className="flex gap-5 overflow-x-auto no-scrollbar px-8 md:px-16 lg:px-24 pb-4">
+            {[
+              { src: "/images/i7.jpeg", caption: "Day 1 — the wall said DAY 1 and that felt like permission to not know anything yet." },
+              { src: "/images/i3.jpeg", caption: "Nobody tells you how much of engineering is just sitting with a problem." },
+              { src: "/images/i4.jpeg", caption: "'You are what you believe yourself to be.' Week 2, when the agent was failing on 6/14 criteria." },
+              { src: "/images/i1.jpeg", caption: "Building things nobody had built before. From a window seat in Bengaluru." },
+              { src: "/images/i5.jpeg", caption: "The badge comes off. The intern title disappears. But the code stays deployed." },
+              { src: "/images/i2.jpeg", caption: "This desk saw v1 through v7. The first CR approved. The first moment I thought: maybe I belong here." },
+            ].map((photo, i) => (
               <motion.div
-                key={src}
-                className="flex-shrink-0 relative w-[200px] md:w-[260px] h-[280px] md:h-[340px] rounded-lg overflow-hidden group"
+                key={photo.src}
+                className="flex-shrink-0 relative w-[240px] md:w-[300px] rounded-xl overflow-hidden group"
                 initial={{ opacity: 0, x: 30 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: i * 0.06 }}
+                transition={{ duration: 0.5, delay: i * 0.08 }}
               >
-                <Image src={src} alt="Amazon Bengaluru" fill className="object-cover group-hover:scale-105 transition-transform duration-500" sizes="260px" />
-                <div className="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors duration-500" />
+                <div className="relative h-[320px] md:h-[400px]">
+                  <Image src={photo.src} alt="Amazon Bengaluru" fill className="object-cover group-hover:scale-105 transition-transform duration-700" sizes="300px" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
+                </div>
+                <div className="absolute bottom-0 left-0 right-0 p-5">
+                  <p className="text-[11px] text-white/60 leading-relaxed font-[var(--font-playfair)] italic">
+                    {photo.caption}
+                  </p>
+                </div>
               </motion.div>
             ))}
           </div>
