@@ -23,29 +23,26 @@ export default function Navbar() {
   return (
     <>
       <motion.nav
-        className={`fixed top-0 left-0 right-0 z-[100] px-6 md:px-12 py-5 transition-all duration-500 ${
-          scrolled
-            ? "glass-strong shadow-sm border-b border-white/5"
-            : "bg-transparent"
+        className={`fixed top-0 left-0 right-0 z-[100] px-8 md:px-16 py-6 transition-all duration-500 ${
+          scrolled ? "bg-[#0a0a0a]/80 backdrop-blur-xl" : "bg-transparent"
         }`}
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.8, ease: [0.4, 0, 0.2, 1] }}
       >
         <div className="max-w-7xl mx-auto flex items-center justify-between">
-          <a href="#" className="text-2xl font-[var(--font-playfair)] font-bold text-gradient">
+          <a href="#" className="text-lg font-[var(--font-playfair)] font-bold text-white/80 hover:text-white transition-colors">
             MV
           </a>
 
-          <div className="hidden md:flex items-center gap-8">
+          <div className="hidden md:flex items-center gap-10">
             {navLinks.map((link) => (
               <a
                 key={link.name}
                 href={link.href}
-                className="text-sm text-white/50 hover:text-white transition-colors duration-300 relative group"
+                className="text-xs tracking-wide text-white/35 hover:text-white transition-colors duration-300"
               >
                 {link.name}
-                <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-gradient-to-r from-sky-400 to-purple-400 group-hover:w-full transition-all duration-300" />
               </a>
             ))}
           </div>
@@ -56,16 +53,12 @@ export default function Navbar() {
             aria-label="Toggle menu"
           >
             <motion.span
-              className="w-6 h-[2px] bg-white block rounded-full"
-              animate={mobileOpen ? { rotate: 45, y: 5.5 } : { rotate: 0, y: 0 }}
+              className="w-6 h-[1px] bg-white block"
+              animate={mobileOpen ? { rotate: 45, y: 3.5 } : { rotate: 0, y: 0 }}
             />
             <motion.span
-              className="w-6 h-[2px] bg-white block rounded-full"
-              animate={mobileOpen ? { opacity: 0 } : { opacity: 1 }}
-            />
-            <motion.span
-              className="w-6 h-[2px] bg-white block rounded-full"
-              animate={mobileOpen ? { rotate: -45, y: -5.5 } : { rotate: 0, y: 0 }}
+              className="w-6 h-[1px] bg-white block"
+              animate={mobileOpen ? { rotate: -45, y: -3.5 } : { rotate: 0, y: 0 }}
             />
           </button>
         </div>
@@ -74,22 +67,22 @@ export default function Navbar() {
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
-            className="fixed inset-0 z-[99] bg-[#0a0a0a]/95 backdrop-blur-2xl flex items-center justify-center"
-            initial={{ opacity: 0, clipPath: "circle(0% at calc(100% - 40px) 40px)" }}
-            animate={{ opacity: 1, clipPath: "circle(150% at calc(100% - 40px) 40px)" }}
-            exit={{ opacity: 0, clipPath: "circle(0% at calc(100% - 40px) 40px)" }}
-            transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
+            className="fixed inset-0 z-[99] bg-[#0a0a0a] flex items-center justify-center"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
           >
-            <div className="flex flex-col items-center gap-8">
+            <div className="flex flex-col items-center gap-10">
               {navLinks.map((link, i) => (
                 <motion.a
                   key={link.name}
                   href={link.href}
                   onClick={() => setMobileOpen(false)}
-                  className="text-4xl font-[var(--font-playfair)] text-white hover:text-gradient transition-colors"
-                  initial={{ opacity: 0, y: 30 }}
+                  className="text-3xl font-[var(--font-playfair)] text-white/70 hover:text-white transition-colors"
+                  initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.1 + i * 0.08 }}
+                  transition={{ delay: 0.1 + i * 0.06 }}
                 >
                   {link.name}
                 </motion.a>

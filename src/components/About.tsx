@@ -3,16 +3,11 @@ import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import Image from "next/image";
 
-const skillsRow1 = [
-  "JavaScript", "Python", "Java", "Scala", "React.js", "Next.js",
+const skills = [
+  "JavaScript", "Python", "Java", "Scala", "React", "Next.js",
   "Node.js", "TypeScript", "AWS", "DynamoDB", "Lambda", "CDK",
-  "EventBridge", "Spark", "MongoDB",
-];
-
-const skillsRow2 = [
-  "PyTorch", "BERT", "FAISS", "LangChain", "TensorFlow.js",
-  "AI Agents", "Claude", "Tailwind CSS", "Framer Motion",
-  "EMR", "C++", "Docker", "Firebase", "REST APIs",
+  "Spark", "MongoDB", "PyTorch", "BERT", "FAISS", "LangChain",
+  "TensorFlow.js", "AI Agents", "Claude", "Tailwind", "Docker",
 ];
 
 export default function About() {
@@ -20,67 +15,60 @@ export default function About() {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="about" className="py-32 md:py-44 px-6 md:px-12 lg:px-16" ref={ref}>
-      <div className="max-w-5xl mx-auto">
-        {/* Heading */}
-        <motion.h2
-          className="text-3xl md:text-5xl lg:text-6xl font-[var(--font-playfair)] font-bold mb-20 leading-tight"
-          initial={{ opacity: 0, y: 40 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8 }}
-        >
-          I was a writer before
-          <br />
-          <span className="text-gradient">I was an engineer.</span>
-        </motion.h2>
-
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
-          {/* Photo */}
+    <section id="about" className="py-40 md:py-56 px-8 md:px-16 lg:px-24" ref={ref}>
+      <div className="max-w-6xl mx-auto">
+        {/* Two-column editorial layout */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24 items-start">
+          {/* Left: Photo + caption */}
           <motion.div
-            className="relative"
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={isInView ? { opacity: 1, scale: 1 } : {}}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            className="lg:col-span-5"
+            initial={{ opacity: 0, y: 40 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 1, ease: [0.25, 0.1, 0.25, 1] }}
           >
-            <div className="relative aspect-[4/5] rounded-2xl overflow-hidden max-w-[360px] mx-auto">
-              <div className="absolute -inset-1 bg-gradient-to-br from-sky-500/15 via-purple-500/15 to-pink-500/15 rounded-2xl blur-xl -z-10" />
+            <div className="relative aspect-[3/4] w-full max-w-[400px]">
               <Image
                 src="/images/i8.jpeg"
                 alt="Mallika at Amazon Bengaluru"
                 fill
-                className="object-cover rounded-2xl"
+                className="object-cover"
               />
             </div>
+            <p className="text-[11px] text-white/25 mt-4 font-[var(--font-mono)] tracking-wide">
+              Amazon Bengaluru, 2026
+            </p>
           </motion.div>
 
-          {/* Text — short, breathable */}
+          {/* Right: Text content */}
           <motion.div
-            className="space-y-8"
-            initial={{ opacity: 0, y: 30 }}
+            className="lg:col-span-7 lg:pt-16"
+            initial={{ opacity: 0, y: 40 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.7, delay: 0.3 }}
+            transition={{ duration: 1, delay: 0.2, ease: [0.25, 0.1, 0.25, 1] }}
           >
-            <p className="text-lg text-white/55 leading-relaxed">
-              I&apos;m Mallika — CSE at MNNIT Allahabad, SDE Intern at Amazon.
-              I build distributed pipelines and AI agents that serve 22 global marketplaces.
-            </p>
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-[var(--font-playfair)] font-bold mb-12 leading-[1.1]">
+              I was a writer before
+              <br />
+              <span className="text-gradient">I was an engineer.</span>
+            </h2>
 
-            <p className="text-lg text-white/55 leading-relaxed">
-              Self-prepared for JEE in 2.5 months. Learned discipline from my mother.
-              Haven&apos;t stopped since.
-            </p>
+            <div className="space-y-6 mb-12">
+              <p className="text-base md:text-lg text-white/50 leading-relaxed">
+                CSE at MNNIT Allahabad. SDE Intern at Amazon, where I build
+                distributed pipelines and AI agents serving 22 global marketplaces.
+              </p>
+              <p className="text-base md:text-lg text-white/50 leading-relaxed">
+                Self-prepared for JEE in 2.5 months. Learned discipline from my mother.
+                Haven&apos;t stopped since.
+              </p>
+            </div>
 
-            {/* Achievement pills */}
-            <div className="flex flex-wrap gap-3 pt-2">
-              {[
-                "SDE Intern @ Amazon",
-                "9.01 CPI",
-                "Published Author",
-                "450+ LeetCode",
-              ].map((item) => (
+            {/* Achievement pills — sparse, elegant */}
+            <div className="flex flex-wrap gap-3 mb-16">
+              {["9.01 CPI", "Published Author", "450+ LeetCode", "1st in Speech"].map((item) => (
                 <span
                   key={item}
-                  className="px-4 py-2 text-xs text-white/50 border border-white/10 rounded-full"
+                  className="px-4 py-2 text-[11px] tracking-wide text-white/40 border border-white/10 rounded-full"
                 >
                   {item}
                 </span>
@@ -89,38 +77,24 @@ export default function About() {
           </motion.div>
         </div>
 
-        {/* Skill Marquee — with fade edges */}
+        {/* Skill Marquee — full width, below */}
         <motion.div
-          className="mt-28 overflow-hidden"
+          className="mt-32 overflow-hidden"
           initial={{ opacity: 0 }}
           animate={isInView ? { opacity: 1 } : {}}
-          transition={{ duration: 0.8, delay: 0.5 }}
+          transition={{ duration: 1, delay: 0.5 }}
         >
+          <p className="text-[10px] text-white/20 font-[var(--font-mono)] tracking-[0.2em] uppercase mb-6">
+            Technologies
+          </p>
           <div className="relative">
-            <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-[#0a0a0a] to-transparent z-10" />
-            <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-[#0a0a0a] to-transparent z-10" />
-
-            {/* Row 1 */}
-            <div className="flex animate-marquee whitespace-nowrap py-4">
-              {[...skillsRow1, ...skillsRow1].map((skill, i) => (
+            <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-[#0a0a0a] to-transparent z-10" />
+            <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-[#0a0a0a] to-transparent z-10" />
+            <div className="flex animate-marquee whitespace-nowrap">
+              {[...skills, ...skills].map((skill, i) => (
                 <span
-                  key={`a-${i}`}
-                  className="mx-2 px-4 py-2 text-[11px] text-white/30 border border-white/8 rounded-full"
-                >
-                  {skill}
-                </span>
-              ))}
-            </div>
-
-            {/* Row 2 — reversed */}
-            <div
-              className="flex animate-marquee whitespace-nowrap py-4"
-              style={{ animationDirection: "reverse", animationDuration: "40s" }}
-            >
-              {[...skillsRow2, ...skillsRow2].map((skill, i) => (
-                <span
-                  key={`b-${i}`}
-                  className="mx-2 px-4 py-2 text-[11px] text-white/30 border border-white/8 rounded-full"
+                  key={i}
+                  className="mx-4 text-sm text-white/20 hover:text-white/50 transition-colors cursor-default"
                 >
                   {skill}
                 </span>

@@ -5,25 +5,19 @@ import { useRef } from "react";
 const articles = [
   {
     title: "Seven weeks at Amazon and I'm already scared of forgetting.",
-    preview:
-      "Not the technical stuff — I'll remember the code. That part gets saved to GitHub. But the feeling of walking into that office on Day 1...",
-    readTime: "5 min",
+    preview: "Not the technical stuff — I'll remember the code. But the feeling of walking into that office on Day 1...",
     tag: "Featured",
     href: "https://medium.com/@mallikav",
   },
   {
     title: "What Building AI Agents Taught Me About Problem Solving",
-    preview:
-      "When you iterate from v1 to v7 in two days, you learn that the first solution is never the best one.",
-    readTime: "4 min",
+    preview: "When you iterate from v1 to v7 in two days, you learn that the first solution is never the best one.",
     tag: "Engineering",
     href: "https://medium.com/@mallikav",
   },
   {
     title: "Why Every Engineer Should Write",
-    preview:
-      "Clear code and clear prose share the same foundation: knowing what you actually mean.",
-    readTime: "3 min",
+    preview: "Clear code and clear prose share the same foundation: knowing what you actually mean.",
     tag: "Thoughts",
     href: "https://medium.com/@mallikav",
   },
@@ -34,67 +28,71 @@ export default function Writing() {
   const isInView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section id="writing" className="py-32 md:py-44 px-6 md:px-12 lg:px-16 relative" ref={ref}>
+    <section id="writing" className="py-40 md:py-56 px-8 md:px-16 lg:px-24" ref={ref}>
       <div className="max-w-5xl mx-auto">
         <motion.div
-          className="mb-16"
+          className="mb-24"
           initial={{ opacity: 0, y: 40 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 1 }}
         >
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-[var(--font-playfair)] font-bold mb-3">
-            I Also <span className="text-gradient">Write</span>
-          </h2>
-          <p className="text-sm text-white/30">
-            About the things I build and the things I&apos;m still figuring out.
+          <p className="text-[10px] text-white/20 font-[var(--font-mono)] tracking-[0.2em] uppercase mb-4">
+            Writing
           </p>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-[var(--font-playfair)] font-bold">
+            I Also Write
+          </h2>
         </motion.div>
 
-        {/* Article cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+        {/* Article list — editorial rows */}
+        <div className="space-y-0">
           {articles.map((article, i) => (
             <motion.a
               key={i}
               href={article.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="card-hover block p-7 rounded-2xl glass group h-full"
-              initial={{ opacity: 0, y: 25 }}
+              className="group block border-t border-white/8 py-10 md:py-12 hover:bg-white/[0.02] transition-colors px-4 -mx-4 rounded-lg"
+              initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: 0.2 + i * 0.1 }}
+              transition={{ duration: 0.6, delay: 0.2 + i * 0.1 }}
             >
-              <div className="flex items-center gap-2 mb-4">
-                <span className="text-[10px] font-semibold text-purple-300 bg-purple-500/15 px-2 py-0.5 rounded-full">
-                  {article.tag}
-                </span>
-                <span className="text-[10px] text-white/25 font-[var(--font-mono)]">
-                  {article.readTime}
+              <div className="flex items-start justify-between gap-8">
+                <div className="flex-1">
+                  <span className="text-[10px] font-[var(--font-mono)] text-purple-300/50 tracking-wide">
+                    {article.tag}
+                  </span>
+                  <h3 className="text-lg md:text-xl font-bold text-white/70 group-hover:text-white transition-colors mt-2 mb-3 leading-snug">
+                    {article.title}
+                  </h3>
+                  <p className="text-sm text-white/25 italic leading-relaxed max-w-xl">
+                    &quot;{article.preview}&quot;
+                  </p>
+                </div>
+                <span className="text-white/10 group-hover:text-white/40 transition-colors text-lg mt-2 flex-shrink-0">
+                  ↗
                 </span>
               </div>
-              <h3 className="text-base font-bold text-white/80 mb-3 leading-snug group-hover:text-gradient transition-all duration-300">
-                {article.title}
-              </h3>
-              <p className="text-xs text-white/30 leading-relaxed italic">
-                &quot;{article.preview}&quot;
-              </p>
             </motion.a>
           ))}
+          <div className="border-t border-white/8" />
         </div>
 
         {/* CTA */}
         <motion.div
-          className="text-center"
+          className="mt-12"
           initial={{ opacity: 0 }}
           animate={isInView ? { opacity: 1 } : {}}
-          transition={{ delay: 0.7 }}
+          transition={{ delay: 0.8 }}
         >
           <a
             href="https://medium.com/@mallikav"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-medium rounded-full hover:shadow-lg hover:shadow-purple-500/20 transition-all duration-300 hover:scale-105 text-sm"
+            className="inline-flex items-center gap-3 text-sm text-white/40 hover:text-white transition-colors group"
           >
-            Read all on Medium →
+            <span className="w-8 h-[1px] bg-white/20 group-hover:w-12 transition-all" />
+            Read all on Medium
           </a>
         </motion.div>
       </div>

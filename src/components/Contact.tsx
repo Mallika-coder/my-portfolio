@@ -33,67 +33,68 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="py-32 md:py-44 px-6 md:px-12 lg:px-16" ref={ref}>
+    <section id="contact" className="py-40 md:py-56 px-8 md:px-16 lg:px-24" ref={ref}>
       <div className="max-w-5xl mx-auto">
         {/* Header */}
         <motion.div
-          className="mb-16"
+          className="mb-24"
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 1 }}
         >
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-[var(--font-playfair)] font-bold mb-3">
-            Let&apos;s build <span className="text-gradient">something.</span>
-          </h2>
-          <p className="text-sm text-white/30">
-            Whether it&apos;s about engineering, writing, or an idea — I&apos;d love to hear from you.
+          <p className="text-[10px] text-white/20 font-[var(--font-mono)] tracking-[0.2em] uppercase mb-4">
+            Contact
           </p>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-[var(--font-playfair)] font-bold">
+            Let&apos;s build something.
+          </h2>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
-          {/* Form */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-20">
+          {/* Form — minimal */}
           <motion.form
             onSubmit={handleSubmit}
-            className="space-y-4"
+            className="space-y-6"
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
             <input
               type="text"
-              placeholder="Your name"
+              placeholder="Name"
               value={formState.name}
               onChange={(e) => setFormState({ ...formState, name: e.target.value })}
-              className="w-full px-5 py-4 glass rounded-xl text-white placeholder-white/25 focus:outline-none focus:ring-2 focus:ring-purple-500/30 transition-all text-sm bg-transparent"
+              className="w-full px-0 py-4 bg-transparent border-b border-white/10 text-white placeholder-white/20 focus:outline-none focus:border-white/30 transition-colors text-sm"
               required
             />
             <input
               type="email"
-              placeholder="Your email"
+              placeholder="Email"
               value={formState.email}
               onChange={(e) => setFormState({ ...formState, email: e.target.value })}
-              className="w-full px-5 py-4 glass rounded-xl text-white placeholder-white/25 focus:outline-none focus:ring-2 focus:ring-purple-500/30 transition-all text-sm bg-transparent"
+              className="w-full px-0 py-4 bg-transparent border-b border-white/10 text-white placeholder-white/20 focus:outline-none focus:border-white/30 transition-colors text-sm"
               required
             />
             <textarea
-              placeholder="Your message"
+              placeholder="Message"
               rows={4}
               value={formState.message}
               onChange={(e) => setFormState({ ...formState, message: e.target.value })}
-              className="w-full px-5 py-4 glass rounded-xl text-white placeholder-white/25 focus:outline-none focus:ring-2 focus:ring-purple-500/30 transition-all resize-none text-sm bg-transparent"
+              className="w-full px-0 py-4 bg-transparent border-b border-white/10 text-white placeholder-white/20 focus:outline-none focus:border-white/30 transition-colors resize-none text-sm"
               required
             />
             <button
               type="submit"
-              className="px-8 py-4 bg-gradient-to-r from-purple-500 to-sky-500 text-white font-semibold rounded-xl hover:shadow-xl hover:shadow-purple-500/20 transition-all duration-300 hover:scale-[1.02] text-sm"
+              className="mt-4 inline-flex items-center gap-3 text-sm text-white/60 hover:text-white transition-colors group"
             >
-              {submitted ? "Sent!" : "Send Message"}
+              <span className="w-8 h-[1px] bg-white/30 group-hover:w-12 transition-all" />
+              {submitted ? "Sent" : "Send message"}
             </button>
           </motion.form>
 
-          {/* Socials */}
+          {/* Socials — clean list */}
           <motion.div
-            className="space-y-3"
+            className="space-y-6"
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.3 }}
@@ -104,24 +105,14 @@ export default function Contact() {
                 href={social.href}
                 target={social.name !== "Email" ? "_blank" : undefined}
                 rel="noopener noreferrer"
-                className="card-hover flex items-center gap-4 p-4 rounded-xl glass group"
-                initial={{ opacity: 0, x: 15 }}
-                animate={isInView ? { opacity: 1, x: 0 } : {}}
-                transition={{ delay: 0.4 + i * 0.06 }}
+                className="flex items-center gap-4 group"
+                initial={{ opacity: 0 }}
+                animate={isInView ? { opacity: 1 } : {}}
+                transition={{ delay: 0.5 + i * 0.08 }}
               >
-                <div className="w-9 h-9 rounded-lg bg-white/5 flex items-center justify-center text-white/40 group-hover:text-purple-400 transition-colors">
-                  <social.icon className="w-4 h-4" />
-                </div>
-                <div className="flex-1 min-w-0">
-                  <span className="text-[10px] font-semibold text-white/25 uppercase tracking-wider block">
-                    {social.name}
-                  </span>
-                  <p className="text-sm text-white/50 group-hover:text-white/80 transition-colors truncate">
-                    {social.label}
-                  </p>
-                </div>
-                <span className="text-white/10 group-hover:text-purple-400 transition-colors">
-                  ↗
+                <social.icon className="w-4 h-4 text-white/20 group-hover:text-white/50 transition-colors" />
+                <span className="text-sm text-white/30 group-hover:text-white/70 transition-colors">
+                  {social.label}
                 </span>
               </motion.a>
             ))}

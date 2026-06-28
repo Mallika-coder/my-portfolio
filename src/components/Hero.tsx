@@ -40,63 +40,53 @@ export default function Hero() {
   }, [displayText, isDeleting, taglineIndex]);
 
   return (
-    <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden px-6 md:px-12 lg:px-24">
-      {/* Background blob */}
-      <motion.div
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-gradient-to-br from-sky-500/6 via-purple-500/8 to-pink-500/6 blob rounded-full blur-3xl"
-        animate={{ scale: [1, 1.08, 1] }}
-        transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
-      />
+    <section className="relative h-screen w-full overflow-hidden">
+      {/* Full-bleed background photo */}
+      <div className="absolute inset-0">
+        <Image
+          src="/images/i6.jpeg"
+          alt="Mallika Verma"
+          fill
+          className="object-cover"
+          priority
+        />
+        {/* Dark overlay — gradient from bottom for text readability */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-black/10" />
+        <div className="absolute inset-0 bg-black/20" />
+      </div>
 
-      <div className="relative z-10 flex flex-col items-center text-center max-w-5xl mx-auto">
-        {/* Photo — circular with animated gradient ring */}
-        <motion.div
-          className="relative mb-12"
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 1.4, duration: 1, ease: "easeOut" }}
-        >
-          <div className="relative w-40 h-40 md:w-52 md:h-52">
-            {/* Animated glow ring */}
-            <motion.div
-              className="absolute -inset-[3px] rounded-full bg-gradient-to-br from-sky-400 via-purple-400 to-pink-400"
-              animate={{ rotate: [0, 360] }}
-              transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
-              style={{ padding: "3px" }}
-            />
-            {/* Outer glow */}
-            <div className="absolute -inset-4 bg-gradient-to-br from-sky-400/20 via-purple-400/20 to-pink-400/20 rounded-full blur-xl" />
-            {/* Photo */}
-            <div className="relative w-full h-full rounded-full overflow-hidden border-[3px] border-[#0a0a0a]">
-              <Image
-                src="/images/i6.jpeg"
-                alt="Mallika Verma"
-                fill
-                className="object-cover"
-                priority
-              />
-            </div>
-          </div>
-        </motion.div>
-
-        {/* Main headline */}
+      {/* Content — positioned at bottom-left, editorial style */}
+      <div className="relative z-10 h-full flex flex-col justify-end px-8 md:px-16 lg:px-24 pb-16 md:pb-24">
+        {/* Name — huge, serif, cinematic */}
         <motion.h1
-          className="text-5xl sm:text-6xl md:text-8xl lg:text-[110px] font-[var(--font-playfair)] font-bold text-gradient leading-[1.1] mb-6"
-          initial={{ opacity: 0, y: 40 }}
+          className="text-5xl sm:text-7xl md:text-8xl lg:text-[110px] font-[var(--font-playfair)] font-bold text-white leading-[0.95] mb-4"
+          initial={{ opacity: 0, y: 60 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.8, duration: 1, ease: "easeOut" }}
+          transition={{ delay: 1.6, duration: 1.2, ease: [0.25, 0.1, 0.25, 1] }}
         >
-          Writer who codes.
+          Mallika
+          <br />
+          <span className="text-gradient">Verma</span>
         </motion.h1>
 
-        {/* Typewriter subtitle */}
+        {/* Tagline */}
+        <motion.p
+          className="text-lg md:text-2xl text-white/70 font-light mb-6 max-w-lg"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 2.2, duration: 0.8 }}
+        >
+          Writer who codes.
+        </motion.p>
+
+        {/* Typewriter */}
         <motion.div
-          className="h-8 flex items-center justify-center mb-10"
+          className="h-6 mb-8"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 2.4 }}
+          transition={{ delay: 2.6 }}
         >
-          <span className="text-sm md:text-base font-[var(--font-mono)] text-white/40">
+          <span className="text-xs md:text-sm font-[var(--font-mono)] text-white/40">
             {displayText}
             <motion.span
               animate={{ opacity: [1, 0, 1] }}
@@ -108,45 +98,34 @@ export default function Hero() {
           </span>
         </motion.div>
 
-        {/* Badge */}
-        <motion.div
-          className="mb-12"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 2.7, duration: 0.6 }}
-        >
-          <span className="px-5 py-2.5 glass rounded-full text-xs text-white/50 tracking-wide">
-            SDE Intern @ Amazon · CSE @ MNNIT Allahabad
-          </span>
-        </motion.div>
-
-        {/* Single CTA */}
+        {/* Minimal CTA */}
         <motion.a
-          href="#projects"
-          className="magnetic-btn px-8 py-4 bg-gradient-to-r from-purple-500 to-sky-500 text-white font-medium rounded-full hover:shadow-lg hover:shadow-purple-500/20 transition-all duration-300 hover:scale-105 text-sm"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 2.9, duration: 0.6 }}
-        >
-          See my work ↓
-        </motion.a>
-
-        {/* Scroll indicator */}
-        <motion.div
-          className="absolute bottom-8 left-1/2 -translate-x-1/2"
+          href="#about"
+          className="inline-flex items-center gap-3 text-sm text-white/60 hover:text-white transition-colors group"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 3.2 }}
+          transition={{ delay: 3 }}
         >
-          <motion.div className="w-5 h-9 border-2 border-white/10 rounded-full flex justify-center pt-2">
-            <motion.div
-              className="w-1.5 h-2.5 bg-gradient-to-b from-purple-400 to-sky-400 rounded-full"
-              animate={{ y: [0, 10, 0] }}
-              transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
-            />
-          </motion.div>
-        </motion.div>
+          <span className="w-8 h-[1px] bg-white/30 group-hover:w-12 transition-all" />
+          Scroll to explore
+        </motion.a>
       </div>
+
+      {/* Scroll indicator — bottom right */}
+      <motion.div
+        className="absolute bottom-8 right-8 md:right-16"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 3.2 }}
+      >
+        <motion.div className="w-5 h-9 border-2 border-white/20 rounded-full flex justify-center pt-2">
+          <motion.div
+            className="w-1.5 h-2.5 bg-white/60 rounded-full"
+            animate={{ y: [0, 10, 0] }}
+            transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
+          />
+        </motion.div>
+      </motion.div>
     </section>
   );
 }

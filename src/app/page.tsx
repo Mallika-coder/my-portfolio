@@ -18,14 +18,6 @@ const CustomCursor = dynamic(() => import("@/components/CustomCursor"), { ssr: f
 const EasterEgg = dynamic(() => import("@/components/EasterEgg"), { ssr: false });
 const Terminal = dynamic(() => import("@/components/Terminal"), { ssr: false });
 
-function SectionDivider() {
-  return (
-    <div className="w-full flex justify-center">
-      <div className="w-12 h-[1px] bg-gradient-to-r from-transparent via-white/8 to-transparent" />
-    </div>
-  );
-}
-
 export default function Home() {
   useEffect(() => {
     const initLenis = async () => {
@@ -57,19 +49,13 @@ export default function Home() {
       <Navbar />
       <SocialDock />
 
-      <main className="relative lg:pl-20">
+      <main className="relative lg:pl-16">
         <Hero />
-        <SectionDivider />
         <About />
-        <SectionDivider />
         <Experience />
-        <SectionDivider />
         <Projects />
-        <SectionDivider />
         <Writing />
-        <SectionDivider />
         <Gallery />
-        <SectionDivider />
         <Contact />
       </main>
       <Footer />

@@ -5,39 +5,39 @@ import { useRef } from "react";
 const projects = [
   {
     title: "DriveSafer AI",
-    oneLiner: "Real-time drowsiness detection at 30fps in browser",
-    metric: "97.8% accuracy",
+    oneLiner: "Real-time drowsiness detection at 30fps",
+    metric: "97.8%",
+    metricLabel: "accuracy",
     stack: ["React", "TensorFlow.js", "MediaPipe"],
     live: "https://drive-safer-ai.vercel.app/",
     github: "https://github.com/Mallika-coder/DriveSafer-AI",
-    dot: "bg-sky-400",
   },
   {
     title: "MindGuard",
     oneLiner: "Mental health classification + RAG chatbot",
-    metric: "F1: 0.87 on 200K posts",
+    metric: "0.87",
+    metricLabel: "F1 score",
     stack: ["PyTorch", "BERT", "FAISS", "LangChain"],
     live: "https://mind-guard-chi.vercel.app",
     github: "",
-    dot: "bg-purple-400",
   },
   {
     title: "MallikaAI",
-    oneLiner: "Multi-model assistant with live code execution",
-    metric: "GPT-4o + Claude + LLaMA",
+    oneLiner: "Multi-model assistant with code execution",
+    metric: "3",
+    metricLabel: "LLMs",
     stack: ["Next.js", "FastAPI", "WebSocket"],
     live: "https://frontend-j1wm81yfe-web-booster12.vercel.app",
     github: "https://github.com/Mallika-coder/mallika-ai",
-    dot: "bg-pink-400",
   },
   {
     title: "CureCue",
     oneLiner: "Gamified wellness with AI Oracle",
-    metric: "Full-stack + AI",
+    metric: "Full",
+    metricLabel: "stack",
     stack: ["Next.js", "MongoDB", "JWT"],
     live: "https://curecue312.vercel.app/",
     github: "",
-    dot: "bg-emerald-400",
   },
 ];
 
@@ -46,71 +46,78 @@ export default function Projects() {
   const isInView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section id="projects" className="py-32 md:py-40 px-6 md:px-12 lg:px-16" ref={ref}>
-      <div className="max-w-5xl mx-auto">
+    <section id="projects" className="py-40 md:py-56 px-8 md:px-16 lg:px-24" ref={ref}>
+      <div className="max-w-6xl mx-auto">
         {/* Header */}
-        <motion.h2
-          className="text-4xl md:text-5xl lg:text-6xl font-[var(--font-playfair)] font-bold mb-20"
+        <motion.div
+          className="mb-24"
           initial={{ opacity: 0, y: 40 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 1 }}
         >
-          Things I <span className="text-gradient">Built</span>
-        </motion.h2>
+          <p className="text-[10px] text-white/20 font-[var(--font-mono)] tracking-[0.2em] uppercase mb-4">
+            Selected Work
+          </p>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-[var(--font-playfair)] font-bold">
+            Projects
+          </h2>
+        </motion.div>
 
-        {/* 2x2 Grid with generous gaps */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {/* Project list — editorial, one per row on desktop */}
+        <div className="space-y-0">
           {projects.map((project, i) => (
             <motion.div
               key={project.title}
               data-cursor="project"
-              className="group p-8 rounded-2xl border border-white/8 bg-white/[0.02] hover:bg-white/[0.04] hover:border-white/15 hover:-translate-y-1 transition-all duration-300"
-              initial={{ opacity: 0, y: 30 }}
+              className="group border-t border-white/8 py-10 md:py-14 grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 items-center hover:bg-white/[0.02] transition-colors px-4 -mx-4 rounded-lg"
+              initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: 0.15 + i * 0.1 }}
+              transition={{ duration: 0.6, delay: 0.2 + i * 0.1 }}
             >
-              {/* Dot + metric */}
-              <div className="flex items-center gap-2 mb-5">
-                <div className={`w-2 h-2 rounded-full ${project.dot}`} />
-                <span className="text-[11px] font-[var(--font-mono)] text-white/25">
+              {/* Metric — big number */}
+              <div className="md:col-span-2 text-center md:text-left">
+                <span className="text-3xl md:text-4xl font-bold text-gradient">
                   {project.metric}
                 </span>
+                <p className="text-[10px] text-white/20 mt-1">{project.metricLabel}</p>
               </div>
 
-              {/* Title */}
-              <h3 className="text-xl font-bold text-white/85 mb-3 group-hover:text-gradient transition-all duration-300">
-                {project.title}
-              </h3>
+              {/* Title + one-liner */}
+              <div className="md:col-span-5">
+                <h3 className="text-xl md:text-2xl font-bold text-white/80 group-hover:text-white transition-colors mb-1">
+                  {project.title}
+                </h3>
+                <p className="text-sm text-white/30">
+                  {project.oneLiner}
+                </p>
+              </div>
 
-              {/* One-liner */}
-              <p className="text-sm text-white/35 leading-relaxed mb-6">
-                {project.oneLiner}
-              </p>
-
-              {/* Tech tags */}
-              <div className="flex flex-wrap gap-2 mb-6">
+              {/* Stack */}
+              <div className="md:col-span-3 flex flex-wrap gap-2">
                 {project.stack.map((tech) => (
-                  <span key={tech} className="px-2.5 py-1 text-[10px] font-[var(--font-mono)] text-white/30 border border-white/8 rounded-md">
+                  <span key={tech} className="text-[10px] font-[var(--font-mono)] text-white/20">
                     {tech}
                   </span>
                 ))}
               </div>
 
               {/* Links */}
-              <div className="flex gap-5">
+              <div className="md:col-span-2 flex gap-4 justify-end">
                 {project.live && (
-                  <a href={project.live} target="_blank" rel="noopener noreferrer" className="text-xs font-medium text-sky-400/60 hover:text-sky-300 transition-colors">
+                  <a href={project.live} target="_blank" rel="noopener noreferrer" className="text-xs text-white/30 hover:text-white transition-colors">
                     Live ↗
                   </a>
                 )}
                 {project.github && (
-                  <a href={project.github} target="_blank" rel="noopener noreferrer" className="text-xs font-medium text-white/25 hover:text-white/50 transition-colors">
+                  <a href={project.github} target="_blank" rel="noopener noreferrer" className="text-xs text-white/20 hover:text-white/50 transition-colors">
                     Code ↗
                   </a>
                 )}
               </div>
             </motion.div>
           ))}
+          {/* Bottom border */}
+          <div className="border-t border-white/8" />
         </div>
       </div>
     </section>
