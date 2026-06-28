@@ -249,11 +249,11 @@ export default function Home() {
                 transition={{ duration: 0.5, delay: i * 0.08 }}
               >
                 <div className="relative h-[320px] md:h-[400px]">
-                  <Image src={photo.src} alt="Amazon Bengaluru" fill className="object-cover group-hover:scale-105 transition-transform duration-700" sizes="300px" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
+                  <Image src={photo.src} alt="Amazon Bengaluru" fill className="object-cover object-center group-hover:scale-105 transition-transform duration-700" sizes="300px" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
                 </div>
-                <div className="absolute bottom-0 left-0 right-0 p-5">
-                  <p className="text-[11px] text-white/60 leading-relaxed font-[var(--font-playfair)] italic">
+                <div className="absolute bottom-0 left-0 right-0 p-4">
+                  <p className="text-[10px] text-white/70 leading-relaxed font-[var(--font-playfair)] italic backdrop-blur-sm bg-black/30 rounded-lg px-3 py-2">
                     {photo.caption}
                   </p>
                 </div>
