@@ -49,7 +49,7 @@ export default function Home() {
       <Navbar />
       <SocialDock />
 
-      <main className="relative lg:pl-16">
+      <main className="relative">
         <Hero />
         <About />
         <Experience />
