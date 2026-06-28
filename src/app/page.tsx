@@ -14,6 +14,7 @@ import Gallery from "@/components/Gallery";
 import Achievements from "@/components/Achievements";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
+import SocialDock from "@/components/SocialDock";
 
 const CustomCursor = dynamic(() => import("@/components/CustomCursor"), { ssr: false });
 const EasterEgg = dynamic(() => import("@/components/EasterEgg"), { ssr: false });
@@ -49,6 +50,7 @@ export default function Home() {
       <EasterEgg />
       <Terminal />
       <Navbar />
+      <SocialDock />
       <main className="relative">
         <Hero />
         <About />

@@ -3,6 +3,9 @@ import { motion, useInView } from "framer-motion";
 import { useRef, useState } from "react";
 import Image from "next/image";
 import confetti from "canvas-confetti";
+import { FaGithub, FaLinkedinIn, FaInstagram, FaMediumM } from "react-icons/fa";
+import { SiLeetcode } from "react-icons/si";
+import { HiOutlineMail } from "react-icons/hi";
 
 export default function Contact() {
   const ref = useRef(null);
@@ -24,11 +27,12 @@ export default function Contact() {
   };
 
   const socials = [
-    { name: "Email", href: "mailto:sonimallikav@gmail.com", label: "sonimallikav@gmail.com", color: "from-pink-400 to-rose-400" },
-    { name: "LinkedIn", href: "https://www.linkedin.com/in/mallikaverma58/", label: "Mallika Verma", color: "from-sky-400 to-blue-400" },
-    { name: "GitHub", href: "https://github.com/Mallika-coder", label: "Mallika-coder", color: "from-purple-400 to-violet-400" },
-    { name: "LeetCode", href: "https://leetcode.com/u/Mallikaaaa", label: "Mallikaaaa", color: "from-amber-400 to-orange-400" },
-    { name: "Medium", href: "https://medium.com/@mallikav", label: "@mallikav", color: "from-emerald-400 to-green-400" },
+    { name: "Email", href: "mailto:sonimallikav@gmail.com", label: "sonimallikav@gmail.com", color: "from-pink-400 to-rose-400", icon: HiOutlineMail, iconBg: "bg-pink-50 text-pink-500" },
+    { name: "LinkedIn", href: "https://www.linkedin.com/in/mallikaverma58/", label: "/mallikaverma58", color: "from-sky-400 to-blue-400", icon: FaLinkedinIn, iconBg: "bg-blue-50 text-blue-500" },
+    { name: "GitHub", href: "https://github.com/Mallika-coder", label: "/Mallika-coder", color: "from-purple-400 to-violet-400", icon: FaGithub, iconBg: "bg-gray-100 text-gray-700" },
+    { name: "Instagram", href: "https://www.instagram.com/creative_mallika_0542/", label: "@creative_mallika_0542", color: "from-fuchsia-400 to-orange-400", icon: FaInstagram, iconBg: "bg-pink-50 text-pink-500" },
+    { name: "LeetCode", href: "https://leetcode.com/u/Mallikaaaa", label: "/Mallikaaaa", color: "from-amber-400 to-orange-400", icon: SiLeetcode, iconBg: "bg-amber-50 text-amber-600" },
+    { name: "Medium", href: "https://medium.com/@mallikav", label: "@mallikav", color: "from-emerald-400 to-green-400", icon: FaMediumM, iconBg: "bg-gray-100 text-gray-700" },
   ];
 
   return (
@@ -122,19 +126,23 @@ export default function Contact() {
                 href={social.href}
                 target={social.name !== "Email" ? "_blank" : undefined}
                 rel="noopener noreferrer"
-                className="card-hover flex items-center gap-4 p-5 rounded-2xl glass-strong group"
+                className="card-hover flex items-center gap-4 p-4 rounded-2xl glass-strong group"
                 initial={{ opacity: 0, y: 10 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ delay: 0.5 + i * 0.08 }}
               >
-                <div className={`w-2.5 h-2.5 rounded-full bg-gradient-to-r ${social.color}`} />
-                <span className="text-sm font-semibold text-[#1a1035]/50 w-20">
-                  {social.name}
-                </span>
-                <span className="text-[#1a1035]/70 group-hover:text-[#1a1035] transition-colors font-medium">
-                  {social.label}
-                </span>
-                <span className="ml-auto text-[#1a1035]/20 group-hover:text-purple-400 transition-colors text-lg">
+                <div className={`w-10 h-10 rounded-xl ${social.iconBg} flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300`}>
+                  <social.icon className="w-[18px] h-[18px]" />
+                </div>
+                <div className="min-w-0 flex-1">
+                  <span className="text-xs font-semibold text-[#1a1035]/40 uppercase tracking-wider">
+                    {social.name}
+                  </span>
+                  <p className="text-sm text-[#1a1035]/70 group-hover:text-[#1a1035] transition-colors font-medium truncate">
+                    {social.label}
+                  </p>
+                </div>
+                <span className="text-[#1a1035]/20 group-hover:text-purple-400 transition-colors text-lg flex-shrink-0">
                   ↗
                 </span>
               </motion.a>
