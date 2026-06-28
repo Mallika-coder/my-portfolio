@@ -11,22 +11,21 @@ const navLinks = [
 ] as const;
 
 export default function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
+  const [visible, setVisible] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > window.innerHeight * 0.8);
+    const handleScroll = () => setVisible(window.scrollY > window.innerHeight * 0.85);
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
     <>
-      {/* Nav only appears after scrolling past the hero */}
       <motion.nav
-        className={`fixed top-0 left-0 right-0 z-[100] px-8 md:px-16 py-5 transition-all duration-500 ${
-          scrolled ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4 pointer-events-none"
-        } bg-[#0a0a0a]/90 backdrop-blur-xl border-b border-white/5`}
+        className={`fixed top-0 left-0 right-0 z-[100] px-8 md:px-16 py-5 bg-[#0a0a0a]/90 backdrop-blur-xl border-b border-white/5 transition-all duration-500 ${
+          visible ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-full pointer-events-none"
+        }`}
       >
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <a href="#" className="text-sm font-[var(--font-playfair)] font-bold text-white/70">
@@ -38,7 +37,7 @@ export default function Navbar() {
               <a
                 key={link.name}
                 href={link.href}
-                className="text-[11px] tracking-wide text-white/30 hover:text-white transition-colors duration-300"
+                className="text-[11px] tracking-wide text-white/30 hover:text-white transition-colors"
               >
                 {link.name}
               </a>
@@ -48,10 +47,10 @@ export default function Navbar() {
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
             className="md:hidden p-2"
-            aria-label="Toggle menu"
+            aria-label="Menu"
           >
-            <motion.div className="w-5 h-[1px] bg-white mb-1.5" animate={mobileOpen ? { rotate: 45, y: 3 } : {}} />
-            <motion.div className="w-5 h-[1px] bg-white" animate={mobileOpen ? { rotate: -45, y: -3 } : {}} />
+            <div className="w-5 h-[1px] bg-white mb-1.5" />
+            <div className="w-5 h-[1px] bg-white" />
           </button>
         </div>
       </motion.nav>
@@ -64,6 +63,12 @@ export default function Navbar() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
           >
+            <button
+              onClick={() => setMobileOpen(false)}
+              className="absolute top-6 right-8 text-white/50 text-2xl"
+            >
+              ×
+            </button>
             <div className="flex flex-col items-center gap-8">
               {navLinks.map((link, i) => (
                 <motion.a

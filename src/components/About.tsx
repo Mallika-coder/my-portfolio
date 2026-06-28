@@ -28,15 +28,13 @@ export default function About() {
           >
             <div className="relative aspect-[3/4] w-full max-w-[400px]">
               <Image
-                src="/images/i8.jpeg"
-                alt="Mallika at Amazon Bengaluru"
+                src="/images/me1.jpeg"
+                alt="Mallika Verma"
                 fill
                 className="object-cover"
+                sizes="(max-width: 1024px) 100vw, 400px"
               />
             </div>
-            <p className="text-[11px] text-white/25 mt-4 font-[var(--font-mono)] tracking-wide">
-              Amazon Bengaluru, 2026
-            </p>
           </motion.div>
 
           {/* Right: Text content */}
