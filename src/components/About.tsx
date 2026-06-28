@@ -6,11 +6,12 @@ import Image from "next/image";
 function AnimatedCounter({ target, label, suffix = "" }: { target: number; label: string; suffix?: string }) {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true });
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(target);
 
   useEffect(() => {
     if (!isInView) return;
-    const duration = 2000;
+    setCount(0);
+    const duration = 1800;
     const startTime = performance.now();
 
     const animate = (currentTime: number) => {
@@ -139,7 +140,7 @@ export default function About() {
               The best 8 weeks of my life were spent at Amazon in Bengaluru —
               debugging things nobody had debugged before, building AI agents
               from scratch, and learning that &quot;working&quot; and
-              &quot;correct&quot; are not the same thing.
+              &quot;correct&quot; are not the same thing. I&apos;m looking for the next problem nobody has solved yet.
             </motion.p>
           </div>
         </div>
