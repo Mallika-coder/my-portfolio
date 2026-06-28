@@ -1,6 +1,6 @@
 "use client";
 import { motion, useInView } from "framer-motion";
-import { useRef, useState, useEffect, useCallback } from "react";
+import { useRef, useState, useEffect, useCallback, TouchEvent } from "react";
 import Image from "next/image";
 
 const slides = [
@@ -59,6 +59,8 @@ export default function Gallery() {
   const isInView = useInView(ref, { once: true, margin: "-80px" });
   const [current, setCurrent] = useState(0);
   const [paused, setPaused] = useState(false);
+  const touchStartX = useRef(0);
+  const touchEndX = useRef(0);
 
   const next = useCallback(() => {
     setCurrent((prev) => (prev + 1) % slides.length);
@@ -73,6 +75,19 @@ export default function Gallery() {
     const timer = setInterval(next, 5000);
     return () => clearInterval(timer);
   }, [paused, next]);
+
+  const handleTouchStart = (e: TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+    setPaused(true);
+  };
+
+  const handleTouchEnd = (e: TouchEvent) => {
+    touchEndX.current = e.changedTouches[0].clientX;
+    const diff = touchStartX.current - touchEndX.current;
+    if (diff > 50) next();
+    else if (diff < -50) prev();
+    setPaused(false);
+  };
 
   return (
     <div className="bg-[#0a0a0a] py-20 md:py-28" ref={ref}>
@@ -98,8 +113,8 @@ export default function Gallery() {
           transition={{ duration: 0.8, delay: 0.3 }}
           onMouseEnter={() => setPaused(true)}
           onMouseLeave={() => setPaused(false)}
-          onTouchStart={() => setPaused(true)}
-          onTouchEnd={() => setPaused(false)}
+          onTouchStart={handleTouchStart}
+          onTouchEnd={handleTouchEnd}
         >
           {/* Slides */}
           {slides.map((slide, i) => (
@@ -112,7 +127,7 @@ export default function Gallery() {
                 src={slide.src}
                 alt={slide.alt}
                 fill
-                className="object-cover"
+                className="object-cover scale-110"
                 priority={i === 0}
               />
 
@@ -134,33 +149,35 @@ export default function Gallery() {
               </div>
             </div>
           ))}
+        </motion.div>
 
-          {/* Navigation arrows */}
+        {/* Navigation — arrows + dots centered below slider */}
+        <div className="flex items-center justify-center gap-4 mt-6">
           <button
             onClick={prev}
-            className="absolute left-4 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center text-white/60 hover:text-white hover:bg-white/20 transition-all"
+            className="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center text-white/50 hover:text-white hover:bg-white/20 transition-all"
           >
             ‹
           </button>
+
+          <div className="flex items-center gap-2">
+            {slides.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => setCurrent(i)}
+                className={`h-2 rounded-full transition-all duration-300 ${
+                  current === i ? "bg-white/80 w-6" : "bg-white/20 w-2"
+                }`}
+              />
+            ))}
+          </div>
+
           <button
             onClick={next}
-            className="absolute right-4 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center text-white/60 hover:text-white hover:bg-white/20 transition-all"
+            className="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center text-white/50 hover:text-white hover:bg-white/20 transition-all"
           >
             ›
           </button>
-        </motion.div>
-
-        {/* Dots */}
-        <div className="flex justify-center gap-2 mt-6">
-          {slides.map((_, i) => (
-            <button
-              key={i}
-              onClick={() => setCurrent(i)}
-              className={`h-2 rounded-full transition-all duration-300 ${
-                current === i ? "bg-white/80 w-6" : "bg-white/20 w-2"
-              }`}
-            />
-          ))}
         </div>
 
         {/* Closing line */}
