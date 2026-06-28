@@ -31,19 +31,6 @@ const projects = [
     image: "/images/projects/mindguard.png",
   },
   {
-    title: "MallikaAI",
-    subtitle: "Multi-Model AI Assistant",
-    year: "2024",
-    role: "Full-Stack Developer",
-    overview:
-      "GPT-4o, Claude, LLaMA 3.1 — all free. Live Python code execution, real-time web search, voice input, file upload. Chrome extension included.",
-    results: ["3 LLMs unified", "Live code exec", "Chrome extension"],
-    stack: ["Next.js", "FastAPI", "LLaMA 3.1", "WebSocket"],
-    live: "https://frontend-j1wm81yfe-web-booster12.vercel.app",
-    github: "https://github.com/Mallika-coder/mallika-ai",
-    image: "",
-  },
-  {
     title: "CureCue",
     subtitle: "Gamified Wellness Platform",
     year: "2024",
@@ -55,6 +42,19 @@ const projects = [
     live: "https://curecue312.vercel.app/",
     github: "",
     image: "/images/projects/curecue.png",
+  },
+  {
+    title: "MallikaAI",
+    subtitle: "Multi-Model AI Assistant",
+    year: "2024",
+    role: "Full-Stack Developer",
+    overview:
+      "GPT-4o, Claude, LLaMA 3.1 — all free. Live Python code execution, real-time web search, voice input, file upload. Chrome extension included.",
+    results: ["3 LLMs unified", "Live code exec", "Chrome extension"],
+    stack: ["Next.js", "FastAPI", "LLaMA 3.1", "WebSocket"],
+    live: "https://frontend-j1wm81yfe-web-booster12.vercel.app",
+    github: "https://github.com/Mallika-coder/mallika-ai",
+    image: "",
   },
 ];
 
