@@ -10,6 +10,8 @@ const articles = [
     readTime: "5 min",
     tag: "Featured",
     gradient: "from-purple-400/15 to-pink-400/10",
+    href: "https://medium.com/@mallikav",
+    comingSoon: false,
   },
   {
     title: "What Building AI Agents Taught Me About Problem Solving",
@@ -18,6 +20,8 @@ const articles = [
     readTime: "4 min",
     tag: "Engineering",
     gradient: "from-sky-400/15 to-purple-400/10",
+    href: "",
+    comingSoon: true,
   },
   {
     title: "Why Every Engineer Should Write",
@@ -26,6 +30,8 @@ const articles = [
     readTime: "3 min",
     tag: "Thoughts",
     gradient: "from-pink-400/15 to-amber-400/10",
+    href: "",
+    comingSoon: true,
   },
 ];
 
@@ -39,7 +45,7 @@ export default function Writing() {
 
       <div className="max-w-5xl mx-auto">
         <motion.div
-          className="mb-12"
+          className="mb-16"
           initial={{ opacity: 0, y: 40 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
@@ -52,35 +58,50 @@ export default function Writing() {
           </p>
         </motion.div>
 
-        {/* Article cards — grid on desktop */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-10">
-          {articles.map((article, i) => (
-            <motion.a
-              key={i}
-              href="https://medium.com/@mallikav"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={`card-hover block p-7 rounded-3xl glass-strong bg-gradient-to-br ${article.gradient} border border-white/60 group`}
-              initial={{ opacity: 0, y: 25 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: 0.2 + i * 0.1 }}
-            >
-              <div className="flex items-center gap-2 mb-4">
-                <span className="text-[10px] font-semibold text-purple-500 bg-purple-50 px-2 py-0.5 rounded-full">
-                  {article.tag}
-                </span>
-                <span className="text-[10px] text-[#1a1035]/30 font-[var(--font-mono)]">
-                  {article.readTime}
-                </span>
-              </div>
-              <h3 className="text-base font-bold text-[#1a1035] mb-3 leading-snug group-hover:text-gradient transition-all duration-300">
-                {article.title}
-              </h3>
-              <p className="text-xs text-[#1a1035]/45 leading-relaxed italic">
-                &quot;{article.preview}&quot;
-              </p>
-            </motion.a>
-          ))}
+        {/* Article cards */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+          {articles.map((article, i) => {
+            const CardWrapper = article.comingSoon ? "div" : "a";
+            const linkProps = article.comingSoon
+              ? {}
+              : { href: article.href, target: "_blank", rel: "noopener noreferrer" };
+
+            return (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 25 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.5, delay: 0.2 + i * 0.1 }}
+              >
+                <CardWrapper
+                  {...linkProps}
+                  className={`card-hover block p-7 rounded-3xl glass-strong bg-gradient-to-br ${article.gradient} border border-white/60 group relative overflow-hidden h-full ${article.comingSoon ? "cursor-default" : ""}`}
+                >
+                  {/* Coming soon overlay */}
+                  {article.comingSoon && (
+                    <div className="absolute top-4 right-4 px-2.5 py-1 bg-[#1a1035]/10 rounded-full">
+                      <span className="text-[9px] font-semibold text-[#1a1035]/50 uppercase tracking-wider">Coming soon</span>
+                    </div>
+                  )}
+
+                  <div className="flex items-center gap-2 mb-4">
+                    <span className="text-[10px] font-semibold text-purple-500 bg-purple-50 px-2 py-0.5 rounded-full">
+                      {article.tag}
+                    </span>
+                    <span className="text-[10px] text-[#1a1035]/30 font-[var(--font-mono)]">
+                      {article.readTime}
+                    </span>
+                  </div>
+                  <h3 className={`text-base font-bold text-[#1a1035] mb-3 leading-snug ${!article.comingSoon ? "group-hover:text-gradient" : ""} transition-all duration-300`}>
+                    {article.title}
+                  </h3>
+                  <p className="text-xs text-[#1a1035]/45 leading-relaxed italic">
+                    &quot;{article.preview}&quot;
+                  </p>
+                </CardWrapper>
+              </motion.div>
+            );
+          })}
         </div>
 
         {/* CTA */}

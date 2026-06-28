@@ -166,6 +166,11 @@ section {
   position: relative;
 }
 
+/* Scroll offset for anchor navigation */
+[id] {
+  scroll-margin-top: 80px;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;

@@ -33,7 +33,7 @@ function AnimatedCounter({ target, label, suffix = "" }: { target: number; label
       <div className="text-3xl md:text-4xl font-bold text-gradient font-[var(--font-playfair)]">
         {displayValue}{suffix}
       </div>
-      <div className="text-xs text-[#1a1035]/50 mt-2 tracking-wide uppercase">{label}</div>
+      <div className="text-[11px] text-[#1a1035]/50 mt-2 tracking-[0.1em] uppercase">{label}</div>
     </div>
   );
 }
@@ -146,7 +146,7 @@ export default function About() {
 
         {/* Stats */}
         <motion.div
-          className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mt-24 glass rounded-3xl p-6"
+          className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 mt-28 glass rounded-3xl py-8 px-6"
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, delay: 0.6 }}

@@ -10,7 +10,7 @@ const taglines = [
   "CSE @ MNNIT · SDE Intern @ Amazon.",
 ];
 
-const skills = ["Python", "Java", "Scala", "AWS", "React", "AI Agent"];
+const skills = ["Python", "AWS", "React", "AI Agent"];
 
 export default function Hero() {
   const [taglineIndex, setTaglineIndex] = useState(0);
@@ -99,7 +99,7 @@ export default function Hero() {
             <div className="relative w-full h-full rounded-full overflow-hidden shadow-2xl shadow-purple-200/30 border-4 border-white/80">
               <Image
                 src="/images/i6.jpeg"
-                alt="Mallika Verma"
+                alt="Mallika Verma, CSE undergrad and Amazon SDE intern"
                 fill
                 className="object-cover"
                 priority
@@ -126,7 +126,7 @@ export default function Hero() {
                     ],
                   }}
                   transition={{
-                    duration: 3 + i * 0.4,
+                    duration: 4 + i * 0.5,
                     repeat: Infinity,
                     ease: "easeInOut",
                     delay: i * 0.3,
