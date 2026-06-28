@@ -127,7 +127,7 @@ export default function Gallery() {
                 src={slide.src}
                 alt={slide.alt}
                 fill
-                className="object-cover scale-110"
+                className="object-contain"
                 priority={i === 0}
               />
 
