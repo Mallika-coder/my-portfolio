@@ -9,7 +9,6 @@ const articles = [
       "Not the technical stuff — I'll remember the code. That part gets saved to GitHub. But the feeling of walking into that office on Day 1...",
     readTime: "5 min",
     tag: "Featured",
-    gradient: "from-purple-400/15 to-pink-400/10",
     href: "https://medium.com/@mallikav",
   },
   {
@@ -18,7 +17,6 @@ const articles = [
       "When you iterate from v1 to v7 in two days, you learn that the first solution is never the best one.",
     readTime: "4 min",
     tag: "Engineering",
-    gradient: "from-sky-400/15 to-purple-400/10",
     href: "https://medium.com/@mallikav",
   },
   {
@@ -27,7 +25,6 @@ const articles = [
       "Clear code and clear prose share the same foundation: knowing what you actually mean.",
     readTime: "3 min",
     tag: "Thoughts",
-    gradient: "from-pink-400/15 to-amber-400/10",
     href: "https://medium.com/@mallikav",
   },
 ];
@@ -37,9 +34,7 @@ export default function Writing() {
   const isInView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <div id="writing" className="py-28 md:py-36 px-6 md:px-12 lg:px-16 relative" ref={ref}>
-      <div className="absolute top-20 right-0 w-[400px] h-[400px] bg-gradient-to-bl from-pink-100/40 to-purple-100/20 rounded-full blur-3xl -z-10" />
-
+    <section id="writing" className="py-32 md:py-44 px-6 md:px-12 lg:px-16 relative" ref={ref}>
       <div className="max-w-5xl mx-auto">
         <motion.div
           className="mb-16"
@@ -50,36 +45,36 @@ export default function Writing() {
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-[var(--font-playfair)] font-bold mb-3">
             I Also <span className="text-gradient">Write</span>
           </h2>
-          <p className="text-sm text-[#1a1035]/40">
-            I write about the things I build and the things I&apos;m still figuring out.
+          <p className="text-sm text-white/30">
+            About the things I build and the things I&apos;m still figuring out.
           </p>
         </motion.div>
 
         {/* Article cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
           {articles.map((article, i) => (
             <motion.a
               key={i}
               href={article.href}
               target="_blank"
               rel="noopener noreferrer"
-              className={`card-hover block p-7 rounded-3xl glass-strong bg-gradient-to-br ${article.gradient} border border-white/60 group h-full`}
+              className="card-hover block p-7 rounded-2xl glass group h-full"
               initial={{ opacity: 0, y: 25 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: 0.2 + i * 0.1 }}
             >
               <div className="flex items-center gap-2 mb-4">
-                <span className="text-[10px] font-semibold text-purple-500 bg-purple-50 px-2 py-0.5 rounded-full">
+                <span className="text-[10px] font-semibold text-purple-300 bg-purple-500/15 px-2 py-0.5 rounded-full">
                   {article.tag}
                 </span>
-                <span className="text-[10px] text-[#1a1035]/30 font-[var(--font-mono)]">
+                <span className="text-[10px] text-white/25 font-[var(--font-mono)]">
                   {article.readTime}
                 </span>
               </div>
-              <h3 className="text-base font-bold text-[#1a1035] mb-3 leading-snug group-hover:text-gradient transition-all duration-300">
+              <h3 className="text-base font-bold text-white/80 mb-3 leading-snug group-hover:text-gradient transition-all duration-300">
                 {article.title}
               </h3>
-              <p className="text-xs text-[#1a1035]/45 leading-relaxed italic">
+              <p className="text-xs text-white/30 leading-relaxed italic">
                 &quot;{article.preview}&quot;
               </p>
             </motion.a>
@@ -97,12 +92,12 @@ export default function Writing() {
             href="https://medium.com/@mallikav"
             target="_blank"
             rel="noopener noreferrer"
-            className="magnetic-btn inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-medium rounded-full hover:shadow-lg hover:shadow-purple-200/30 transition-all duration-300 hover:scale-105 text-sm"
+            className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-medium rounded-full hover:shadow-lg hover:shadow-purple-500/20 transition-all duration-300 hover:scale-105 text-sm"
           >
             Read all on Medium →
           </a>
         </motion.div>
       </div>
-    </div>
+    </section>
   );
 }

@@ -69,7 +69,7 @@ export default function Terminal() {
     <AnimatePresence>
       {isOpen && (
         <motion.div
-          className="fixed inset-4 md:inset-12 lg:inset-20 z-[400] rounded-3xl overflow-hidden shadow-2xl shadow-purple-200/30 flex flex-col"
+          className="fixed inset-4 md:inset-12 lg:inset-20 z-[400] rounded-3xl overflow-hidden shadow-2xl shadow-purple-500/10 flex flex-col border border-white/10"
           initial={{ opacity: 0, scale: 0.9, y: 20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.9, y: 20 }}

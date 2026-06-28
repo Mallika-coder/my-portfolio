@@ -67,13 +67,12 @@ export default function CustomCursor() {
           width: cursorVariant === "project" ? 60 : isHovering ? 8 : 10,
           height: cursorVariant === "project" ? 60 : isHovering ? 8 : 10,
           backgroundColor: cursorVariant === "project"
-            ? "rgba(196, 181, 253, 0.2)"
+            ? "rgba(196, 181, 253, 0.15)"
             : isHovering
             ? "rgba(249, 168, 212, 0.8)"
-            : "rgba(26, 16, 53, 0.8)",
+            : "rgba(255, 255, 255, 0.8)",
         }}
         transition={{ type: "spring", stiffness: 600, damping: 30, mass: 0.3 }}
-        style={{ mixBlendMode: cursorVariant === "project" ? "normal" : "normal" }}
       />
       {/* Outer ring */}
       <motion.div
@@ -84,10 +83,10 @@ export default function CustomCursor() {
           width: isHovering ? 48 : 36,
           height: isHovering ? 48 : 36,
           borderColor: cursorVariant === "project"
-            ? "rgba(125, 211, 252, 0.6)"
+            ? "rgba(125, 211, 252, 0.5)"
             : isHovering
-            ? "rgba(196, 181, 253, 0.6)"
-            : "rgba(26, 16, 53, 0.2)",
+            ? "rgba(196, 181, 253, 0.5)"
+            : "rgba(255, 255, 255, 0.15)",
           scale: isHovering ? 1.2 : 1,
         }}
         transition={{ type: "spring", stiffness: 250, damping: 20, mass: 0.8 }}
@@ -95,7 +94,7 @@ export default function CustomCursor() {
       {/* Project label */}
       {cursorVariant === "project" && (
         <motion.div
-          className="fixed top-0 left-0 pointer-events-none z-[9999] text-xs font-semibold text-[#1a1035]/70"
+          className="fixed top-0 left-0 pointer-events-none z-[9999] text-xs font-semibold text-white/70"
           animate={{ x: position.x - 12, y: position.y - 8 }}
           transition={{ type: "spring", stiffness: 400, damping: 25 }}
         >

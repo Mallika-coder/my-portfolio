@@ -1,165 +1,134 @@
 "use client";
 import { motion, useInView } from "framer-motion";
-import { useRef, useEffect, useState } from "react";
+import { useRef } from "react";
 import Image from "next/image";
 
-function AnimatedCounter({ target, label, suffix = "" }: { target: number; label: string; suffix?: string }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: true });
-  const [count, setCount] = useState(target);
+const skillsRow1 = [
+  "JavaScript", "Python", "Java", "Scala", "React.js", "Next.js",
+  "Node.js", "TypeScript", "AWS", "DynamoDB", "Lambda", "CDK",
+  "EventBridge", "Spark", "MongoDB",
+];
 
-  useEffect(() => {
-    if (!isInView) return;
-    setCount(0);
-    const duration = 1800;
-    const startTime = performance.now();
-
-    const animate = (currentTime: number) => {
-      const elapsed = currentTime - startTime;
-      const progress = Math.min(elapsed / duration, 1);
-      const eased = 1 - Math.pow(1 - progress, 4);
-      setCount(eased * target);
-      if (progress < 1) requestAnimationFrame(animate);
-    };
-
-    requestAnimationFrame(animate);
-  }, [isInView, target]);
-
-  const displayValue = target < 10
-    ? count.toFixed(2)
-    : Math.floor(count).toString();
-
-  return (
-    <div ref={ref} className="text-center p-4">
-      <div className="text-3xl md:text-4xl font-bold text-gradient font-[var(--font-playfair)]">
-        {displayValue}{suffix}
-      </div>
-      <div className="text-[11px] text-[#1a1035]/50 mt-2 tracking-[0.1em] uppercase">{label}</div>
-    </div>
-  );
-}
+const skillsRow2 = [
+  "PyTorch", "BERT", "FAISS", "LangChain", "TensorFlow.js",
+  "AI Agents", "Claude", "Tailwind CSS", "Framer Motion",
+  "EMR", "C++", "Docker", "Firebase", "REST APIs",
+];
 
 export default function About() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
-  const textReveal = {
-    hidden: { opacity: 0, y: 30 },
-    visible: (i: number) => ({
-      opacity: 1,
-      y: 0,
-      transition: { delay: i * 0.15, duration: 0.7, ease: "easeOut" as const },
-    }),
-  };
-
   return (
-    <div id="about" className="py-28 md:py-36 px-6 md:px-12 lg:px-16 relative" ref={ref}>
-      {/* Background blob */}
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-gradient-to-br from-purple-100/40 to-sky-100/30 rounded-full blur-3xl -z-10" />
-
-      <div className="max-w-6xl mx-auto">
-        {/* Section heading */}
+    <section id="about" className="py-32 md:py-44 px-6 md:px-12 lg:px-16" ref={ref}>
+      <div className="max-w-5xl mx-auto">
+        {/* Heading */}
         <motion.h2
-          className="text-4xl md:text-5xl lg:text-6xl font-[var(--font-playfair)] font-bold mb-16 leading-tight"
+          className="text-3xl md:text-5xl lg:text-6xl font-[var(--font-playfair)] font-bold mb-20 leading-tight"
           initial={{ opacity: 0, y: 40 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, ease: [0.4, 0, 0.2, 1] }}
+          transition={{ duration: 0.8 }}
         >
           I was a writer before
           <br />
           <span className="text-gradient">I was an engineer.</span>
         </motion.h2>
 
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-16 items-start">
-          {/* Photo — 2 cols */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+          {/* Photo */}
           <motion.div
-            className="lg:col-span-2 relative"
-            initial={{ opacity: 0, x: -40 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
+            className="relative"
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={isInView ? { opacity: 1, scale: 1 } : {}}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <div className="relative aspect-[3/4] rounded-3xl overflow-hidden shadow-2xl shadow-purple-200/20">
-              <div className="absolute -inset-2 bg-gradient-to-br from-sky-300/30 via-purple-300/30 to-pink-300/30 rounded-3xl blur-lg -z-10" />
+            <div className="relative aspect-[4/5] rounded-2xl overflow-hidden max-w-[360px] mx-auto">
+              <div className="absolute -inset-1 bg-gradient-to-br from-sky-500/15 via-purple-500/15 to-pink-500/15 rounded-2xl blur-xl -z-10" />
               <Image
                 src="/images/i8.jpeg"
-                alt="Mallika coding at desk"
+                alt="Mallika at Amazon Bengaluru"
                 fill
-                className="object-cover"
+                className="object-cover rounded-2xl"
               />
             </div>
-            {/* MNNIT badge */}
-            <motion.div
-              className="absolute -bottom-4 -right-4 glass rounded-2xl p-3 shadow-lg flex items-center gap-2"
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={isInView ? { opacity: 1, scale: 1 } : {}}
-              transition={{ delay: 0.8 }}
-            >
-              <Image
-                src="/images/MNNIT logo.jpg"
-                alt="MNNIT"
-                width={32}
-                height={32}
-                className="rounded-full"
-              />
-              <span className="text-xs font-medium text-[#1a1035]/70">MNNIT Allahabad</span>
-            </motion.div>
           </motion.div>
 
-          {/* Text — 3 cols */}
-          <div className="lg:col-span-3 space-y-8">
-            <motion.p
-              className="text-lg md:text-xl text-[#1a1035]/70 leading-relaxed"
-              custom={0}
-              initial="hidden"
-              animate={isInView ? "visible" : "hidden"}
-              variants={textReveal}
-            >
-              I&apos;m Mallika — a second-year CSE student at MNNIT Allahabad
-              and SDE Intern at Amazon, where I build distributed data pipelines
-              and AI agents for 22 global marketplaces. CPI: 9.01.
-            </motion.p>
-            <motion.p
-              className="text-lg md:text-xl text-[#1a1035]/70 leading-relaxed"
-              custom={1}
-              initial="hidden"
-              animate={isInView ? "visible" : "hidden"}
-              variants={textReveal}
-            >
-              Before I wrote code, I wrote sentences. I&apos;m a published
-              co-author, a speech competition winner, and someone who believes
-              the best engineering, like the best writing, is honest and precise.
-              Every line has a reason. Every system has a story.
-            </motion.p>
-            <motion.p
-              className="text-lg md:text-xl text-[#1a1035]/70 leading-relaxed"
-              custom={2}
-              initial="hidden"
-              animate={isInView ? "visible" : "hidden"}
-              variants={textReveal}
-            >
-              The best 8 weeks of my life were spent at Amazon in Bengaluru —
-              debugging things nobody had debugged before, building AI agents
-              from scratch, and learning that &quot;working&quot; and
-              &quot;correct&quot; are not the same thing. I&apos;m looking for the next problem nobody has solved yet.
-            </motion.p>
-          </div>
+          {/* Text — short, breathable */}
+          <motion.div
+            className="space-y-8"
+            initial={{ opacity: 0, y: 30 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.7, delay: 0.3 }}
+          >
+            <p className="text-lg text-white/55 leading-relaxed">
+              I&apos;m Mallika — CSE at MNNIT Allahabad, SDE Intern at Amazon.
+              I build distributed pipelines and AI agents that serve 22 global marketplaces.
+            </p>
+
+            <p className="text-lg text-white/55 leading-relaxed">
+              Self-prepared for JEE in 2.5 months. Learned discipline from my mother.
+              Haven&apos;t stopped since.
+            </p>
+
+            {/* Achievement pills */}
+            <div className="flex flex-wrap gap-3 pt-2">
+              {[
+                "SDE Intern @ Amazon",
+                "9.01 CPI",
+                "Published Author",
+                "450+ LeetCode",
+              ].map((item) => (
+                <span
+                  key={item}
+                  className="px-4 py-2 text-xs text-white/50 border border-white/10 rounded-full"
+                >
+                  {item}
+                </span>
+              ))}
+            </div>
+          </motion.div>
         </div>
 
-        {/* Stats */}
+        {/* Skill Marquee — with fade edges */}
         <motion.div
-          className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 mt-28 glass rounded-3xl py-8 px-6"
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, delay: 0.6 }}
+          className="mt-28 overflow-hidden"
+          initial={{ opacity: 0 }}
+          animate={isInView ? { opacity: 1 } : {}}
+          transition={{ duration: 0.8, delay: 0.5 }}
         >
-          <AnimatedCounter target={9.01} label="CPI" />
-          <AnimatedCounter target={1} label="Amazon Intern" />
-          <AnimatedCounter target={22} label="Marketplaces" />
-          <AnimatedCounter target={100} label="Agent Accuracy" suffix="%" />
-          <AnimatedCounter target={1} label="Published Author" />
-          <AnimatedCounter target={450} label="LeetCode" suffix="+" />
+          <div className="relative">
+            <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-[#0a0a0a] to-transparent z-10" />
+            <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-[#0a0a0a] to-transparent z-10" />
+
+            {/* Row 1 */}
+            <div className="flex animate-marquee whitespace-nowrap py-4">
+              {[...skillsRow1, ...skillsRow1].map((skill, i) => (
+                <span
+                  key={`a-${i}`}
+                  className="mx-2 px-4 py-2 text-[11px] text-white/30 border border-white/8 rounded-full"
+                >
+                  {skill}
+                </span>
+              ))}
+            </div>
+
+            {/* Row 2 — reversed */}
+            <div
+              className="flex animate-marquee whitespace-nowrap py-4"
+              style={{ animationDirection: "reverse", animationDuration: "40s" }}
+            >
+              {[...skillsRow2, ...skillsRow2].map((skill, i) => (
+                <span
+                  key={`b-${i}`}
+                  className="mx-2 px-4 py-2 text-[11px] text-white/30 border border-white/8 rounded-full"
+                >
+                  {skill}
+                </span>
+              ))}
+            </div>
+          </div>
         </motion.div>
       </div>
-    </div>
+    </section>
   );
 }

@@ -8,38 +8,33 @@ const socials = [
     icon: FaGithub,
     href: "https://github.com/Mallika-coder",
     label: "GitHub",
-    color: "hover:bg-[#333] hover:text-white",
-    bg: "bg-gray-100",
+    color: "hover:text-white hover:bg-white/15",
   },
   {
     icon: FaLinkedinIn,
     href: "https://www.linkedin.com/in/mallikaverma58/",
     label: "LinkedIn",
-    color: "hover:bg-[#0077b5] hover:text-white",
-    bg: "bg-blue-50",
+    color: "hover:text-sky-400 hover:bg-sky-500/10",
   },
   {
     icon: FaInstagram,
     href: "https://www.instagram.com/creative_mallika_0542/",
     label: "Instagram",
-    color: "hover:bg-gradient-to-br hover:from-purple-500 hover:via-pink-500 hover:to-orange-400 hover:text-white",
-    bg: "bg-pink-50",
+    color: "hover:text-pink-400 hover:bg-pink-500/10",
   },
   {
     icon: FaMediumM,
     href: "https://medium.com/@mallikav",
     label: "Medium",
-    color: "hover:bg-[#1a1035] hover:text-white",
-    bg: "bg-gray-100",
+    color: "hover:text-white hover:bg-white/15",
   },
   {
     icon: SiLeetcode,
     href: "https://leetcode.com/u/Mallikaaaa",
     label: "LeetCode",
-    color: "hover:bg-[#FFA116] hover:text-white",
-    bg: "bg-amber-50",
+    color: "hover:text-amber-400 hover:bg-amber-500/10",
   },
-];
+] as const;
 
 export default function SocialDock() {
   return (
@@ -55,7 +50,7 @@ export default function SocialDock() {
           href={social.href}
           target="_blank"
           rel="noopener noreferrer"
-          className={`group relative w-11 h-11 rounded-2xl ${social.bg} flex items-center justify-center text-[#1a1035]/60 transition-all duration-300 shadow-sm hover:shadow-lg hover:scale-110 ${social.color}`}
+          className={`group relative w-11 h-11 rounded-2xl bg-white/5 flex items-center justify-center text-white/40 transition-all duration-300 shadow-sm hover:shadow-lg hover:scale-110 ${social.color}`}
           whileHover={{ y: -2 }}
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
@@ -63,14 +58,12 @@ export default function SocialDock() {
           aria-label={social.label}
         >
           <social.icon className="w-[18px] h-[18px]" />
-          {/* Tooltip */}
-          <span className="absolute left-full ml-3 px-3 py-1.5 rounded-lg bg-[#1a1035] text-white text-xs font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap pointer-events-none shadow-lg">
+          <span className="absolute left-full ml-3 px-3 py-1.5 rounded-lg bg-white/10 backdrop-blur-sm text-white text-xs font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap pointer-events-none shadow-lg">
             {social.label}
           </span>
         </motion.a>
       ))}
-      {/* Vertical line */}
-      <div className="w-[1px] h-12 bg-gradient-to-b from-purple-200 to-transparent mx-auto mt-2" />
+      <div className="w-[1px] h-12 bg-gradient-to-b from-purple-500/30 to-transparent mx-auto mt-2" />
     </motion.div>
   );
 }

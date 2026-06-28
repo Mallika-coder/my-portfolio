@@ -1,15 +1,15 @@
 @import "tailwindcss";
 
 @theme inline {
-  --color-background: #faf8ff;
-  --color-foreground: #1a1035;
+  --color-background: #0a0a0a;
+  --color-foreground: #f0edf6;
   --color-sky: #7dd3fc;
   --color-lavender: #c4b5fd;
   --color-pink: #f9a8d4;
   --color-peach: #fda4af;
   --color-mint: #6ee7b7;
-  --font-sans: "Satoshi", "Inter", sans-serif;
-  --font-display: "Clash Display", "Satoshi", sans-serif;
+  --font-sans: "Inter", sans-serif;
+  --font-display: "Playfair Display", serif;
   --font-mono: "JetBrains Mono", monospace;
 }
 
@@ -36,8 +36,8 @@ html.lenis, html.lenis body {
 }
 
 body {
-  background: #faf8ff;
-  color: #1a1035;
+  background: #0a0a0a;
+  color: #f0edf6;
   font-family: "Inter", sans-serif;
   overflow-x: hidden;
   cursor: none;
@@ -45,7 +45,7 @@ body {
 
 ::selection {
   background: #c4b5fd;
-  color: #1a1035;
+  color: #0a0a0a;
 }
 
 ::-webkit-scrollbar {
@@ -67,45 +67,23 @@ body {
   inset: 0;
   pointer-events: none;
   z-index: 9000;
-  opacity: 0.03;
+  opacity: 0.04;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
 }
 
-/* Gradient mesh backgrounds */
-.mesh-gradient-1 {
-  background:
-    radial-gradient(ellipse at 20% 50%, rgba(125, 211, 252, 0.15) 0%, transparent 50%),
-    radial-gradient(ellipse at 80% 20%, rgba(196, 181, 253, 0.15) 0%, transparent 50%),
-    radial-gradient(ellipse at 60% 80%, rgba(249, 168, 212, 0.1) 0%, transparent 50%);
-}
-
-.mesh-gradient-2 {
-  background:
-    radial-gradient(ellipse at 10% 20%, rgba(110, 231, 183, 0.12) 0%, transparent 50%),
-    radial-gradient(ellipse at 90% 80%, rgba(125, 211, 252, 0.12) 0%, transparent 50%),
-    radial-gradient(ellipse at 50% 50%, rgba(196, 181, 253, 0.08) 0%, transparent 50%);
-}
-
-.mesh-gradient-3 {
-  background:
-    radial-gradient(ellipse at 70% 30%, rgba(249, 168, 212, 0.12) 0%, transparent 50%),
-    radial-gradient(ellipse at 30% 70%, rgba(253, 164, 175, 0.1) 0%, transparent 50%),
-    radial-gradient(ellipse at 50% 50%, rgba(125, 211, 252, 0.08) 0%, transparent 50%);
-}
-
-/* Glassmorphism */
+/* Glassmorphism — dark variant */
 .glass {
-  background: rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .glass-strong {
-  background: rgba(255, 255, 255, 0.75);
+  background: rgba(255, 255, 255, 0.08);
   backdrop-filter: blur(30px);
   -webkit-backdrop-filter: blur(30px);
-  border: 1px solid rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.12);
 }
 
 /* Card hover */
@@ -116,8 +94,8 @@ body {
 .card-hover:hover {
   transform: translateY(-6px);
   box-shadow:
-    0 20px 60px rgba(196, 181, 253, 0.15),
-    0 8px 24px rgba(125, 211, 252, 0.1);
+    0 20px 60px rgba(196, 181, 253, 0.08),
+    0 8px 24px rgba(125, 211, 252, 0.06);
 }
 
 /* Gradient text */
@@ -147,28 +125,28 @@ body {
   animation: blob 8s ease-in-out infinite;
 }
 
-@keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-15px); }
-}
-
-.animate-float {
-  animation: float 6s ease-in-out infinite;
-}
-
 /* Magnetic button */
 .magnetic-btn {
   transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Section spacing */
-section {
-  position: relative;
-}
-
 /* Scroll offset for anchor navigation */
 [id] {
   scroll-margin-top: 80px;
+}
+
+/* Marquee */
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  animation: marquee 30s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -186,10 +164,4 @@ section {
 .no-scrollbar {
   -ms-overflow-style: none;
   scrollbar-width: none;
-}
-
-/* Terminal */
-.terminal-text {
-  font-family: "JetBrains Mono", monospace;
-  color: #22c55e;
 }

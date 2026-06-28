@@ -60,7 +60,7 @@ export default function RootLayout({
       lang="en"
       className={`${inter.variable} ${playfair.variable} ${jetbrains.variable}`}
     >
-      <body className="min-h-screen bg-[#faf8ff] text-[#1a1035] font-[var(--font-inter)] antialiased overflow-x-hidden">
+      <body className="min-h-screen bg-[#0a0a0a] text-[#f0edf6] font-[var(--font-inter)] antialiased overflow-x-hidden">
         <div className="noise-overlay" />
         {children}
       </body>

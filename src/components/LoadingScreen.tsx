@@ -7,7 +7,7 @@ export default function LoadingScreen() {
   const name = "Mallika Verma";
 
   useEffect(() => {
-    const timer = setTimeout(() => setIsLoading(false), 1800);
+    const timer = setTimeout(() => setIsLoading(false), 1500);
     return () => clearTimeout(timer);
   }, []);
 
@@ -15,13 +15,12 @@ export default function LoadingScreen() {
     <AnimatePresence>
       {isLoading && (
         <motion.div
-          className="fixed inset-0 z-[10000] bg-[#faf8ff] flex flex-col items-center justify-center"
-          exit={{ opacity: 0, scale: 1.1 }}
+          className="fixed inset-0 z-[10000] bg-[#0a0a0a] flex flex-col items-center justify-center"
+          exit={{ opacity: 0, scale: 1.05 }}
           transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
         >
-          {/* Morphing blob behind text */}
           <motion.div
-            className="absolute w-64 h-64 bg-gradient-to-br from-sky-200/40 via-purple-200/40 to-pink-200/40 blob"
+            className="absolute w-64 h-64 bg-gradient-to-br from-sky-500/10 via-purple-500/10 to-pink-500/10 blob"
             animate={{ scale: [1, 1.1, 1], rotate: [0, 180, 360] }}
             transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
           />
@@ -45,7 +44,7 @@ export default function LoadingScreen() {
           </div>
 
           <motion.p
-            className="mt-4 text-sm text-[#1a1035]/40 font-[var(--font-mono)]"
+            className="mt-4 text-sm text-white/30 font-[var(--font-mono)]"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 1 }}
@@ -54,7 +53,7 @@ export default function LoadingScreen() {
           </motion.p>
 
           <motion.div
-            className="absolute bottom-16 w-48 h-1 rounded-full overflow-hidden bg-purple-100"
+            className="absolute bottom-16 w-48 h-1 rounded-full overflow-hidden bg-white/5"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.3 }}
@@ -63,7 +62,7 @@ export default function LoadingScreen() {
               className="h-full rounded-full bg-gradient-to-r from-sky-400 via-purple-400 to-pink-400"
               initial={{ width: "0%" }}
               animate={{ width: "100%" }}
-              transition={{ duration: 1.4, ease: [0.4, 0, 0.2, 1] }}
+              transition={{ duration: 1.2, ease: [0.4, 0, 0.2, 1] }}
             />
           </motion.div>
         </motion.div>

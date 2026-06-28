@@ -6,11 +6,8 @@ import Image from "next/image";
 const taglines = [
   "Engineer who thinks in stories.",
   "The one who debugs at midnight.",
-  "Builder of things that actually work.",
   "CSE @ MNNIT · SDE Intern @ Amazon.",
 ];
-
-const skills = ["Python", "AWS", "React", "AI Agent"];
 
 export default function Hero() {
   const [taglineIndex, setTaglineIndex] = useState(0);
@@ -43,28 +40,53 @@ export default function Hero() {
   }, [displayText, isDeleting, taglineIndex]);
 
   return (
-    <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden px-6 md:px-12 lg:px-24 pt-28 pb-16">
-      {/* Background blobs */}
+    <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden px-6 md:px-12 lg:px-24">
+      {/* Background blob */}
       <motion.div
-        className="absolute top-20 -left-32 w-[500px] h-[500px] bg-gradient-to-br from-sky-200/30 to-purple-200/20 blob rounded-full blur-3xl"
-        animate={{ x: [0, 30, 0], y: [0, -20, 0] }}
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-gradient-to-br from-sky-500/6 via-purple-500/8 to-pink-500/6 blob rounded-full blur-3xl"
+        animate={{ scale: [1, 1.08, 1] }}
         transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
-      />
-      <motion.div
-        className="absolute bottom-20 -right-32 w-[400px] h-[400px] bg-gradient-to-br from-pink-200/30 to-purple-200/20 blob rounded-full blur-3xl"
-        animate={{ x: [0, -20, 0], y: [0, 30, 0] }}
-        transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 2 }}
       />
 
       <div className="relative z-10 flex flex-col items-center text-center max-w-5xl mx-auto">
-        {/* Main tagline — BIG and centered */}
-        <motion.h1
-          className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-[var(--font-playfair)] font-bold text-gradient leading-tight mb-6"
-          initial={{ opacity: 0, y: 40, scale: 0.95 }}
-          animate={{ opacity: 1, y: 0, scale: 1 }}
-          transition={{ delay: 1.6, duration: 1, ease: "easeOut" }}
+        {/* Photo — circular with animated gradient ring */}
+        <motion.div
+          className="relative mb-12"
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 1.4, duration: 1, ease: "easeOut" }}
         >
-          Writer who codes 🧡
+          <div className="relative w-40 h-40 md:w-52 md:h-52">
+            {/* Animated glow ring */}
+            <motion.div
+              className="absolute -inset-[3px] rounded-full bg-gradient-to-br from-sky-400 via-purple-400 to-pink-400"
+              animate={{ rotate: [0, 360] }}
+              transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+              style={{ padding: "3px" }}
+            />
+            {/* Outer glow */}
+            <div className="absolute -inset-4 bg-gradient-to-br from-sky-400/20 via-purple-400/20 to-pink-400/20 rounded-full blur-xl" />
+            {/* Photo */}
+            <div className="relative w-full h-full rounded-full overflow-hidden border-[3px] border-[#0a0a0a]">
+              <Image
+                src="/images/i6.jpeg"
+                alt="Mallika Verma"
+                fill
+                className="object-cover"
+                priority
+              />
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Main headline */}
+        <motion.h1
+          className="text-5xl sm:text-6xl md:text-8xl lg:text-[110px] font-[var(--font-playfair)] font-bold text-gradient leading-[1.1] mb-6"
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1.8, duration: 1, ease: "easeOut" }}
+        >
+          Writer who codes.
         </motion.h1>
 
         {/* Typewriter subtitle */}
@@ -72,9 +94,9 @@ export default function Hero() {
           className="h-8 flex items-center justify-center mb-10"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 2.2 }}
+          transition={{ delay: 2.4 }}
         >
-          <span className="text-sm md:text-base font-[var(--font-mono)] text-purple-500/70">
+          <span className="text-sm md:text-base font-[var(--font-mono)] text-white/40">
             {displayText}
             <motion.span
               animate={{ opacity: [1, 0, 1] }}
@@ -86,100 +108,37 @@ export default function Hero() {
           </span>
         </motion.div>
 
-        {/* Photo + Name row */}
+        {/* Badge */}
         <motion.div
-          className="flex flex-col md:flex-row items-center gap-8 md:gap-12 mb-10"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 2.4, duration: 0.8 }}
-        >
-          {/* Photo */}
-          <div className="relative w-48 h-48 md:w-56 md:h-56 flex-shrink-0">
-            <div className="absolute -inset-2 bg-gradient-to-br from-sky-300/40 via-purple-300/40 to-pink-300/40 rounded-full blur-lg" />
-            <div className="relative w-full h-full rounded-full overflow-hidden shadow-2xl shadow-purple-200/30 border-4 border-white/80">
-              <Image
-                src="/images/i6.jpeg"
-                alt="Mallika Verma, CSE undergrad and Amazon SDE intern"
-                fill
-                className="object-cover"
-                priority
-              />
-            </div>
-
-            {/* Orbiting skill badges */}
-            {skills.map((skill, i) => {
-              const angle = (i / skills.length) * 360 - 90;
-              const radius = 130;
-              return (
-                <motion.div
-                  key={skill}
-                  className="absolute top-1/2 left-1/2 px-2.5 py-1 glass rounded-full text-[10px] font-medium text-[#1a1035]/60 whitespace-nowrap shadow-sm"
-                  style={{
-                    x: Math.cos((angle * Math.PI) / 180) * radius - 16,
-                    y: Math.sin((angle * Math.PI) / 180) * radius - 10,
-                  }}
-                  animate={{
-                    y: [
-                      Math.sin((angle * Math.PI) / 180) * radius - 10,
-                      Math.sin((angle * Math.PI) / 180) * radius - 18,
-                      Math.sin((angle * Math.PI) / 180) * radius - 10,
-                    ],
-                  }}
-                  transition={{
-                    duration: 4 + i * 0.5,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                    delay: i * 0.3,
-                  }}
-                >
-                  {skill}
-                </motion.div>
-              );
-            })}
-          </div>
-
-          {/* Name + subtitle */}
-          <div className="text-center md:text-left">
-            <h2 className="text-3xl md:text-5xl font-[var(--font-playfair)] font-bold text-[#1a1035] mb-2">
-              Mallika Verma
-            </h2>
-            <p className="text-sm md:text-base text-[#1a1035]/45">
-              CSE @ MNNIT Allahabad · SDE Intern @ Amazon
-            </p>
-          </div>
-        </motion.div>
-
-        {/* CTAs */}
-        <motion.div
-          className="flex flex-wrap justify-center gap-4"
+          className="mb-12"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 2.7, duration: 0.6 }}
         >
-          <a
-            href="#projects"
-            className="magnetic-btn px-7 py-3.5 bg-gradient-to-r from-purple-500 to-sky-500 text-white font-medium rounded-full hover:shadow-lg hover:shadow-purple-300/30 transition-all duration-300 hover:scale-105 text-sm"
-          >
-            See My Work
-          </a>
-          <a
-            href="https://medium.com/@mallikav"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="magnetic-btn px-7 py-3.5 glass text-[#1a1035]/80 font-medium rounded-full hover:shadow-lg transition-all duration-300 hover:scale-105 text-sm"
-          >
-            Read My Writing
-          </a>
+          <span className="px-5 py-2.5 glass rounded-full text-xs text-white/50 tracking-wide">
+            SDE Intern @ Amazon · CSE @ MNNIT Allahabad
+          </span>
         </motion.div>
+
+        {/* Single CTA */}
+        <motion.a
+          href="#projects"
+          className="magnetic-btn px-8 py-4 bg-gradient-to-r from-purple-500 to-sky-500 text-white font-medium rounded-full hover:shadow-lg hover:shadow-purple-500/20 transition-all duration-300 hover:scale-105 text-sm"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 2.9, duration: 0.6 }}
+        >
+          See my work ↓
+        </motion.a>
 
         {/* Scroll indicator */}
         <motion.div
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
+          className="absolute bottom-8 left-1/2 -translate-x-1/2"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 3.2 }}
         >
-          <motion.div className="w-5 h-9 border-2 border-[#1a1035]/15 rounded-full flex justify-center pt-2">
+          <motion.div className="w-5 h-9 border-2 border-white/10 rounded-full flex justify-center pt-2">
             <motion.div
               className="w-1.5 h-2.5 bg-gradient-to-b from-purple-400 to-sky-400 rounded-full"
               animate={{ y: [0, 10, 0] }}

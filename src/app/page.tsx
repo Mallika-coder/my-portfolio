@@ -8,10 +8,8 @@ import Hero from "@/components/Hero";
 import About from "@/components/About";
 import Experience from "@/components/Experience";
 import Projects from "@/components/Projects";
-import Skills from "@/components/Skills";
 import Writing from "@/components/Writing";
 import Gallery from "@/components/Gallery";
-import Achievements from "@/components/Achievements";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import SocialDock from "@/components/SocialDock";
@@ -19,6 +17,14 @@ import SocialDock from "@/components/SocialDock";
 const CustomCursor = dynamic(() => import("@/components/CustomCursor"), { ssr: false });
 const EasterEgg = dynamic(() => import("@/components/EasterEgg"), { ssr: false });
 const Terminal = dynamic(() => import("@/components/Terminal"), { ssr: false });
+
+function SectionDivider() {
+  return (
+    <div className="w-full flex justify-center">
+      <div className="w-12 h-[1px] bg-gradient-to-r from-transparent via-white/8 to-transparent" />
+    </div>
+  );
+}
 
 export default function Home() {
   useEffect(() => {
@@ -51,37 +57,20 @@ export default function Home() {
       <Navbar />
       <SocialDock />
 
-      {/* Main content — offset left on desktop to clear social dock */}
       <main className="relative lg:pl-20">
-        <div className="flex flex-col gap-16 md:gap-24 lg:gap-32">
-          <section className="w-full relative block clear-both">
-            <Hero />
-          </section>
-          <section className="w-full relative block clear-both">
-            <About />
-          </section>
-          <section className="w-full relative block clear-both">
-            <Experience />
-          </section>
-          <section className="w-full relative block clear-both">
-            <Projects />
-          </section>
-          <section className="w-full relative block clear-both">
-            <Skills />
-          </section>
-          <section className="w-full relative block clear-both">
-            <Writing />
-          </section>
-          <section className="w-full relative block clear-both">
-            <Gallery />
-          </section>
-          <section className="w-full relative block clear-both">
-            <Achievements />
-          </section>
-          <section className="w-full relative block clear-both">
-            <Contact />
-          </section>
-        </div>
+        <Hero />
+        <SectionDivider />
+        <About />
+        <SectionDivider />
+        <Experience />
+        <SectionDivider />
+        <Projects />
+        <SectionDivider />
+        <Writing />
+        <SectionDivider />
+        <Gallery />
+        <SectionDivider />
+        <Contact />
       </main>
       <Footer />
     </>
