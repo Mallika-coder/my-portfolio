@@ -3,101 +3,217 @@ import { motion, useInView, AnimatePresence } from "framer-motion";
 import { useRef, useState } from "react";
 import Image from "next/image";
 
-const photos = [
-  { src: "/images/i7.jpeg", alt: "It's always DAY 1 - Amazon", span: "col-span-2 row-span-2" },
-  { src: "/images/i8.jpeg", alt: "Coding at desk", span: "col-span-1 row-span-1" },
-  { src: "/images/i6.jpeg", alt: "Smiling in chair", span: "col-span-1 row-span-1" },
-  { src: "/images/i3.jpeg", alt: "Laptop on couch", span: "col-span-2 row-span-1" },
-  { src: "/images/i4.jpeg", alt: "Desk with whiteboard", span: "col-span-1 row-span-1" },
-  { src: "/images/i1.jpeg", alt: "Laptop on windowsill", span: "col-span-1 row-span-1" },
-  { src: "/images/i5.jpeg", alt: "Office mirror selfie", span: "col-span-1 row-span-1" },
-  { src: "/images/i2.jpeg", alt: "Workspace", span: "col-span-1 row-span-1" },
+const rows = [
+  {
+    photos: [
+      {
+        src: "/images/i7.jpeg",
+        caption: "Day 1. I didn’t know what a Brazil build was. I didn’t know what a CR was. I didn’t know that ‘working’ and ‘correct’ were different things. I just knew the wall said DAY 1 — and that felt like permission to not know anything yet.",
+        width: "60%",
+        aspect: "aspect-[3/4]",
+      },
+      {
+        src: "/images/i8.jpeg",
+        caption: "Somewhere between Day 1 and Day 56, this became normal. The headphones went on, the world went quiet, and the code stopped feeling like a foreign language. That’s the part that scared me — how quickly something impossible starts feeling like home.",
+        width: "40%",
+        aspect: "aspect-[3/4]",
+      },
+    ],
+  },
+  {
+    photos: [
+      {
+        src: "/images/i3.jpeg",
+        caption: "Nobody tells you how much of engineering is just sitting with a problem. Not solving it. Sitting with it. Letting it breathe. The leather couch, the city outside, the half-written notes — this is where v3 became v4.",
+        width: "40%",
+        aspect: "aspect-[4/3]",
+      },
+      {
+        src: "/images/i4.jpeg",
+        caption: "‘You are what you believe yourself to be.’ I wrote that on the whiteboard in Week 2, when the first agent was failing on 6 out of 14 criteria. By Week 6, it passed all of them. The sticky notes stayed. The doubt didn’t.",
+        width: "60%",
+        aspect: "aspect-[4/3]",
+      },
+    ],
+  },
+  {
+    photos: [
+      {
+        src: "/images/i6.jpeg",
+        caption: "Week 7. The agent hit 100% accuracy across 26 competitors. I should have been celebrating. Instead I was already grieving — counting the days left, memorising the commute, wondering if I’d ever feel this specific kind of alive again.",
+        width: "50%",
+        aspect: "aspect-[3/4]",
+      },
+      {
+        src: "/images/i1.jpeg",
+        caption: "Building things nobody had built before. From a window seat in Bengaluru, watching a city I barely knew become the backdrop to the hardest, best work of my life. The view never got old. The gratitude never did either.",
+        width: "50%",
+        aspect: "aspect-[3/4]",
+      },
+    ],
+  },
+  {
+    photos: [
+      {
+        src: "/images/i5.jpeg",
+        caption: "The badge comes off. The intern title disappears from Slack. The desk gets cleared for whoever comes next. But the code stays deployed. The agents still run. The pipeline still triggers across 22 marketplaces every morning. Some part of me lives in production now.",
+        width: "45%",
+        aspect: "aspect-[3/4]",
+      },
+      {
+        src: "/images/i2.jpeg",
+        caption: "This desk saw v1 through v7. It saw me mass-ping my mentor at 11pm and apologise at 9am. It saw the first CR get approved, the first pipeline succeed, the first moment I thought: maybe I actually belong here. I hope whoever sits here next feels that too.",
+        width: "55%",
+        aspect: "aspect-[3/4]",
+      },
+    ],
+  },
 ];
+
+const allPhotos = rows.flatMap((r) => r.photos);
 
 export default function Gallery() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-80px" });
-  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
   return (
-    <div className="py-20 md:py-28 px-6 md:px-12 lg:px-16 relative" ref={ref}>
-      <div className="absolute inset-0 mesh-gradient-1 -z-10" />
-
-      <div className="max-w-6xl mx-auto">
+    <div className="bg-[#0a0a0a] py-24 md:py-36" ref={ref}>
+      <div className="max-w-6xl mx-auto px-6 md:px-12">
         {/* Heading */}
         <motion.div
-          className="mb-16"
-          initial={{ opacity: 0, y: 40 }}
+          className="mb-16 md:mb-20"
+          initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
         >
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-[var(--font-playfair)] font-bold mb-4">
-            From Bengaluru, with <span className="text-gradient">&#x1F9E1;</span>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-[var(--font-playfair)] font-bold text-white">
+            Bengaluru.
           </h2>
-          <p className="text-base text-[#1a1035]/45 max-w-md">
-            8 weeks. A lot changed.
-          </p>
+          <p className="text-white/30 text-lg mt-2">8 weeks. A lot changed.</p>
         </motion.div>
 
-        {/* Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 auto-rows-[140px] md:auto-rows-[180px] lg:auto-rows-[200px]">
-          {photos.map((photo, i) => (
-            <motion.div
-              key={photo.src}
-              className={`relative overflow-hidden rounded-2xl cursor-pointer group ${photo.span}`}
-              initial={{ opacity: 0, y: 25 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: 0.1 + i * 0.06 }}
-              onClick={() => setSelectedImage(photo.src)}
-            >
-              <Image
-                src={photo.src}
-                alt={photo.alt}
-                fill
-                className="object-cover transition-all duration-700 group-hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              <div className="absolute bottom-3 left-3 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-2 group-hover:translate-y-0">
-                <span className="text-[11px] text-white/90 font-medium bg-black/30 backdrop-blur px-2.5 py-1 rounded-lg">
-                  {photo.alt}
-                </span>
-              </div>
-            </motion.div>
+        {/* Masonry rows */}
+        <div className="space-y-4">
+          {rows.map((row, ri) => (
+            <div key={ri} className="flex flex-col md:flex-row gap-4">
+              {row.photos.map((photo, pi) => {
+                const globalIndex = ri * 2 + pi;
+                return (
+                  <motion.div
+                    key={photo.src}
+                    className="relative overflow-hidden cursor-crosshair group"
+                    style={{ width: "100%", flex: `0 0 ${photo.width}` }}
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={isInView ? { opacity: 1, y: 0 } : {}}
+                    transition={{ duration: 0.6, delay: 0.1 + globalIndex * 0.08 }}
+                    onClick={() => setLightboxIndex(globalIndex)}
+                  >
+                    {/* Desktop: hover caption */}
+                    <div className={`relative ${photo.aspect} w-full`}>
+                      <Image
+                        src={photo.src}
+                        alt={photo.caption}
+                        fill
+                        className="object-cover transition-transform duration-500 ease-out group-hover:scale-105"
+                      />
+                      {/* Overlay + caption on hover (desktop) */}
+                      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/60 transition-all duration-400 hidden md:flex items-end p-6">
+                        <p className="font-[var(--font-playfair)] italic text-[13px] text-white/0 group-hover:text-white/90 transition-all duration-500 leading-relaxed max-w-[90%]">
+                          {photo.caption}
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Mobile: caption always visible below */}
+                    <p className="md:hidden mt-3 mb-4 font-[var(--font-playfair)] italic text-[12px] text-white/50 leading-relaxed px-1">
+                      {photo.caption}
+                    </p>
+                  </motion.div>
+                );
+              })}
+            </div>
           ))}
         </div>
+
+        {/* Closing line */}
+        <motion.p
+          className="text-center mt-20 font-[var(--font-playfair)] italic text-sm text-white/25 hover:text-white/60 transition-colors duration-300 cursor-pointer"
+          initial={{ opacity: 0 }}
+          animate={isInView ? { opacity: 1 } : {}}
+          transition={{ delay: 1 }}
+          onClick={() => {
+            document.getElementById("writing")?.scrollIntoView({ behavior: "smooth" });
+          }}
+        >
+          I&apos;m scared of forgetting. So I wrote it all down.
+        </motion.p>
       </div>
 
       {/* Lightbox */}
       <AnimatePresence>
-        {selectedImage && (
+        {lightboxIndex !== null && (
           <motion.div
-            className="fixed inset-0 z-[200] bg-black/80 backdrop-blur-2xl flex items-center justify-center p-8 cursor-pointer"
+            className="fixed inset-0 z-[200] bg-black/95 flex items-center justify-center p-6"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            onClick={() => setSelectedImage(null)}
+            onClick={() => setLightboxIndex(null)}
           >
-            <motion.div
-              className="relative w-full max-w-3xl max-h-[80vh]"
-              initial={{ scale: 0.85, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.85, opacity: 0 }}
-              transition={{ type: "spring", stiffness: 300, damping: 30 }}
-            >
-              <Image
-                src={selectedImage}
-                alt="Gallery image"
-                width={1200}
-                height={800}
-                className="object-contain w-full h-full rounded-2xl"
-              />
-            </motion.div>
+            {/* Close */}
             <button
-              className="absolute top-6 right-6 w-10 h-10 rounded-full bg-white/10 backdrop-blur flex items-center justify-center text-white/80 hover:text-white hover:bg-white/20 transition-all"
-              onClick={() => setSelectedImage(null)}
+              className="absolute top-6 right-6 text-white/40 hover:text-white text-2xl z-10"
+              onClick={() => setLightboxIndex(null)}
             >
               ×
             </button>
+
+            {/* Prev */}
+            {lightboxIndex > 0 && (
+              <button
+                className="absolute left-6 top-1/2 -translate-y-1/2 text-white/30 hover:text-white text-3xl z-10"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setLightboxIndex(lightboxIndex - 1);
+                }}
+              >
+                ‹
+              </button>
+            )}
+
+            {/* Next */}
+            {lightboxIndex < allPhotos.length - 1 && (
+              <button
+                className="absolute right-6 top-1/2 -translate-y-1/2 text-white/30 hover:text-white text-3xl z-10"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setLightboxIndex(lightboxIndex + 1);
+                }}
+              >
+                ›
+              </button>
+            )}
+
+            {/* Image */}
+            <motion.div
+              className="relative w-full max-w-4xl max-h-[80vh] flex flex-col items-center"
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              transition={{ type: "spring", stiffness: 300, damping: 30 }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <Image
+                src={allPhotos[lightboxIndex].src}
+                alt=""
+                width={1200}
+                height={800}
+                className="object-contain w-full h-full max-h-[70vh] rounded-sm"
+              />
+              <p className="mt-5 font-[var(--font-playfair)] italic text-sm text-white/40 text-center max-w-xl leading-relaxed px-4">
+                {allPhotos[lightboxIndex].caption}
+              </p>
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
