@@ -15,6 +15,7 @@ const navButtons = [
   { label: "View Projects", href: "/projects", desc: "AI, ML, Full-stack" },
   { label: "Experience", href: "/experience", desc: "Amazon SDE Intern" },
   { label: "My Writing", href: "/writing", desc: "Medium articles" },
+  { label: "Beyond Code", href: "/beyond", desc: "Mentor, athlete, speaker" },
   { label: "Contact Me", href: "/contact", desc: "Let's connect" },
 ];
 
@@ -79,7 +80,7 @@ export default function Home() {
                 </p>
 
                 {/* Navigation buttons — interactive, animated */}
-                <div className="grid grid-cols-2 gap-3">
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
                   {navButtons.map((btn, i) => (
                     <motion.div
                       key={btn.label}
