@@ -71,94 +71,95 @@ export default function Skills() {
   };
 
   return (
-    <section id="skills" className="py-36 md:py-48 relative" ref={ref}>
-      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-gradient-to-tr from-sky-100/40 to-purple-100/20 rounded-full blur-3xl -z-10" />
+    <div id="skills" className="py-20 md:py-28" ref={ref}>
+      <div className="relative">
+        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-gradient-to-tr from-sky-100/40 to-purple-100/20 rounded-full blur-3xl -z-10" />
 
-      <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24">
         {/* Header */}
-        <motion.div
-          className="flex items-end justify-between mb-12"
-          initial={{ opacity: 0, y: 40 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8 }}
-        >
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-[var(--font-playfair)] font-bold">
-            What I <span className="text-gradient">Work With</span>
-          </h2>
-
-          <div className="hidden md:flex items-center gap-2">
-            <button
-              onClick={() => scroll("left")}
-              className="w-10 h-10 rounded-full glass flex items-center justify-center text-[#1a1035]/50 hover:text-[#1a1035] hover:shadow-md transition-all"
-            >
-              ←
-            </button>
-            <button
-              onClick={() => scroll("right")}
-              className="w-10 h-10 rounded-full glass flex items-center justify-center text-[#1a1035]/50 hover:text-[#1a1035] hover:shadow-md transition-all"
-            >
-              →
-            </button>
-          </div>
-        </motion.div>
-      </div>
-
-      {/* Carousel */}
-      <motion.div
-        ref={scrollRef}
-        onScroll={handleScroll}
-        className="flex gap-5 overflow-x-auto snap-x snap-mandatory scroll-smooth px-6 md:px-12 lg:px-24 pb-4 no-scrollbar"
-        style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
-        initial={{ opacity: 0 }}
-        animate={isInView ? { opacity: 1 } : {}}
-        transition={{ duration: 0.8, delay: 0.3 }}
-      >
-        {skillGroups.map((group, gi) => (
+        <div className="px-6 md:px-12 lg:px-16 mb-10">
           <motion.div
-            key={group.name}
-            className={`snap-start flex-shrink-0 w-[260px] md:w-[300px] lg:w-[320px] p-6 md:p-7 rounded-3xl glass-strong bg-gradient-to-br ${group.gradient} border border-white/60 hover:-translate-y-2 transition-all duration-300 hover:shadow-xl hover:shadow-purple-100/20`}
-            initial={{ opacity: 0, x: 30 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.5, delay: 0.3 + gi * 0.08 }}
+            className="flex items-end justify-between max-w-6xl mx-auto"
+            initial={{ opacity: 0, y: 40 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.8 }}
           >
-            {/* Group header */}
-            <div className="flex items-center gap-2 mb-5">
-              <div className={`w-2.5 h-2.5 rounded-full ${group.dot}`} />
-              <span className="text-sm font-bold text-[#1a1035]/70">
-                {group.name}
-              </span>
-              <span className="text-[10px] text-[#1a1035]/30 font-[var(--font-mono)] ml-auto">
-                {group.skills.length}
-              </span>
-            </div>
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-[var(--font-playfair)] font-bold">
+              What I <span className="text-gradient">Work With</span>
+            </h2>
 
-            {/* Skills */}
-            <div className="flex flex-wrap gap-2">
-              {group.skills.map((skill) => (
-                <motion.span
-                  key={skill}
-                  className={`px-3 py-1.5 text-xs font-medium border rounded-xl ${group.pillColor}`}
-                  whileHover={{ scale: 1.05, y: -2 }}
-                >
-                  {skill}
-                </motion.span>
-              ))}
+            <div className="hidden md:flex items-center gap-2">
+              <button
+                onClick={() => scroll("left")}
+                className="w-10 h-10 rounded-full glass flex items-center justify-center text-[#1a1035]/50 hover:text-[#1a1035] hover:shadow-md transition-all"
+              >
+                ←
+              </button>
+              <button
+                onClick={() => scroll("right")}
+                className="w-10 h-10 rounded-full glass flex items-center justify-center text-[#1a1035]/50 hover:text-[#1a1035] hover:shadow-md transition-all"
+              >
+                →
+              </button>
             </div>
           </motion.div>
-        ))}
-      </motion.div>
+        </div>
 
-      {/* Dots */}
-      <div className="flex justify-center gap-2 mt-6">
-        {skillGroups.map((_, i) => (
-          <div
-            key={i}
-            className={`w-2 h-2 rounded-full transition-all duration-300 ${
-              activeIndex === i ? "bg-purple-400 w-5" : "bg-[#1a1035]/10"
-            }`}
-          />
-        ))}
+        {/* Carousel */}
+        <div className="py-4">
+          <motion.div
+            ref={scrollRef}
+            onScroll={handleScroll}
+            className="flex gap-5 overflow-x-auto snap-x snap-mandatory scroll-smooth px-6 md:px-12 lg:px-16 pb-6 no-scrollbar"
+            initial={{ opacity: 0 }}
+            animate={isInView ? { opacity: 1 } : {}}
+            transition={{ duration: 0.8, delay: 0.3 }}
+          >
+            {skillGroups.map((group, gi) => (
+              <motion.div
+                key={group.name}
+                className={`snap-start flex-shrink-0 w-[250px] md:w-[290px] lg:w-[310px] p-6 md:p-7 rounded-3xl glass-strong bg-gradient-to-br ${group.gradient} border border-white/60 hover:-translate-y-2 transition-all duration-300 hover:shadow-xl hover:shadow-purple-100/20`}
+                initial={{ opacity: 0, x: 30 }}
+                animate={isInView ? { opacity: 1, x: 0 } : {}}
+                transition={{ duration: 0.5, delay: 0.3 + gi * 0.08 }}
+              >
+                <div className="flex items-center gap-2 mb-5">
+                  <div className={`w-2.5 h-2.5 rounded-full ${group.dot}`} />
+                  <span className="text-sm font-bold text-[#1a1035]/70">
+                    {group.name}
+                  </span>
+                  <span className="text-[10px] text-[#1a1035]/30 font-[var(--font-mono)] ml-auto">
+                    {group.skills.length}
+                  </span>
+                </div>
+
+                <div className="flex flex-wrap gap-2">
+                  {group.skills.map((skill) => (
+                    <motion.span
+                      key={skill}
+                      className={`px-3 py-1.5 text-xs font-medium border rounded-xl ${group.pillColor}`}
+                      whileHover={{ scale: 1.05, y: -2 }}
+                    >
+                      {skill}
+                    </motion.span>
+                  ))}
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+
+        {/* Dots */}
+        <div className="flex justify-center gap-2 mt-2 pb-4">
+          {skillGroups.map((_, i) => (
+            <div
+              key={i}
+              className={`h-2 rounded-full transition-all duration-300 ${
+                activeIndex === i ? "bg-purple-400 w-5" : "bg-[#1a1035]/10 w-2"
+              }`}
+            />
+          ))}
+        </div>
       </div>
-    </section>
+    </div>
   );
 }

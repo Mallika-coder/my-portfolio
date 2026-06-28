@@ -22,7 +22,6 @@ const Terminal = dynamic(() => import("@/components/Terminal"), { ssr: false });
 
 export default function Home() {
   useEffect(() => {
-    // Lenis smooth scroll
     const initLenis = async () => {
       const Lenis = (await import("@studio-freight/lenis")).default;
       const lenis = new Lenis({
@@ -51,16 +50,38 @@ export default function Home() {
       <Terminal />
       <Navbar />
       <SocialDock />
-      <main className="relative">
-        <Hero />
-        <About />
-        <Experience />
-        <Projects />
-        <Skills />
-        <Writing />
-        <Gallery />
-        <Achievements />
-        <Contact />
+
+      {/* Main content — offset left on desktop to clear social dock */}
+      <main className="relative lg:pl-20">
+        <div className="flex flex-col">
+          <section className="w-full relative block clear-both">
+            <Hero />
+          </section>
+          <section className="w-full relative block clear-both">
+            <About />
+          </section>
+          <section className="w-full relative block clear-both">
+            <Experience />
+          </section>
+          <section className="w-full relative block clear-both">
+            <Projects />
+          </section>
+          <section className="w-full relative block clear-both">
+            <Skills />
+          </section>
+          <section className="w-full relative block clear-both">
+            <Writing />
+          </section>
+          <section className="w-full relative block clear-both">
+            <Gallery />
+          </section>
+          <section className="w-full relative block clear-both">
+            <Achievements />
+          </section>
+          <section className="w-full relative block clear-both">
+            <Contact />
+          </section>
+        </div>
       </main>
       <Footer />
     </>

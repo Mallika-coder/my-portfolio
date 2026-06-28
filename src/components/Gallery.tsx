@@ -20,7 +20,7 @@ export default function Gallery() {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
   return (
-    <section className="py-36 md:py-48 px-6 md:px-12 lg:px-24 relative" ref={ref}>
+    <div className="py-20 md:py-28 px-6 md:px-12 lg:px-16 relative" ref={ref}>
       <div className="absolute inset-0 mesh-gradient-1 -z-10" />
 
       <div className="max-w-6xl mx-auto">
@@ -101,6 +101,6 @@ export default function Gallery() {
           </motion.div>
         )}
       </AnimatePresence>
-    </section>
+    </div>
   );
 }

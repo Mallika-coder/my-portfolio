@@ -54,8 +54,7 @@ export default function Experience() {
   const scroll = (direction: "left" | "right") => {
     if (!scrollRef.current) return;
     const cardWidth = scrollRef.current.children[0]?.clientWidth || 400;
-    const gap = 20;
-    const scrollAmount = direction === "left" ? -(cardWidth + gap) : cardWidth + gap;
+    const scrollAmount = direction === "left" ? -(cardWidth + 20) : cardWidth + 20;
     scrollRef.current.scrollBy({ left: scrollAmount, behavior: "smooth" });
   };
 
@@ -67,115 +66,116 @@ export default function Experience() {
   };
 
   return (
-    <section id="experience" className="py-36 md:py-48 relative" ref={ref}>
-      <div className="absolute inset-0 mesh-gradient-2 -z-10" />
+    <div id="experience" className="py-20 md:py-28" ref={ref}>
+      <div className="relative">
+        <div className="absolute inset-0 mesh-gradient-2 -z-10" />
 
-      <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24">
-        {/* Header */}
-        <motion.div
-          className="flex items-end justify-between mb-12"
-          initial={{ opacity: 0, y: 40 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8 }}
-        >
-          <div>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-[var(--font-playfair)] font-bold mb-4">
-              Where I&apos;ve <span className="text-gradient">Worked</span>
-            </h2>
-            <div className="flex items-center gap-3">
-              <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-purple-500 to-sky-500 flex items-center justify-center text-white font-bold text-xs shadow-md">
-                A
-              </div>
-              <div>
-                <p className="text-sm font-bold text-[#1a1035]">Amazon</p>
-                <p className="text-xs text-[#1a1035]/40">SDE Intern · May – July 2026 · Bengaluru</p>
-              </div>
-            </div>
-          </div>
-
-          {/* Navigation arrows */}
-          <div className="hidden md:flex items-center gap-2">
-            <button
-              onClick={() => scroll("left")}
-              className="w-10 h-10 rounded-full glass flex items-center justify-center text-[#1a1035]/50 hover:text-[#1a1035] hover:shadow-md transition-all"
-            >
-              ←
-            </button>
-            <button
-              onClick={() => scroll("right")}
-              className="w-10 h-10 rounded-full glass flex items-center justify-center text-[#1a1035]/50 hover:text-[#1a1035] hover:shadow-md transition-all"
-            >
-              →
-            </button>
-          </div>
-        </motion.div>
-      </div>
-
-      {/* Carousel */}
-      <motion.div
-        ref={scrollRef}
-        onScroll={handleScroll}
-        className="flex gap-5 overflow-x-auto snap-x snap-mandatory scroll-smooth px-6 md:px-12 lg:px-24 pb-4 no-scrollbar"
-        style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
-        initial={{ opacity: 0 }}
-        animate={isInView ? { opacity: 1 } : {}}
-        transition={{ duration: 0.8, delay: 0.3 }}
-      >
-        {experienceCards.map((card, i) => (
+        {/* Header — padded and isolated */}
+        <div className="px-6 md:px-12 lg:px-16 mb-10">
           <motion.div
-            key={i}
-            className={`snap-start flex-shrink-0 w-[320px] md:w-[420px] lg:w-[460px] p-7 md:p-8 rounded-3xl glass-strong bg-gradient-to-br ${card.gradient} border border-white/60 hover:-translate-y-2 transition-all duration-300 hover:shadow-xl hover:shadow-purple-100/20`}
-            initial={{ opacity: 0, x: 40 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.5, delay: 0.3 + i * 0.1 }}
+            className="flex items-end justify-between max-w-6xl mx-auto"
+            initial={{ opacity: 0, y: 40 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.8 }}
           >
-            <div className="flex items-center gap-2 mb-4">
-              <div className={`w-2 h-2 rounded-full ${card.dot}`} />
-              <span className="text-[10px] text-[#1a1035]/35 font-[var(--font-mono)] uppercase tracking-wider">
-                {card.subtitle}
-              </span>
+            <div>
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-[var(--font-playfair)] font-bold mb-4">
+                Where I&apos;ve <span className="text-gradient">Worked</span>
+              </h2>
+              <div className="flex items-center gap-3">
+                <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-purple-500 to-sky-500 flex items-center justify-center text-white font-bold text-xs shadow-md">
+                  A
+                </div>
+                <div>
+                  <p className="text-sm font-bold text-[#1a1035]">Amazon</p>
+                  <p className="text-xs text-[#1a1035]/40">SDE Intern · May – July 2026 · Bengaluru</p>
+                </div>
+              </div>
             </div>
 
-            <h3 className="text-lg md:text-xl font-bold text-[#1a1035] mb-3 leading-snug">
-              {card.title}
-            </h3>
-
-            <p className="text-sm text-[#1a1035]/50 leading-relaxed mb-5">
-              {card.description}
-            </p>
-
-            {/* Metrics */}
-            <div className="flex flex-wrap gap-2 mb-4">
-              {card.metrics.map((m) => (
-                <span key={m} className="px-2.5 py-1 text-[10px] font-semibold bg-white/60 text-[#1a1035]/60 rounded-full">
-                  {m}
-                </span>
-              ))}
-            </div>
-
-            {/* Tags */}
-            <div className="flex flex-wrap gap-1.5">
-              {card.tags.map((tag) => (
-                <span key={tag} className="px-2 py-0.5 text-[9px] font-[var(--font-mono)] text-purple-600/60 bg-purple-50/60 rounded">
-                  {tag}
-                </span>
-              ))}
+            {/* Navigation arrows */}
+            <div className="hidden md:flex items-center gap-2">
+              <button
+                onClick={() => scroll("left")}
+                className="w-10 h-10 rounded-full glass flex items-center justify-center text-[#1a1035]/50 hover:text-[#1a1035] hover:shadow-md transition-all"
+              >
+                ←
+              </button>
+              <button
+                onClick={() => scroll("right")}
+                className="w-10 h-10 rounded-full glass flex items-center justify-center text-[#1a1035]/50 hover:text-[#1a1035] hover:shadow-md transition-all"
+              >
+                →
+              </button>
             </div>
           </motion.div>
-        ))}
-      </motion.div>
+        </div>
 
-      {/* Dots */}
-      <div className="flex justify-center gap-2 mt-6">
-        {experienceCards.map((_, i) => (
-          <div
-            key={i}
-            className={`w-2 h-2 rounded-full transition-all duration-300 ${
-              activeIndex === i ? "bg-purple-400 w-6" : "bg-[#1a1035]/10"
-            }`}
-          />
-        ))}
+        {/* Carousel — with top/bottom padding to prevent clipping */}
+        <div className="py-4">
+          <motion.div
+            ref={scrollRef}
+            onScroll={handleScroll}
+            className="flex gap-5 overflow-x-auto snap-x snap-mandatory scroll-smooth px-6 md:px-12 lg:px-16 pb-6 no-scrollbar"
+            initial={{ opacity: 0 }}
+            animate={isInView ? { opacity: 1 } : {}}
+            transition={{ duration: 0.8, delay: 0.3 }}
+          >
+            {experienceCards.map((card, i) => (
+              <motion.div
+                key={i}
+                className={`snap-start flex-shrink-0 w-[310px] md:w-[400px] lg:w-[440px] p-7 md:p-8 rounded-3xl glass-strong bg-gradient-to-br ${card.gradient} border border-white/60 hover:-translate-y-2 transition-all duration-300 hover:shadow-xl hover:shadow-purple-100/20`}
+                initial={{ opacity: 0, x: 40 }}
+                animate={isInView ? { opacity: 1, x: 0 } : {}}
+                transition={{ duration: 0.5, delay: 0.3 + i * 0.1 }}
+              >
+                <div className="flex items-center gap-2 mb-4">
+                  <div className={`w-2 h-2 rounded-full ${card.dot}`} />
+                  <span className="text-[10px] text-[#1a1035]/35 font-[var(--font-mono)] uppercase tracking-wider">
+                    {card.subtitle}
+                  </span>
+                </div>
+
+                <h3 className="text-lg md:text-xl font-bold text-[#1a1035] mb-3 leading-snug">
+                  {card.title}
+                </h3>
+
+                <p className="text-sm text-[#1a1035]/50 leading-relaxed mb-5">
+                  {card.description}
+                </p>
+
+                <div className="flex flex-wrap gap-2 mb-4">
+                  {card.metrics.map((m) => (
+                    <span key={m} className="px-2.5 py-1 text-[10px] font-semibold bg-white/60 text-[#1a1035]/60 rounded-full">
+                      {m}
+                    </span>
+                  ))}
+                </div>
+
+                <div className="flex flex-wrap gap-1.5">
+                  {card.tags.map((tag) => (
+                    <span key={tag} className="px-2 py-0.5 text-[9px] font-[var(--font-mono)] text-purple-600/60 bg-purple-50/60 rounded">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+
+        {/* Dots */}
+        <div className="flex justify-center gap-2 mt-2 pb-4">
+          {experienceCards.map((_, i) => (
+            <div
+              key={i}
+              className={`h-2 rounded-full transition-all duration-300 ${
+                activeIndex === i ? "bg-purple-400 w-6" : "bg-[#1a1035]/10 w-2"
+              }`}
+            />
+          ))}
+        </div>
       </div>
-    </section>
+    </div>
   );
 }

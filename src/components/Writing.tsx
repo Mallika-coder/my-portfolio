@@ -34,7 +34,7 @@ export default function Writing() {
   const isInView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section id="writing" className="py-36 md:py-48 px-6 md:px-12 lg:px-24 relative" ref={ref}>
+    <div id="writing" className="py-20 md:py-28 px-6 md:px-12 lg:px-16 relative" ref={ref}>
       <div className="absolute top-20 right-0 w-[400px] h-[400px] bg-gradient-to-bl from-pink-100/40 to-purple-100/20 rounded-full blur-3xl -z-10" />
 
       <div className="max-w-5xl mx-auto">
@@ -100,6 +100,6 @@ export default function Writing() {
           </a>
         </motion.div>
       </div>
-    </section>
+    </div>
   );
 }

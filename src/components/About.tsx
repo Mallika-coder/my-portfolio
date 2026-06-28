@@ -52,7 +52,7 @@ export default function About() {
   };
 
   return (
-    <section id="about" className="py-36 md:py-48 px-6 md:px-12 lg:px-24 relative" ref={ref}>
+    <div id="about" className="py-20 md:py-28 px-6 md:px-12 lg:px-16 relative" ref={ref}>
       {/* Background blob */}
       <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-gradient-to-br from-purple-100/40 to-sky-100/30 rounded-full blur-3xl -z-10" />
 
@@ -159,6 +159,6 @@ export default function About() {
           <AnimatedCounter target={450} label="LeetCode" suffix="+" />
         </motion.div>
       </div>
-    </section>
+    </div>
   );
 }
