@@ -10,7 +10,7 @@ const taglines = [
   "CSE @ MNNIT · SDE Intern @ Amazon.",
 ];
 
-const skills = ["Python", "Scala", "AWS", "React", "ML", "AgentZ"];
+const skills = ["Python", "Java", "Scala", "AWS", "React", "AI Agent"];
 
 export default function Hero() {
   const [taglineIndex, setTaglineIndex] = useState(0);

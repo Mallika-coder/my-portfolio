@@ -19,7 +19,7 @@ export default function Achievements() {
   const isInView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section id="achievements" className="py-32 md:py-44 px-6 md:px-12 lg:px-24 relative" ref={ref}>
+    <section id="achievements" className="py-36 md:py-48 px-6 md:px-12 lg:px-24 relative" ref={ref}>
       <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-gradient-to-tl from-pink-100/30 to-purple-100/20 rounded-full blur-3xl -z-10" />
 
       <div className="max-w-6xl mx-auto">

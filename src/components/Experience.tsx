@@ -1,22 +1,26 @@
 "use client";
-import { motion, useInView, AnimatePresence } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import { useRef, useState } from "react";
 
 const experienceCards = [
   {
     title: "Built AI Agents That Replaced Hours of Manual Work",
-    subtitle: "AgentZ + Claude Sonnet 4.5 · 100% accuracy",
+    subtitle: "AI Agent + Claude Sonnet 4.5",
     description:
-      "Engineered 2 autonomous AI agents on Amazon's AgentZ platform using Claude Sonnet 4.5 + Cybernaut browser automation. Automated competitor feasibility evaluation across 14 SOP criteria. Iterated v1→v7 in 2 days. Achieved 100% accuracy across 26 competitors in 8 global marketplaces.",
+      "Engineered 2 autonomous AI agents on Amazon's AgentZ platform using Claude Sonnet 4.5 + Cybernaut browser automation. Automated competitor feasibility evaluation across 14 SOP criteria. Iterated v1→v7 in 2 days.",
     metrics: ["100% accuracy", "26 competitors", "11 min vs 60 min", "$0.55/run"],
+    tags: ["AI Agent", "Claude", "Cybernaut"],
+    gradient: "from-purple-400/20 to-sky-400/10",
     dot: "bg-purple-400",
   },
   {
     title: "Distributed Pipeline Across 22 Global Marketplaces",
-    subtitle: "GAIA Framework · CDK · EMR · EventBridge",
+    subtitle: "GAIA Framework · CDK · EMR",
     description:
       "Onboarded LMS into GAIA governance framework. CDK TypeScript infrastructure, 22 blast-radius-isolated EventBridge schedulers, 88 Cradle/Dryad ingestion jobs, Spark transformation on EMR.",
     metrics: ["22 marketplaces", "88 ingestion jobs", "CDK + EMR"],
+    tags: ["TypeScript", "CDK", "EventBridge", "Spark"],
+    gradient: "from-sky-400/20 to-emerald-400/10",
     dot: "bg-sky-400",
   },
   {
@@ -25,14 +29,18 @@ const experienceCards = [
     description:
       "Migrated Spark transformation from legacy Sagittarius workflow to modern event-driven architecture in Scala. Factory-pattern routing across enricher types.",
     metrics: ["Scala", "Apache Spark", "EMR"],
+    tags: ["Scala", "Spark", "Event-Driven"],
+    gradient: "from-pink-400/20 to-purple-400/10",
     dot: "bg-pink-400",
   },
   {
     title: "System Reliability Fix — First CR Shipped",
     subtitle: "Java · 100% test coverage · Week 2",
     description:
-      "Replaced hardcoded individual email with team distribution list in Cognitum alerting system. Eliminated single-point-of-failure for 15+ report notifications/quarter. 100% new line test coverage.",
+      "Replaced hardcoded individual email with team distribution list in Cognitum alerting system. Eliminated single-point-of-failure for 15+ report notifications/quarter.",
     metrics: ["Java", "100% coverage", "First CR shipped"],
+    tags: ["Java", "Testing", "Reliability"],
+    gradient: "from-emerald-400/20 to-sky-400/10",
     dot: "bg-emerald-400",
   },
 ];
@@ -40,103 +48,133 @@ const experienceCards = [
 export default function Experience() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-80px" });
-  const [openIndex, setOpenIndex] = useState<number | null>(0);
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  const scroll = (direction: "left" | "right") => {
+    if (!scrollRef.current) return;
+    const cardWidth = scrollRef.current.children[0]?.clientWidth || 400;
+    const gap = 20;
+    const scrollAmount = direction === "left" ? -(cardWidth + gap) : cardWidth + gap;
+    scrollRef.current.scrollBy({ left: scrollAmount, behavior: "smooth" });
+  };
+
+  const handleScroll = () => {
+    if (!scrollRef.current) return;
+    const cardWidth = scrollRef.current.children[0]?.clientWidth || 400;
+    const index = Math.round(scrollRef.current.scrollLeft / (cardWidth + 20));
+    setActiveIndex(index);
+  };
 
   return (
-    <section id="experience" className="py-32 md:py-44 px-6 md:px-12 lg:px-24 relative" ref={ref}>
+    <section id="experience" className="py-36 md:py-48 relative" ref={ref}>
       <div className="absolute inset-0 mesh-gradient-2 -z-10" />
 
-      <div className="max-w-4xl mx-auto">
+      <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24">
         {/* Header */}
         <motion.div
-          className="mb-14"
+          className="flex items-end justify-between mb-12"
           initial={{ opacity: 0, y: 40 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
         >
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-[var(--font-playfair)] font-bold mb-6">
-            Where I&apos;ve <span className="text-gradient">Worked</span>
-          </h2>
-
-          {/* Company badge */}
-          <div className="flex items-center gap-4">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-purple-500 to-sky-500 flex items-center justify-center text-white font-bold text-sm shadow-md">
-              A
-            </div>
-            <div>
-              <h3 className="text-lg font-bold text-[#1a1035]">Amazon</h3>
-              <p className="text-xs text-[#1a1035]/40">
-                SDE Intern · May – July 2026 · Bengaluru
-              </p>
+          <div>
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-[var(--font-playfair)] font-bold mb-4">
+              Where I&apos;ve <span className="text-gradient">Worked</span>
+            </h2>
+            <div className="flex items-center gap-3">
+              <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-purple-500 to-sky-500 flex items-center justify-center text-white font-bold text-xs shadow-md">
+                A
+              </div>
+              <div>
+                <p className="text-sm font-bold text-[#1a1035]">Amazon</p>
+                <p className="text-xs text-[#1a1035]/40">SDE Intern · May – July 2026 · Bengaluru</p>
+              </div>
             </div>
           </div>
-        </motion.div>
 
-        {/* Accordion */}
-        <div className="space-y-3">
-          {experienceCards.map((card, i) => (
-            <motion.div
-              key={i}
-              className="glass-strong rounded-2xl overflow-hidden"
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: 0.2 + i * 0.08 }}
+          {/* Navigation arrows */}
+          <div className="hidden md:flex items-center gap-2">
+            <button
+              onClick={() => scroll("left")}
+              className="w-10 h-10 rounded-full glass flex items-center justify-center text-[#1a1035]/50 hover:text-[#1a1035] hover:shadow-md transition-all"
             >
-              {/* Header */}
-              <button
-                onClick={() => setOpenIndex(openIndex === i ? null : i)}
-                className="w-full text-left px-6 md:px-8 py-5 md:py-6 flex items-center gap-4 group"
-              >
-                <div className={`w-2.5 h-2.5 rounded-full ${card.dot} flex-shrink-0`} />
-                <div className="flex-1 min-w-0">
-                  <h4 className="text-sm md:text-base font-bold text-[#1a1035] group-hover:text-gradient transition-all duration-300 leading-snug">
-                    {card.title}
-                  </h4>
-                  <p className="text-xs text-[#1a1035]/35 mt-0.5 truncate">
-                    {card.subtitle}
-                  </p>
-                </div>
-                <motion.span
-                  className="text-[#1a1035]/25 text-lg flex-shrink-0"
-                  animate={{ rotate: openIndex === i ? 180 : 0 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  ↓
-                </motion.span>
-              </button>
+              ←
+            </button>
+            <button
+              onClick={() => scroll("right")}
+              className="w-10 h-10 rounded-full glass flex items-center justify-center text-[#1a1035]/50 hover:text-[#1a1035] hover:shadow-md transition-all"
+            >
+              →
+            </button>
+          </div>
+        </motion.div>
+      </div>
 
-              {/* Content */}
-              <AnimatePresence initial={false}>
-                {openIndex === i && (
-                  <motion.div
-                    initial={{ height: 0, opacity: 0 }}
-                    animate={{ height: "auto", opacity: 1 }}
-                    exit={{ height: 0, opacity: 0 }}
-                    transition={{ duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
-                    className="overflow-hidden"
-                  >
-                    <div className="px-6 md:px-8 pb-6 md:pb-8 pt-0">
-                      <div className="h-[1px] bg-gradient-to-r from-purple-200 to-sky-200 opacity-30 mb-5" />
-                      <p className="text-sm text-[#1a1035]/55 leading-relaxed mb-5">
-                        {card.description}
-                      </p>
-                      <div className="flex flex-wrap gap-2">
-                        {card.metrics.map((metric) => (
-                          <span
-                            key={metric}
-                            className="px-3 py-1.5 text-[11px] font-semibold bg-white/60 text-[#1a1035]/55 rounded-full border border-white/80"
-                          >
-                            {metric}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </motion.div>
-          ))}
-        </div>
+      {/* Carousel */}
+      <motion.div
+        ref={scrollRef}
+        onScroll={handleScroll}
+        className="flex gap-5 overflow-x-auto snap-x snap-mandatory scroll-smooth px-6 md:px-12 lg:px-24 pb-4 no-scrollbar"
+        style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+        initial={{ opacity: 0 }}
+        animate={isInView ? { opacity: 1 } : {}}
+        transition={{ duration: 0.8, delay: 0.3 }}
+      >
+        {experienceCards.map((card, i) => (
+          <motion.div
+            key={i}
+            className={`snap-start flex-shrink-0 w-[320px] md:w-[420px] lg:w-[460px] p-7 md:p-8 rounded-3xl glass-strong bg-gradient-to-br ${card.gradient} border border-white/60 hover:-translate-y-2 transition-all duration-300 hover:shadow-xl hover:shadow-purple-100/20`}
+            initial={{ opacity: 0, x: 40 }}
+            animate={isInView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.5, delay: 0.3 + i * 0.1 }}
+          >
+            <div className="flex items-center gap-2 mb-4">
+              <div className={`w-2 h-2 rounded-full ${card.dot}`} />
+              <span className="text-[10px] text-[#1a1035]/35 font-[var(--font-mono)] uppercase tracking-wider">
+                {card.subtitle}
+              </span>
+            </div>
+
+            <h3 className="text-lg md:text-xl font-bold text-[#1a1035] mb-3 leading-snug">
+              {card.title}
+            </h3>
+
+            <p className="text-sm text-[#1a1035]/50 leading-relaxed mb-5">
+              {card.description}
+            </p>
+
+            {/* Metrics */}
+            <div className="flex flex-wrap gap-2 mb-4">
+              {card.metrics.map((m) => (
+                <span key={m} className="px-2.5 py-1 text-[10px] font-semibold bg-white/60 text-[#1a1035]/60 rounded-full">
+                  {m}
+                </span>
+              ))}
+            </div>
+
+            {/* Tags */}
+            <div className="flex flex-wrap gap-1.5">
+              {card.tags.map((tag) => (
+                <span key={tag} className="px-2 py-0.5 text-[9px] font-[var(--font-mono)] text-purple-600/60 bg-purple-50/60 rounded">
+                  {tag}
+                </span>
+              ))}
+            </div>
+          </motion.div>
+        ))}
+      </motion.div>
+
+      {/* Dots */}
+      <div className="flex justify-center gap-2 mt-6">
+        {experienceCards.map((_, i) => (
+          <div
+            key={i}
+            className={`w-2 h-2 rounded-full transition-all duration-300 ${
+              activeIndex === i ? "bg-purple-400 w-6" : "bg-[#1a1035]/10"
+            }`}
+          />
+        ))}
       </div>
     </section>
   );
