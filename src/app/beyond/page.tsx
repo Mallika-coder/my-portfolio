@@ -11,7 +11,7 @@ const sections = [
       "Mentoring students on Unstop — helping them navigate coding interviews, build confidence, and find their own path in tech. Because someone did that for me once.",
     image: "/images/mentor-id-3277841781252375.2626.png",
     tag: "Mentorship",
-    contain: true,
+    aspect: "aspect-square",
   },
   {
     title: "3 Years of Tutoring",
@@ -20,6 +20,7 @@ const sections = [
       "Self-employed tutor for 3 years. Taught maths, science, and coding to students from class 6 to 12. Learned patience, communication, and that teaching is its own form of engineering.",
     image: "/images/i5.jpeg",
     tag: "Teaching · 3 Years",
+    aspect: "aspect-[3/4]",
   },
   {
     title: "Jersey #07 — Kho Kho",
@@ -28,6 +29,7 @@ const sections = [
       "College Kho Kho team. Jersey #07. It taught me speed, strategy, and that you can't debug your way out of poor teamwork.",
     image: "/images/kho.jpeg",
     tag: "Sports",
+    aspect: "aspect-[3/4]",
   },
   {
     title: "1st Place Speech & Many More Podiums",
@@ -36,16 +38,7 @@ const sections = [
       "Won 1st place at Jan Jatiya Gaurav Diwas speech competition (Dec 2024). Multiple podiums in debates across college fests. Public speaking taught me to think on my feet — a skill that shows up in every design review and every stand-up.",
     image: "/images/my-achievements.jpeg",
     tag: "Public Speaking · Debates",
-  },
-  {
-    title: "450+ LeetCode Problems",
-    quote: "It's not about being the fastest solver. It's about closing your own knowledge gaps faster than yesterday.",
-    description:
-      "Consistent daily solver. 100 Days Badge 2026. Focus areas: Arrays, DP, Trees, Graphs. It's meditation disguised as problem-solving.",
-    image: "/images/100day_badge.png",
-    tag: "Competitive Coding",
-    contain: true,
-    darkBg: true,
+    aspect: "aspect-[3/4]",
   },
 ];
 
@@ -67,7 +60,7 @@ export default function BeyondPage() {
         </div>
       </header>
 
-      {/* Title — bold, with a personal touch */}
+      {/* Title */}
       <section className="relative z-10 pt-32 pb-16 px-8 md:px-16 lg:px-24">
         <div className="max-w-6xl mx-auto">
           <motion.p
@@ -99,7 +92,7 @@ export default function BeyondPage() {
         </div>
       </section>
 
-      {/* Sections — engaging alternating layout */}
+      {/* Sections */}
       <section className="relative z-10 pb-32 px-8 md:px-16 lg:px-24">
         <div className="max-w-6xl mx-auto">
           {sections.map((item, i) => (
@@ -112,23 +105,20 @@ export default function BeyondPage() {
               transition={{ duration: 0.9, ease: [0.25, 0.1, 0.25, 1] }}
             >
               <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 items-center">
-                {/* Image — fully visible, object-contain for cards/badges */}
+                {/* Image — natural aspect ratio, fully visible */}
                 <motion.div
                   className={`${i % 2 === 1 ? "md:order-2" : ""}`}
-                  whileHover={{ scale: 1.03 }}
+                  whileHover={{ scale: 1.02 }}
                   transition={{ duration: 0.5 }}
                 >
-                  <div className={`relative rounded-2xl overflow-hidden ${item.darkBg ? "bg-[#12101f] aspect-[4/3]" : "aspect-[4/3]"}`}>
+                  <div className={`relative ${item.aspect} w-full max-w-[400px] ${i % 2 === 1 ? "ml-auto" : ""} rounded-2xl overflow-hidden`}>
                     <Image
                       src={item.image}
                       alt={item.title}
                       fill
-                      className={`${item.contain ? "object-contain p-6" : "object-cover"}`}
-                      sizes="(max-width: 768px) 100vw, 50vw"
+                      className="object-contain"
+                      sizes="(max-width: 768px) 100vw, 400px"
                     />
-                    {!item.contain && (
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-500" />
-                    )}
                   </div>
                 </motion.div>
 
@@ -148,7 +138,7 @@ export default function BeyondPage() {
                     {item.title}
                   </h2>
 
-                  {/* Quote — styled as a pull quote */}
+                  {/* Quote */}
                   <blockquote className="relative mb-8 pl-6">
                     <div className="absolute left-0 top-0 bottom-0 w-[2px] bg-gradient-to-b from-purple-400/50 to-sky-400/30 rounded-full" />
                     <p className="text-base md:text-lg text-white/45 italic leading-relaxed font-[var(--font-playfair)]">
@@ -165,7 +155,7 @@ export default function BeyondPage() {
           ))}
           <div className="border-t border-white/8" />
 
-          {/* Closing line */}
+          {/* Closing */}
           <motion.p
             className="text-center mt-20 text-sm text-white/20 font-[var(--font-playfair)] italic"
             initial={{ opacity: 0 }}

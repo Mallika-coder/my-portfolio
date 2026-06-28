@@ -187,7 +187,7 @@ export default function Home() {
                   that hit 100% accuracy. Published co-author. 9.01 CPI.
                 </p>
                 <div className="flex flex-wrap justify-center gap-2">
-                  {["Amazon", "MNNIT", "9.01 CPI", "Author", "450+ LC"].map((tag) => (
+                  {["Amazon", "MNNIT", "9.01 CPI", "Author", "450+ LeetCode"].map((tag) => (
                     <span key={tag} className="px-3 py-1.5 text-[10px] text-white/30 border border-white/8 rounded-full">
                       {tag}
                     </span>
