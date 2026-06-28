@@ -42,18 +42,8 @@ export default function Hero() {
     return () => clearTimeout(timeout);
   }, [displayText, isDeleting, taglineIndex]);
 
-  const wordReveal = {
-    hidden: { opacity: 0, y: 40, rotateX: -15 },
-    visible: (i: number) => ({
-      opacity: 1,
-      y: 0,
-      rotateX: 0,
-      transition: { delay: 1.8 + i * 0.15, duration: 0.8, ease: "easeOut" as const },
-    }),
-  };
-
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden px-6 md:px-12 lg:px-20 pt-24 pb-12">
+    <section className="relative min-h-screen flex items-center overflow-hidden px-6 md:px-12 lg:px-24 pt-28 pb-16">
       {/* Background blobs */}
       <motion.div
         className="absolute top-20 -left-32 w-[500px] h-[500px] bg-gradient-to-br from-sky-200/30 to-purple-200/20 blob rounded-full blur-3xl"
@@ -65,23 +55,18 @@ export default function Hero() {
         animate={{ x: [0, -20, 0], y: [0, 30, 0] }}
         transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 2 }}
       />
-      <motion.div
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-gradient-to-br from-mint-200/20 to-sky-200/10 blob rounded-full blur-3xl"
-        animate={{ scale: [1, 1.2, 1] }}
-        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-      />
 
-      <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-20 items-center relative z-10">
+      <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center relative z-10">
         {/* Left Side */}
-        <div className="space-y-8 order-2 lg:order-1">
+        <div className="space-y-7 order-2 lg:order-1">
           {/* Typewriter */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 1.6 }}
           >
-            <div className="h-10 md:h-12 flex items-center">
-              <span className="text-base md:text-lg font-[var(--font-mono)] text-purple-500/80">
+            <div className="h-8 md:h-10 flex items-center">
+              <span className="text-sm md:text-base font-[var(--font-mono)] text-purple-500/80">
                 {displayText}
                 <motion.span
                   animate={{ opacity: [1, 0, 1] }}
@@ -95,45 +80,34 @@ export default function Hero() {
           </motion.div>
 
           {/* Name */}
-          <div className="overflow-hidden">
-            <motion.h1
-              className="text-5xl md:text-7xl lg:text-[5.5rem] font-[var(--font-playfair)] font-bold leading-[1.05] tracking-tight"
-              custom={0}
-              initial="hidden"
-              animate="visible"
-              variants={wordReveal}
-            >
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.8, duration: 0.8, ease: "easeOut" }}
+          >
+            <h1 className="text-5xl md:text-7xl lg:text-[5.5rem] font-[var(--font-playfair)] font-bold leading-[1.05] tracking-tight">
               <span className="text-gradient">Mallika</span>
-            </motion.h1>
-            <motion.h1
-              className="text-5xl md:text-7xl lg:text-[5.5rem] font-[var(--font-playfair)] font-bold leading-[1.05] tracking-tight text-[#1a1035]"
-              custom={1}
-              initial="hidden"
-              animate="visible"
-              variants={wordReveal}
-            >
-              Verma
-            </motion.h1>
-          </div>
+              <br />
+              <span className="text-[#1a1035]">Verma</span>
+            </h1>
+          </motion.div>
 
           {/* Subtitle */}
           <motion.p
-            className="text-base md:text-lg text-[#1a1035]/50 max-w-md"
-            custom={2}
-            initial="hidden"
-            animate="visible"
-            variants={wordReveal}
+            className="text-base md:text-lg text-[#1a1035]/50"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 2.1, duration: 0.6 }}
           >
             CSE @ MNNIT Allahabad · SDE Intern @ Amazon
           </motion.p>
 
           {/* CTAs */}
           <motion.div
-            className="flex flex-wrap gap-4 pt-2"
-            custom={3}
-            initial="hidden"
-            animate="visible"
-            variants={wordReveal}
+            className="flex flex-wrap gap-4 pt-3"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 2.3, duration: 0.6 }}
           >
             <a
               href="#projects"
@@ -153,14 +127,12 @@ export default function Hero() {
 
           {/* Scroll indicator */}
           <motion.div
-            className="hidden md:flex items-center gap-3 pt-8"
+            className="hidden md:flex items-center gap-3 pt-6"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 3 }}
           >
-            <motion.div
-              className="w-5 h-9 border-2 border-[#1a1035]/20 rounded-full flex justify-center pt-2"
-            >
+            <motion.div className="w-5 h-9 border-2 border-[#1a1035]/20 rounded-full flex justify-center pt-2">
               <motion.div
                 className="w-1.5 h-2.5 bg-gradient-to-b from-purple-400 to-sky-400 rounded-full"
                 animate={{ y: [0, 10, 0] }}
@@ -171,14 +143,26 @@ export default function Hero() {
           </motion.div>
         </div>
 
-        {/* Right Side — Photo + Skills */}
+        {/* Right Side — Photo with label */}
         <motion.div
-          className="relative flex items-center justify-center order-1 lg:order-2"
+          className="relative flex flex-col items-center order-1 lg:order-2"
           initial={{ opacity: 0, scale: 0.85, y: 30 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
-          transition={{ duration: 1.2, delay: 2, ease: [0.4, 0, 0.2, 1] }}
+          transition={{ duration: 1.2, delay: 2 }}
         >
-          <div className="relative w-72 h-80 md:w-80 md:h-[22rem] lg:w-[22rem] lg:h-[26rem]">
+          {/* "Writer who codes" badge above photo */}
+          <motion.div
+            className="mb-6 px-5 py-2.5 glass rounded-full shadow-sm"
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 2.5, duration: 0.6 }}
+          >
+            <span className="text-sm font-medium text-[#1a1035]/70">
+              Writer who codes 🧡
+            </span>
+          </motion.div>
+
+          <div className="relative w-64 h-72 md:w-72 md:h-80 lg:w-80 lg:h-[22rem]">
             {/* Gradient border glow */}
             <div className="absolute -inset-3 bg-gradient-to-br from-sky-300/40 via-purple-300/40 to-pink-300/40 rounded-3xl blur-xl" />
 
@@ -196,8 +180,8 @@ export default function Hero() {
             {/* Orbiting skill badges */}
             {skills.map((skill, i) => {
               const angle = (i / skills.length) * 360 - 90;
-              const radiusX = 190;
-              const radiusY = 210;
+              const radiusX = 170;
+              const radiusY = 190;
               return (
                 <motion.div
                   key={skill}

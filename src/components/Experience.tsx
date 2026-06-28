@@ -43,13 +43,13 @@ export default function Experience() {
   const [activeCard, setActiveCard] = useState<number | null>(0);
 
   return (
-    <section id="experience" className="py-32 md:py-40 px-6 md:px-12 lg:px-20 relative" ref={ref}>
+    <section id="experience" className="py-32 md:py-44 px-6 md:px-12 lg:px-24 relative" ref={ref}>
       {/* Background */}
       <div className="absolute inset-0 mesh-gradient-2 -z-10" />
 
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-6xl mx-auto">
         <motion.h2
-          className="text-4xl md:text-6xl lg:text-7xl font-[var(--font-playfair)] font-bold mb-6"
+          className="text-4xl md:text-5xl lg:text-6xl font-[var(--font-playfair)] font-bold mb-6"
           initial={{ opacity: 0, y: 40 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}

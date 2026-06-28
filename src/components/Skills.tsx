@@ -55,12 +55,12 @@ export default function Skills() {
   const isInView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section id="skills" className="py-32 md:py-40 px-6 md:px-12 lg:px-20 relative" ref={ref}>
+    <section id="skills" className="py-32 md:py-44 px-6 md:px-12 lg:px-24 relative" ref={ref}>
       <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-gradient-to-tr from-sky-100/40 to-purple-100/20 rounded-full blur-3xl -z-10" />
 
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-6xl mx-auto">
         <motion.h2
-          className="text-4xl md:text-6xl lg:text-7xl font-[var(--font-playfair)] font-bold mb-20"
+          className="text-4xl md:text-5xl lg:text-6xl font-[var(--font-playfair)] font-bold mb-14"
           initial={{ opacity: 0, y: 40 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}

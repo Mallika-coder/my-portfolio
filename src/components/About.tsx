@@ -52,14 +52,14 @@ export default function About() {
   };
 
   return (
-    <section id="about" className="py-32 md:py-40 px-6 md:px-12 lg:px-20 relative" ref={ref}>
+    <section id="about" className="py-32 md:py-44 px-6 md:px-12 lg:px-24 relative" ref={ref}>
       {/* Background blob */}
       <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-gradient-to-br from-purple-100/40 to-sky-100/30 rounded-full blur-3xl -z-10" />
 
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-6xl mx-auto">
         {/* Section heading */}
         <motion.h2
-          className="text-4xl md:text-6xl lg:text-7xl font-[var(--font-playfair)] font-bold mb-20 leading-tight"
+          className="text-4xl md:text-5xl lg:text-6xl font-[var(--font-playfair)] font-bold mb-16 leading-tight"
           initial={{ opacity: 0, y: 40 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, ease: [0.4, 0, 0.2, 1] }}
