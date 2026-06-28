@@ -12,18 +12,41 @@ export default function Contact() {
   const isInView = useInView(ref, { once: true, margin: "-80px" });
   const [formState, setFormState] = useState({ name: "", email: "", message: "" });
   const [submitted, setSubmitted] = useState(false);
+  const [sending, setSending] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
-    confetti({
-      particleCount: 100,
-      spread: 80,
-      origin: { y: 0.6 },
-      colors: ["#7dd3fc", "#c4b5fd", "#f9a8d4", "#6ee7b7"],
-    });
-    setTimeout(() => setSubmitted(false), 3000);
-    setFormState({ name: "", email: "", message: "" });
+    setSending(true);
+
+    try {
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          access_key: process.env.NEXT_PUBLIC_WEB3FORMS_KEY || "YOUR_ACCESS_KEY_HERE",
+          name: formState.name,
+          email: formState.email,
+          message: formState.message,
+          subject: `Portfolio message from ${formState.name}`,
+        }),
+      });
+
+      if (res.ok) {
+        setSubmitted(true);
+        confetti({
+          particleCount: 100,
+          spread: 80,
+          origin: { y: 0.6 },
+          colors: ["#7dd3fc", "#c4b5fd", "#f9a8d4", "#6ee7b7"],
+        });
+        setFormState({ name: "", email: "", message: "" });
+        setTimeout(() => setSubmitted(false), 4000);
+      }
+    } catch {
+      alert("Something went wrong. Please try again or email me directly.");
+    } finally {
+      setSending(false);
+    }
   };
 
   const socials = [
@@ -105,7 +128,7 @@ export default function Contact() {
               type="submit"
               className="magnetic-btn px-8 py-4 bg-gradient-to-r from-purple-500 via-sky-500 to-pink-500 text-white font-semibold rounded-2xl hover:shadow-xl hover:shadow-purple-200/30 transition-all duration-300 hover:scale-[1.02] text-sm"
             >
-              {submitted ? "Sent! 🎉" : "Send Message"}
+              {submitted ? "Sent! 🎉" : sending ? "Sending..." : "Send Message"}
             </button>
           </motion.form>
 
