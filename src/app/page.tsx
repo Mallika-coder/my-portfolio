@@ -53,7 +53,7 @@ export default function Home() {
 
       {/* Main content — offset left on desktop to clear social dock */}
       <main className="relative lg:pl-20">
-        <div className="flex flex-col">
+        <div className="flex flex-col gap-16 md:gap-24 lg:gap-32">
           <section className="w-full relative block clear-both">
             <Hero />
           </section>

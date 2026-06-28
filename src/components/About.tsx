@@ -52,7 +52,7 @@ export default function About() {
   };
 
   return (
-    <div id="about" className="py-20 md:py-28 px-6 md:px-12 lg:px-16 relative" ref={ref}>
+    <div id="about" className="py-28 md:py-36 px-6 md:px-12 lg:px-16 relative" ref={ref}>
       {/* Background blob */}
       <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-gradient-to-br from-purple-100/40 to-sky-100/30 rounded-full blur-3xl -z-10" />
 

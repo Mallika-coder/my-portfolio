@@ -66,12 +66,12 @@ export default function Experience() {
   };
 
   return (
-    <div id="experience" className="py-20 md:py-28" ref={ref}>
+    <div id="experience" className="py-28 md:py-36" ref={ref}>
       <div className="relative">
         <div className="absolute inset-0 mesh-gradient-2 -z-10" />
 
         {/* Header — padded and isolated */}
-        <div className="px-6 md:px-12 lg:px-16 mb-10">
+        <div className="px-6 md:px-12 lg:px-16 mb-14">
           <motion.div
             className="flex items-end justify-between max-w-6xl mx-auto"
             initial={{ opacity: 0, y: 40 }}

@@ -71,12 +71,12 @@ export default function Skills() {
   };
 
   return (
-    <div id="skills" className="py-20 md:py-28" ref={ref}>
+    <div id="skills" className="py-28 md:py-36" ref={ref}>
       <div className="relative">
         <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-gradient-to-tr from-sky-100/40 to-purple-100/20 rounded-full blur-3xl -z-10" />
 
         {/* Header */}
-        <div className="px-6 md:px-12 lg:px-16 mb-10">
+        <div className="px-6 md:px-12 lg:px-16 mb-14">
           <motion.div
             className="flex items-end justify-between max-w-6xl mx-auto"
             initial={{ opacity: 0, y: 40 }}

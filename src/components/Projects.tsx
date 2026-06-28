@@ -78,12 +78,12 @@ export default function Projects() {
   };
 
   return (
-    <div id="projects" className="py-20 md:py-28" ref={ref}>
+    <div id="projects" className="py-28 md:py-36" ref={ref}>
       <div className="relative">
         <div className="absolute inset-0 mesh-gradient-3 -z-10" />
 
         {/* Header */}
-        <div className="px-6 md:px-12 lg:px-16 mb-10">
+        <div className="px-6 md:px-12 lg:px-16 mb-14">
           <motion.div
             className="flex items-end justify-between max-w-6xl mx-auto"
             initial={{ opacity: 0, y: 40 }}
