@@ -107,30 +107,29 @@ export default function Home() {
                 </div>
               </motion.div>
 
-              {/* Right: Full photo — i6, whole body on sofa visible */}
+              {/* Right: Full photo — i6, entire body visible including legs */}
               <motion.div
                 className="relative hidden lg:block"
                 initial={{ opacity: 0, x: 40 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 1.8, duration: 1.2 }}
               >
-                <div className="relative w-full aspect-[3/4] max-w-[450px] ml-auto rounded-2xl overflow-hidden">
-                  {/* Glow behind */}
+                <div className="relative w-full aspect-[2/3] max-w-[420px] ml-auto rounded-2xl overflow-hidden">
                   <div className="absolute -inset-4 bg-gradient-to-br from-sky-500/10 via-purple-500/10 to-pink-500/10 rounded-2xl blur-2xl" />
                   <Image
                     src="/images/i6.jpeg"
                     alt="Mallika Verma sitting at Amazon office"
                     fill
-                    className="object-cover object-center relative"
+                    className="object-contain relative"
                     priority
-                    sizes="450px"
+                    sizes="420px"
                   />
                 </div>
               </motion.div>
 
               {/* Mobile: show photo above content */}
               <motion.div
-                className="lg:hidden relative w-full max-w-[300px] mx-auto aspect-[3/4] rounded-2xl overflow-hidden order-first"
+                className="lg:hidden relative w-full max-w-[280px] mx-auto aspect-[2/3] rounded-2xl overflow-hidden order-first"
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 1.5, duration: 0.8 }}
@@ -139,9 +138,9 @@ export default function Home() {
                   src="/images/i6.jpeg"
                   alt="Mallika Verma"
                   fill
-                  className="object-cover object-center"
+                  className="object-contain"
                   priority
-                  sizes="300px"
+                  sizes="280px"
                 />
               </motion.div>
             </div>
