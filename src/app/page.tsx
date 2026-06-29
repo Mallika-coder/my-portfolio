@@ -19,7 +19,7 @@ const socials = [
   { icon: FaInstagram, href: "https://www.instagram.com/creative_mallika_0542/", label: "Instagram" },
   { icon: FaMediumM, href: "https://medium.com/@mallikav", label: "Medium" },
   { icon: SiLeetcode, href: "https://leetcode.com/u/Mallikaaaa", label: "LeetCode" },
-  { icon: SiLeetcode, href: "https://leetcode.com/u/Mallikaaaa", label: "LeetCode" },
+  { icon: SiLeetcode, href: "https://unstop.com/u/malliver21097", label: "Unstop" },
 ];
 
 export default function Home() {
