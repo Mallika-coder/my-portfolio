@@ -85,7 +85,7 @@ export default function Home() {
             ].map((skill, i) => (
               <div
                 key={i}
-                className={`absolute ${skill.size} text-white/[0.08] font-[var(--font-mono)] animate-[particle-float_5s_ease-in-out_infinite]`}
+                className={`absolute ${skill.size} text-white/30 font-[var(--font-mono)] animate-[particle-float_5s_ease-in-out_infinite]`}
                 style={{ top: skill.top, left: skill.left, right: skill.right, bottom: skill.bottom, animationDelay: skill.delay } as React.CSSProperties}
               >
                 {skill.text}
