@@ -85,14 +85,14 @@ export default function Home() {
             ))}
           </div>
 
-          {/* Name — top */}
+          {/* Name — top, most highlighted */}
           <motion.h1
-            className="text-3xl md:text-4xl lg:text-5xl font-bold text-white tracking-[4px] mb-12 text-center z-20 drop-shadow-[0_0_20px_rgba(102,126,234,0.4)]"
+            className="text-5xl md:text-6xl lg:text-8xl font-[var(--font-playfair)] font-bold text-white tracking-[2px] mb-12 text-center z-20 drop-shadow-[0_0_30px_rgba(102,126,234,0.5)]"
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.5, duration: 0.8 }}
           >
-            MALLIKA VERMA
+            <span className="text-gradient">Mallika Verma</span>
           </motion.h1>
 
           {/* Center piece: Photo (FULL visible) + orbit ring + rotating text */}
@@ -132,9 +132,9 @@ export default function Home() {
             </div>
           </motion.div>
 
-          {/* Tagline — below photo */}
+          {/* Tagline — below photo, highly highlighted */}
           <motion.p
-            className="text-lg md:text-xl text-white/50 italic font-[var(--font-playfair)] mb-10 z-20"
+            className="text-2xl md:text-3xl lg:text-4xl font-[var(--font-playfair)] font-semibold italic mb-10 z-20 text-gradient drop-shadow-[0_0_20px_rgba(196,181,253,0.4)]"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 2.2 }}
