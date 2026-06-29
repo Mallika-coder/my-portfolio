@@ -1,4 +1,4 @@
-# Mallika Verma — Portfolio
+![img.png](img.png)# Mallika Verma — Portfolio
 
 **Writer who codes.** Personal portfolio built with Next.js, featuring a multi-page editorial design inspired by cinematic Wix templates.
 
