@@ -52,7 +52,7 @@ const projects = [
       "GPT-4o, Claude, LLaMA 3.1 — all free. Live Python code execution, real-time web search, voice input, file upload. Chrome extension included.",
     results: ["3 LLMs unified", "Live code exec", "Chrome extension"],
     stack: ["Next.js", "FastAPI", "LLaMA 3.1", "WebSocket"],
-    live: "https://frontend-j1wm81yfe-web-booster12.vercel.app",
+    live: "",
     github: "https://github.com/Mallika-coder/mallika-ai",
     image: "",
   },

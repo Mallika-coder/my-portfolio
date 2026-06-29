@@ -4,21 +4,21 @@ import Link from "next/link";
 
 const articles = [
   {
-    title: "The Skill Nobody Taught Me in a Classroom",
+    title: "The Skill No Classroom Ever Taught Me",
     preview:
       "On my third day at Amazon, I spent almost three hours trying to understand a piece of code. Three hours of struggle disappeared because I finally asked one question.",
     tag: "Featured · Stackademic",
     readTime: "2 min",
-    href: "https://medium.com/@mallikav",
+    href: "https://medium.com/stackademic/the-skill-no-classroom-ever-taught-me-8ba2ead2c94b",
     gradient: "from-amber-500/20 via-orange-600/10 to-red-500/5",
   },
   {
     title: "Seven weeks at Amazon and I'm already scared of forgetting.",
     preview:
       "Not the technical stuff — I'll remember the code. But the feeling of walking into that office on Day 1, not knowing what a Brazil build was...",
-    tag: "Personal",
+    tag: "Personal · Stackademic",
     readTime: "5 min",
-    href: "https://medium.com/@mallikav",
+    href: "https://medium.com/stackademic/seven-weeks-at-amazon-and-im-already-scared-of-forgetting-007963c9170b",
     gradient: "from-purple-500/20 via-violet-600/10 to-fuchsia-500/5",
   },
   {
@@ -27,7 +27,7 @@ const articles = [
       "When you iterate from v1 to v7 in two days, you learn that the first solution is never the best one.",
     tag: "Engineering",
     readTime: "4 min",
-    href: "https://medium.com/@mallikav",
+    href: "https://medium.com/@mallikav/article-1-what-building-ai-agents-taught-me-about-problem-solving-3ad9ad577245",
     gradient: "from-sky-500/20 via-blue-600/10 to-cyan-500/5",
   },
   {
@@ -36,7 +36,7 @@ const articles = [
       "Clear code and clear prose share the same foundation: knowing what you actually mean. Both demand precision. Both punish ambiguity.",
     tag: "Thoughts",
     readTime: "3 min",
-    href: "https://medium.com/@mallikav",
+    href: "https://medium.com/@mallikav/why-every-engineer-should-write-7da3b454766b",
     gradient: "from-pink-500/20 via-rose-600/10 to-red-500/5",
   },
 ];
