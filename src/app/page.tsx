@@ -111,7 +111,7 @@ export default function Home() {
             transition={{ delay: 1.7, duration: 1 }}
           >
             {/* Rotating text ring — clearly visible */}
-            <div className="absolute w-[440px] h-[440px] md:w-[560px] md:h-[560px] animate-[spin_20s_linear_infinite] z-[15]">
+            <div className="absolute w-[480px] h-[480px] md:w-[620px] md:h-[620px] animate-[spin_20s_linear_infinite] z-[15]">
               <svg viewBox="0 0 420 420" className="w-full h-full">
                 <defs>
                   <path id="orbitPath" d="M 210,210 m -190,0 a 190,190 0 1,1 380,0 a 190,190 0 1,1 -380,0" />
@@ -123,19 +123,19 @@ export default function Home() {
             </div>
 
             {/* Pulsing glow rings */}
-            <div className="absolute w-[420px] h-[420px] md:w-[500px] md:h-[500px] rounded-full border-2 border-purple-500/20 animate-[pulse-ring_3s_ease-in-out_infinite]" style={{ top: "50%", left: "50%", transform: "translate(-50%, -50%)" }} />
-            <div className="absolute w-[450px] h-[450px] md:w-[530px] md:h-[530px] rounded-full border border-sky-500/10 animate-[pulse-ring_3s_ease-in-out_infinite_1.5s]" style={{ top: "50%", left: "50%", transform: "translate(-50%, -50%)" }} />
+            <div className="absolute w-[440px] h-[440px] md:w-[550px] md:h-[550px] rounded-full border-2 border-purple-500/20 animate-[pulse-ring_3s_ease-in-out_infinite]" style={{ top: "50%", left: "50%", transform: "translate(-50%, -50%)" }} />
+            <div className="absolute w-[470px] h-[470px] md:w-[580px] md:h-[580px] rounded-full border border-sky-500/10 animate-[pulse-ring_3s_ease-in-out_infinite_1.5s]" style={{ top: "50%", left: "50%", transform: "translate(-50%, -50%)" }} />
 
-            {/* Photo — BIG circle covering full photo + text */}
-            <div className="relative w-[380px] h-[380px] md:w-[450px] md:h-[450px] z-10 animate-[float3d_5s_ease-in-out_infinite]">
+            {/* Photo — BIG circle, full photo visible with face + text */}
+            <div className="relative w-[400px] h-[400px] md:w-[500px] md:h-[500px] z-10 animate-[float3d_5s_ease-in-out_infinite]">
               <div className="relative w-full h-full rounded-full overflow-hidden border-[3px] border-white/15 shadow-[0_0_60px_rgba(102,126,234,0.4),0_0_100px_rgba(118,75,162,0.2)] bg-[#d4cfc4]">
                 <Image
                   src="/images/hero-cutout.jpeg"
                   alt="Mallika Verma"
                   fill
-                  className="object-contain object-bottom"
+                  className="object-contain object-center"
                   priority
-                  sizes="450px"
+                  sizes="500px"
                 />
                 {/* Glass shine effect */}
                 <div className="absolute inset-0 bg-[linear-gradient(135deg,transparent_40%,rgba(255,255,255,0.1)_50%,transparent_60%)]" />
