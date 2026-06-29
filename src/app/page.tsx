@@ -126,16 +126,16 @@ export default function Home() {
             <div className="absolute w-[320px] h-[320px] md:w-[400px] md:h-[400px] rounded-full border-2 border-purple-500/20 animate-[pulse-ring_3s_ease-in-out_infinite]" style={{ top: "50%", left: "50%", transform: "translate(-50%, -50%)" }} />
             <div className="absolute w-[350px] h-[350px] md:w-[440px] md:h-[440px] rounded-full border border-sky-500/10 animate-[pulse-ring_3s_ease-in-out_infinite_1.5s]" style={{ top: "50%", left: "50%", transform: "translate(-50%, -50%)" }} />
 
-            {/* Photo — large circle, scaled to show FULL image including hair */}
-            <div className="relative w-[300px] h-[380px] md:w-[360px] md:h-[450px] z-10 animate-[float3d_5s_ease-in-out_infinite]">
-              <div className="relative w-full h-full rounded-full overflow-hidden border-[3px] border-white/15 shadow-[0_0_60px_rgba(102,126,234,0.4),0_0_100px_rgba(118,75,162,0.2)] bg-[#d4cfc4]">
+            {/* Photo — large circle, face fully visible at top */}
+            <div className="relative w-[280px] h-[280px] md:w-[340px] md:h-[340px] z-10 animate-[float3d_5s_ease-in-out_infinite]">
+              <div className="relative w-full h-full rounded-full overflow-hidden border-[3px] border-white/15 shadow-[0_0_60px_rgba(102,126,234,0.4),0_0_100px_rgba(118,75,162,0.2)]">
                 <Image
                   src="/images/hero-cutout.jpeg"
                   alt="Mallika Verma"
                   fill
-                  className="object-contain object-center"
+                  className="object-cover object-[center_15%]"
                   priority
-                  sizes="360px"
+                  sizes="340px"
                 />
                 {/* Glass shine effect */}
                 <div className="absolute inset-0 bg-[linear-gradient(135deg,transparent_40%,rgba(255,255,255,0.1)_50%,transparent_60%)]" />
