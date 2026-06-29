@@ -4,7 +4,7 @@ import dynamic from "next/dynamic";
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { FaGithub, FaLinkedinIn, FaInstagram, FaMediumM } from "react-icons/fa";
+import { FaGithub, FaLinkedinIn, FaInstagram, FaMediumM, FaTrophy } from "react-icons/fa";
 import { SiLeetcode } from "react-icons/si";
 import LoadingScreen from "@/components/LoadingScreen";
 import ScrollProgress from "@/components/ScrollProgress";
@@ -19,7 +19,7 @@ const socials = [
   { icon: FaInstagram, href: "https://www.instagram.com/creative_mallika_0542/", label: "Instagram" },
   { icon: FaMediumM, href: "https://medium.com/@mallikav", label: "Medium" },
   { icon: SiLeetcode, href: "https://leetcode.com/u/Mallikaaaa", label: "LeetCode" },
-  { icon: SiLeetcode, href: "https://unstop.com/u/malliver21097", label: "Unstop" },
+  { icon: FaTrophy, href: "https://unstop.com/u/malliver21097", label: "Unstop" },
 ];
 
 export default function Home() {
