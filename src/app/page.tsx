@@ -126,14 +126,14 @@ export default function Home() {
             <div className="absolute w-[440px] h-[440px] md:w-[550px] md:h-[550px] rounded-full border-2 border-purple-500/20 animate-[pulse-ring_3s_ease-in-out_infinite]" style={{ top: "50%", left: "50%", transform: "translate(-50%, -50%)" }} />
             <div className="absolute w-[470px] h-[470px] md:w-[580px] md:h-[580px] rounded-full border border-sky-500/10 animate-[pulse-ring_3s_ease-in-out_infinite_1.5s]" style={{ top: "50%", left: "50%", transform: "translate(-50%, -50%)" }} />
 
-            {/* Photo — BIG circle, full photo visible with face + text */}
+            {/* Photo — BIG circle, face+body+text all visible */}
             <div className="relative w-[400px] h-[400px] md:w-[500px] md:h-[500px] z-10 animate-[float3d_5s_ease-in-out_infinite]">
               <div className="relative w-full h-full rounded-full overflow-hidden border-[3px] border-white/15 shadow-[0_0_60px_rgba(102,126,234,0.4),0_0_100px_rgba(118,75,162,0.2)] bg-[#d4cfc4]">
                 <Image
                   src="/images/hero-cutout.jpeg"
                   alt="Mallika Verma"
                   fill
-                  className="object-contain object-center"
+                  className="object-cover scale-[0.85] object-top"
                   priority
                   sizes="500px"
                 />
