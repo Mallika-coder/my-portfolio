@@ -67,87 +67,105 @@ export default function Home() {
 
         {/* ===== SECTION 1: HERO — Full photo + orbiting nav bubbles ===== */}
         <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden px-4">
-          {/* Particles */}
-          <div className="absolute inset-0 pointer-events-none">
+          {/* Floating skills in background */}
+          <div className="absolute inset-0 pointer-events-none z-[1]">
             {[
-              { top: "10%", left: "15%", bg: "#ff6b6b", delay: "0s" },
-              { top: "20%", right: "20%", bg: "#feca57", delay: "0.5s" },
-              { bottom: "25%", left: "10%", bg: "#48dbfb", delay: "1s" },
-              { bottom: "15%", right: "15%", bg: "#ff9ff3", delay: "1.5s" },
-              { top: "50%", left: "5%", bg: "#54a0ff", delay: "2s" },
-              { top: "40%", right: "12%", bg: "#5f27cd", delay: "2.5s" },
-            ].map((p, i) => (
+              { text: "Python", top: "8%", left: "12%", delay: "0s", size: "text-xs" },
+              { text: "React", top: "15%", right: "18%", delay: "0.5s", size: "text-sm" },
+              { text: "AI Agents", bottom: "22%", left: "8%", delay: "1s", size: "text-xs" },
+              { text: "AWS", bottom: "12%", right: "14%", delay: "1.5s", size: "text-xs" },
+              { text: "Java", top: "45%", left: "4%", delay: "2s", size: "text-[10px]" },
+              { text: "TypeScript", top: "35%", right: "6%", delay: "2.5s", size: "text-[10px]" },
+              { text: "Spark", bottom: "35%", left: "18%", delay: "3s", size: "text-[10px]" },
+              { text: "Claude", top: "65%", right: "10%", delay: "3.5s", size: "text-xs" },
+              { text: "PyTorch", top: "80%", left: "15%", delay: "1.2s", size: "text-[10px]" },
+              { text: "Next.js", top: "25%", left: "25%", delay: "2.8s", size: "text-[10px]" },
+              { text: "MongoDB", bottom: "8%", left: "35%", delay: "0.8s", size: "text-[10px]" },
+              { text: "LangChain", top: "55%", right: "20%", delay: "1.8s", size: "text-[10px]" },
+            ].map((skill, i) => (
               <div
                 key={i}
-                className="absolute w-1 h-1 rounded-full animate-[particle-float_4s_ease-in-out_infinite]"
-                style={{ top: p.top, left: p.left, right: p.right, bottom: p.bottom, background: p.bg, animationDelay: p.delay, opacity: 0.5 } as React.CSSProperties}
-              />
+                className={`absolute ${skill.size} text-white/[0.08] font-[var(--font-mono)] animate-[particle-float_5s_ease-in-out_infinite]`}
+                style={{ top: skill.top, left: skill.left, right: skill.right, bottom: skill.bottom, animationDelay: skill.delay } as React.CSSProperties}
+              >
+                {skill.text}
+              </div>
             ))}
           </div>
 
-          {/* Name — top, most highlighted */}
+          {/* Name — top, biggest element */}
           <motion.h1
-            className="text-5xl md:text-6xl lg:text-8xl font-[var(--font-playfair)] font-bold text-white tracking-[2px] mb-12 text-center z-20 drop-shadow-[0_0_30px_rgba(102,126,234,0.5)]"
+            className="text-5xl md:text-7xl lg:text-8xl font-[var(--font-playfair)] font-bold tracking-[2px] mb-10 text-center z-20"
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.5, duration: 0.8 }}
           >
-            <span className="text-gradient">Mallika Verma</span>
+            <span className="text-gradient drop-shadow-[0_0_40px_rgba(125,211,252,0.4)]">Mallika Verma</span>
           </motion.h1>
 
-          {/* Center piece: Photo (FULL visible) + orbit ring + rotating text */}
+          {/* Center piece: CIRCULAR photo + orbit ring + rotating text */}
           <motion.div
-            className="relative flex items-center justify-center mb-12"
+            className="relative flex items-center justify-center mb-8"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 1.7, duration: 1 }}
           >
-            {/* Rotating text ring — larger, visible */}
-            <div className="absolute w-[380px] h-[380px] md:w-[480px] md:h-[480px] animate-[spin_25s_linear_infinite] z-[5]">
-              <svg viewBox="0 0 480 480" className="w-full h-full">
+            {/* Rotating text ring — clearly visible */}
+            <div className="absolute w-[320px] h-[320px] md:w-[420px] md:h-[420px] animate-[spin_20s_linear_infinite] z-[15]">
+              <svg viewBox="0 0 420 420" className="w-full h-full">
                 <defs>
-                  <path id="orbitPath" d="M 240,240 m -210,0 a 210,210 0 1,1 420,0 a 210,210 0 1,1 -420,0" />
+                  <path id="orbitPath" d="M 210,210 m -190,0 a 190,190 0 1,1 380,0 a 190,190 0 1,1 -380,0" />
                 </defs>
-                <text fill="rgba(255,255,255,0.4)" fontSize="14" fontFamily="monospace" letterSpacing="4">
-                  <textPath href="#orbitPath">✦ MALLIKA VERMA ✦ WRITER WHO CODES ✦ BUILD ✦ CREATE ✦ INSPIRE ✦ ENGINEER ✦</textPath>
+                <text fill="rgba(255,255,255,0.6)" fontSize="12" fontFamily="monospace" letterSpacing="5" fontWeight="bold">
+                  <textPath href="#orbitPath">✦ MALLIKA VERMA ✦ WRITER WHO CODES ✦ BUILD ✦ CREATE ✦ INSPIRE ✦</textPath>
                 </text>
               </svg>
             </div>
 
-            {/* Glow rings */}
-            <div className="absolute w-[300px] h-[300px] md:w-[360px] md:h-[360px] rounded-full border border-white/10 animate-[pulse-ring_3s_ease-in-out_infinite]" style={{ top: "50%", left: "50%", transform: "translate(-50%, -50%)" }} />
+            {/* Pulsing glow rings */}
+            <div className="absolute w-[260px] h-[260px] md:w-[320px] md:h-[320px] rounded-full border-2 border-purple-500/20 animate-[pulse-ring_3s_ease-in-out_infinite]" style={{ top: "50%", left: "50%", transform: "translate(-50%, -50%)" }} />
+            <div className="absolute w-[290px] h-[290px] md:w-[360px] md:h-[360px] rounded-full border border-sky-500/10 animate-[pulse-ring_3s_ease-in-out_infinite_1.5s]" style={{ top: "50%", left: "50%", transform: "translate(-50%, -50%)" }} />
 
-            {/* Photo — FULL image visible, not cropped */}
-            <div className="relative w-[250px] h-[320px] md:w-[300px] md:h-[400px] z-10 animate-[float3d_5s_ease-in-out_infinite]">
-              <div className="relative w-full h-full rounded-[30px] overflow-hidden border-2 border-white/10 shadow-[0_0_60px_rgba(102,126,234,0.3),0_0_120px_rgba(118,75,162,0.15)]">
+            {/* Photo — CIRCULAR, full photo visible */}
+            <div className="relative w-[200px] h-[200px] md:w-[260px] md:h-[260px] z-10 animate-[float3d_5s_ease-in-out_infinite]">
+              <div className="relative w-full h-full rounded-full overflow-hidden border-[3px] border-white/15 shadow-[0_0_60px_rgba(102,126,234,0.4),0_0_100px_rgba(118,75,162,0.2)]">
                 <Image
                   src="/images/hero-cutout.jpeg"
                   alt="Mallika Verma"
                   fill
-                  className="object-cover object-top"
+                  className="object-cover"
                   priority
-                  sizes="300px"
+                  sizes="260px"
                 />
+                {/* Glass shine effect */}
+                <div className="absolute inset-0 bg-[linear-gradient(135deg,transparent_40%,rgba(255,255,255,0.1)_50%,transparent_60%)]" />
               </div>
             </div>
           </motion.div>
 
-          {/* Tagline — below photo, highly highlighted */}
+          {/* "Writer who codes." — 3D effect, biggest tagline */}
           <motion.p
-            className="text-2xl md:text-3xl lg:text-4xl font-[var(--font-playfair)] font-semibold italic mb-10 z-20 text-gradient drop-shadow-[0_0_20px_rgba(196,181,253,0.4)]"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 2.2 }}
+            className="text-3xl md:text-5xl lg:text-6xl font-[var(--font-playfair)] font-bold italic mb-10 z-20 text-center"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 2.2, duration: 0.8 }}
+            style={{
+              background: "linear-gradient(135deg, #7dd3fc, #c4b5fd, #f9a8d4)",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              textShadow: "0 4px 12px rgba(196,181,253,0.3), 0 8px 30px rgba(125,211,252,0.2)",
+              filter: "drop-shadow(0 2px 4px rgba(0,0,0,0.5))",
+            }}
           >
             Writer who codes.
           </motion.p>
 
-          {/* Navigation bubbles — in a row below */}
+          {/* Navigation bubbles */}
           <motion.div
             className="flex flex-wrap justify-center gap-3 z-20 max-w-2xl"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 2.5, duration: 0.8 }}
+            transition={{ delay: 2.6, duration: 0.8 }}
           >
             {[
               { label: "Projects", href: "/projects", color: "#ff6b6b" },

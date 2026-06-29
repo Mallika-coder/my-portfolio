@@ -100,18 +100,20 @@ export default function WritingPage() {
               transition={{ duration: 0.6, delay: i * 0.08 }}
             >
               <div className={`grid grid-cols-1 md:grid-cols-12 gap-8 items-center ${i % 2 === 1 ? "" : ""}`}>
-                {/* Visual */}
+                {/* Visual — bold topic as image */}
                 <div className={`md:col-span-4 ${i % 2 === 1 ? "md:order-2" : ""}`}>
                   <motion.div
-                    className={`relative aspect-[4/3] rounded-xl overflow-hidden bg-gradient-to-br ${article.gradient}`}
-                    whileHover={{ scale: 1.03 }}
-                    transition={{ duration: 0.3 }}
+                    className={`relative aspect-[4/3] rounded-2xl overflow-hidden bg-gradient-to-br ${article.gradient} border border-white/5 group-hover:border-white/15 transition-all duration-500`}
+                    whileHover={{ scale: 1.05, rotate: 1 }}
+                    transition={{ duration: 0.4 }}
                   >
-                    <div className="absolute inset-0 flex items-center justify-center p-6">
-                      <p className="text-lg font-[var(--font-playfair)] font-bold text-white/10 text-center leading-tight">
-                        {article.title.split(" ").slice(0, 5).join(" ")}...
+                    <div className="absolute inset-0 flex items-center justify-center p-5">
+                      <p className="text-2xl md:text-3xl font-[var(--font-playfair)] font-bold text-white/20 group-hover:text-white/40 text-center leading-tight transition-colors duration-500">
+                        {article.title.split(" ").slice(0, 4).join(" ")}
                       </p>
                     </div>
+                    {/* Shimmer effect on hover */}
+                    <div className="absolute inset-0 bg-[linear-gradient(135deg,transparent_30%,rgba(255,255,255,0.05)_50%,transparent_70%)] opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
                   </motion.div>
                 </div>
 
