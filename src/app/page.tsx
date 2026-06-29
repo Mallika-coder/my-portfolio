@@ -128,14 +128,14 @@ export default function Home() {
 
             {/* Photo — CIRCULAR, big so full photo visible */}
             <div className="relative w-[280px] h-[280px] md:w-[350px] md:h-[350px] z-10 animate-[float3d_5s_ease-in-out_infinite]">
-              <div className="relative w-full h-full rounded-full overflow-hidden border-[3px] border-white/15 shadow-[0_0_60px_rgba(102,126,234,0.4),0_0_100px_rgba(118,75,162,0.2)]">
+              <div className="relative w-full h-full rounded-full overflow-hidden border-[3px] border-white/15 shadow-[0_0_60px_rgba(102,126,234,0.4),0_0_100px_rgba(118,75,162,0.2)] bg-[#d4cfc4]">
                 <Image
                   src="/images/hero-cutout.jpeg"
                   alt="Mallika Verma"
                   fill
-                  className="object-cover"
+                  className="object-contain"
                   priority
-                  sizes="260px"
+                  sizes="350px"
                 />
                 {/* Glass shine effect */}
                 <div className="absolute inset-0 bg-[linear-gradient(135deg,transparent_40%,rgba(255,255,255,0.1)_50%,transparent_60%)]" />
