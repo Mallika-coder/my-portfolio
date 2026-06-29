@@ -111,7 +111,7 @@ export default function Home() {
             transition={{ delay: 1.7, duration: 1 }}
           >
             {/* Rotating text ring — clearly visible */}
-            <div className="absolute w-[320px] h-[320px] md:w-[420px] md:h-[420px] animate-[spin_20s_linear_infinite] z-[15]">
+            <div className="absolute w-[380px] h-[380px] md:w-[500px] md:h-[500px] animate-[spin_20s_linear_infinite] z-[15]">
               <svg viewBox="0 0 420 420" className="w-full h-full">
                 <defs>
                   <path id="orbitPath" d="M 210,210 m -190,0 a 190,190 0 1,1 380,0 a 190,190 0 1,1 -380,0" />
@@ -123,11 +123,11 @@ export default function Home() {
             </div>
 
             {/* Pulsing glow rings */}
-            <div className="absolute w-[260px] h-[260px] md:w-[320px] md:h-[320px] rounded-full border-2 border-purple-500/20 animate-[pulse-ring_3s_ease-in-out_infinite]" style={{ top: "50%", left: "50%", transform: "translate(-50%, -50%)" }} />
-            <div className="absolute w-[290px] h-[290px] md:w-[360px] md:h-[360px] rounded-full border border-sky-500/10 animate-[pulse-ring_3s_ease-in-out_infinite_1.5s]" style={{ top: "50%", left: "50%", transform: "translate(-50%, -50%)" }} />
+            <div className="absolute w-[320px] h-[320px] md:w-[400px] md:h-[400px] rounded-full border-2 border-purple-500/20 animate-[pulse-ring_3s_ease-in-out_infinite]" style={{ top: "50%", left: "50%", transform: "translate(-50%, -50%)" }} />
+            <div className="absolute w-[350px] h-[350px] md:w-[440px] md:h-[440px] rounded-full border border-sky-500/10 animate-[pulse-ring_3s_ease-in-out_infinite_1.5s]" style={{ top: "50%", left: "50%", transform: "translate(-50%, -50%)" }} />
 
-            {/* Photo — CIRCULAR, full photo visible */}
-            <div className="relative w-[200px] h-[200px] md:w-[260px] md:h-[260px] z-10 animate-[float3d_5s_ease-in-out_infinite]">
+            {/* Photo — CIRCULAR, big so full photo visible */}
+            <div className="relative w-[280px] h-[280px] md:w-[350px] md:h-[350px] z-10 animate-[float3d_5s_ease-in-out_infinite]">
               <div className="relative w-full h-full rounded-full overflow-hidden border-[3px] border-white/15 shadow-[0_0_60px_rgba(102,126,234,0.4),0_0_100px_rgba(118,75,162,0.2)]">
                 <Image
                   src="/images/hero-cutout.jpeg"
