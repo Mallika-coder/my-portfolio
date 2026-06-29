@@ -133,7 +133,7 @@ export default function Home() {
                   src="/images/hero-cutout.jpeg"
                   alt="Mallika Verma"
                   fill
-                  className="object-contain object-[center_60%]"
+                  className="object-contain object-[center_65%]"
                   priority
                   sizes="450px"
                 />
