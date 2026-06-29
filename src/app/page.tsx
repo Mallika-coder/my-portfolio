@@ -6,23 +6,26 @@ import Link from "next/link";
 import dynamic from "next/dynamic";
 import LoadingScreen from "@/components/LoadingScreen";
 import ScrollProgress from "@/components/ScrollProgress";
+import { FaGithub, FaLinkedinIn, FaInstagram, FaMediumM, FaWhatsapp } from "react-icons/fa";
 
 const CustomCursor = dynamic(() => import("@/components/CustomCursor"), { ssr: false });
 const EasterEgg = dynamic(() => import("@/components/EasterEgg"), { ssr: false });
 const Terminal = dynamic(() => import("@/components/Terminal"), { ssr: false });
 
-const navButtons = [
-  { label: "View Projects", href: "/projects", desc: "AI, ML, Full-stack" },
-  { label: "Experience", href: "/experience", desc: "Amazon SDE Intern" },
-  { label: "My Writing", href: "/writing", desc: "Medium articles" },
-  { label: "Beyond Code", href: "/beyond", desc: "Mentor, athlete, speaker" },
-  { label: "Contact Me", href: "/contact", desc: "Let's connect" },
+const bubbles = [
+  { label: "Projects", href: "/projects", x: "right-[8%]", y: "top-[18%]", delay: 2.4 },
+  { label: "Experience", href: "/experience", x: "right-[22%]", y: "top-[38%]", delay: 2.6 },
+  { label: "Writing", href: "/writing", x: "right-[5%]", y: "top-[55%]", delay: 2.8 },
+  { label: "Beyond Code", href: "/beyond", x: "right-[18%]", y: "top-[72%]", delay: 3.0 },
+  { label: "Contact", href: "/contact", x: "right-[8%]", y: "top-[88%]", delay: 3.2 },
 ];
 
-const skills = [
-  "Python", "Java", "Scala", "React", "Next.js", "AWS", "CDK",
-  "Spark", "AI Agents", "Claude", "PyTorch", "TypeScript",
-  "MongoDB", "BERT", "LangChain", "TensorFlow.js",
+const socials = [
+  { icon: FaGithub, href: "https://github.com/Mallika-coder", label: "GitHub" },
+  { icon: FaLinkedinIn, href: "https://www.linkedin.com/in/mallikaverma58/", label: "LinkedIn" },
+  { icon: FaInstagram, href: "https://www.instagram.com/creative_mallika_0542/", label: "Instagram" },
+  { icon: FaWhatsapp, href: "https://wa.me/919999999999", label: "WhatsApp" },
+  { icon: FaMediumM, href: "https://medium.com/@mallikav", label: "Medium" },
 ];
 
 export default function Home() {
@@ -52,204 +55,187 @@ export default function Home() {
       <Terminal />
 
       <main className="bg-[#0a0a0a] min-h-screen">
-        {/* ===== HERO — Split: text left, full photo right ===== */}
-        <section className="relative min-h-screen flex items-center overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-r from-[#0a0a0a] via-[#0a0a0a] to-[#0d0b15]" />
+        {/* ===== HERO — Photo left/center, floating bubbles, socials right ===== */}
+        <section className="relative min-h-screen overflow-hidden">
+          {/* Subtle background glow */}
+          <div className="absolute top-1/2 left-1/3 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-br from-purple-500/5 via-pink-500/3 to-transparent rounded-full blur-3xl" />
 
-          <div className="relative z-10 w-full px-8 md:px-16 lg:px-24 py-20">
-            <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-              {/* Left: Identity + nav */}
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 1.5, duration: 1 }}
+          {/* Name + tagline — top left */}
+          <motion.div
+            className="absolute top-8 left-8 md:left-16 z-20"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.5, duration: 0.8 }}
+          >
+            <h1 className="text-3xl md:text-4xl font-[var(--font-playfair)] font-bold text-white">
+              Mallika Verma
+            </h1>
+            <p className="text-sm text-gradient font-[var(--font-playfair)] italic mt-1">
+              Writer who codes.
+            </p>
+          </motion.div>
+
+          {/* Social links — rightmost side, vertical */}
+          <motion.div
+            className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 z-20 flex flex-col gap-5"
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 2.2, duration: 0.8 }}
+          >
+            {socials.map((social) => (
+              <a
+                key={social.label}
+                href={social.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/40 hover:text-white hover:bg-white/10 hover:border-white/25 hover:scale-110 transition-all duration-300"
+                aria-label={social.label}
               >
-                <h1 className="text-5xl sm:text-6xl md:text-7xl font-[var(--font-playfair)] font-bold text-white leading-[1.05] mb-4">
-                  Mallika
-                  <br />
-                  Verma
-                </h1>
+                <social.icon className="w-4 h-4" />
+              </a>
+            ))}
+          </motion.div>
 
-                <p className="text-xl md:text-2xl text-gradient font-[var(--font-playfair)] italic mb-4">
-                  Writer who codes.
-                </p>
-
-                <p className="text-sm text-white/35 max-w-md mb-10 leading-relaxed">
-                  SDE Intern at Amazon · CSE @ MNNIT Allahabad.
-                  Building AI agents and distributed pipelines for 22 global marketplaces.
-                </p>
-
-                {/* Navigation buttons — interactive, animated */}
-                <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-                  {navButtons.map((btn, i) => (
-                    <motion.div
-                      key={btn.label}
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 2.2 + i * 0.1, duration: 0.5 }}
-                      whileHover={{ y: -4, scale: 1.02 }}
-                    >
-                      <Link
-                        href={btn.href}
-                        className="group relative block p-5 border border-white/8 rounded-xl hover:border-purple-500/30 hover:bg-gradient-to-br hover:from-purple-500/5 hover:to-sky-500/5 transition-all duration-400 overflow-hidden"
-                      >
-                        <div className="absolute inset-0 bg-gradient-to-r from-purple-500/0 to-sky-500/0 group-hover:from-purple-500/5 group-hover:to-sky-500/5 transition-all duration-500" />
-                        <div className="relative">
-                          <span className="text-sm font-medium text-white/60 group-hover:text-white transition-colors">
-                            {btn.label}
-                          </span>
-                          <span className="inline-block ml-2 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-300 text-white/40">→</span>
-                          <p className="text-[10px] text-white/20 mt-1.5">{btn.desc}</p>
-                        </div>
-                      </Link>
-                    </motion.div>
-                  ))}
-                </div>
-              </motion.div>
-
-              {/* Right: Full photo — i6, entire body visible including legs */}
-              <motion.div
-                className="relative hidden lg:block"
-                initial={{ opacity: 0, x: 40 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 1.8, duration: 1.2 }}
-              >
-                <div className="relative w-full aspect-[2/3] max-w-[420px] ml-auto rounded-2xl overflow-hidden">
-                  <div className="absolute -inset-4 bg-gradient-to-br from-sky-500/10 via-purple-500/10 to-pink-500/10 rounded-2xl blur-2xl" />
-                  <Image
-                    src="/images/i6.jpeg"
-                    alt="Mallika Verma sitting at Amazon office"
-                    fill
-                    className="object-contain relative"
-                    priority
-                    sizes="420px"
-                  />
-                </div>
-              </motion.div>
-
-              {/* Mobile: show photo above content */}
-              <motion.div
-                className="lg:hidden relative w-full max-w-[280px] mx-auto aspect-[2/3] rounded-2xl overflow-hidden order-first"
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 1.5, duration: 0.8 }}
-              >
-                <Image
-                  src="/images/i6.jpeg"
-                  alt="Mallika Verma"
-                  fill
-                  className="object-contain"
-                  priority
-                  sizes="280px"
-                />
-              </motion.div>
+          {/* Main photo — your edited cutout, center-left */}
+          <motion.div
+            className="relative z-10 flex items-end justify-center lg:justify-start h-screen px-8 md:px-16 lg:px-20 pb-0"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.6, duration: 1.2 }}
+          >
+            <div className="relative w-[320px] md:w-[420px] lg:w-[500px] h-[85vh] md:h-[90vh]">
+              <Image
+                src="/images/hero-cutout.jpeg"
+                alt="Mallika Verma — See my Work"
+                fill
+                className="object-contain object-bottom"
+                priority
+                sizes="(max-width: 768px) 320px, (max-width: 1024px) 420px, 500px"
+              />
             </div>
-          </div>
+          </motion.div>
+
+          {/* Floating navigation bubbles — scattered around center-right area */}
+          {bubbles.map((bubble) => (
+            <motion.div
+              key={bubble.label}
+              className={`absolute ${bubble.x} ${bubble.y} z-20 hidden md:block`}
+              initial={{ opacity: 0, scale: 0.5 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: bubble.delay, duration: 0.6, type: "spring", stiffness: 200 }}
+            >
+              <motion.div
+                animate={{ y: [0, -8, 0] }}
+                transition={{ duration: 3 + Math.random() * 2, repeat: Infinity, ease: "easeInOut" }}
+              >
+                <Link
+                  href={bubble.href}
+                  className="group block px-6 py-3 rounded-full bg-white/5 border border-white/10 backdrop-blur-sm hover:bg-white/10 hover:border-purple-400/30 hover:shadow-lg hover:shadow-purple-500/10 transition-all duration-300"
+                >
+                  <span className="text-sm text-white/60 group-hover:text-white transition-colors">
+                    {bubble.label}
+                  </span>
+                </Link>
+              </motion.div>
+            </motion.div>
+          ))}
+
+          {/* Mobile: show bubbles as a row at bottom */}
+          <motion.div
+            className="absolute bottom-8 left-0 right-0 z-20 flex md:hidden justify-center gap-2 px-4 flex-wrap"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 2.5 }}
+          >
+            {bubbles.map((bubble) => (
+              <Link
+                key={bubble.label}
+                href={bubble.href}
+                className="px-4 py-2 rounded-full bg-white/5 border border-white/10 text-xs text-white/50"
+              >
+                {bubble.label}
+              </Link>
+            ))}
+          </motion.div>
         </section>
 
-        {/* ===== ABOUT — me1 and me2 side by side, full face visible ===== */}
-        <section className="py-32 md:py-44 px-8 md:px-16 lg:px-24">
-          <div className="max-w-6xl mx-auto">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12 items-center">
-              {/* me1 — landscape photo, use object-right to show face */}
-              <motion.div
-                className="relative aspect-[4/5] rounded-xl overflow-hidden"
-                initial={{ opacity: 0, x: -30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8 }}
-              >
-                <Image
-                  src="/images/me1.jpeg"
-                  alt="Mallika"
-                  fill
-                  className="object-cover object-right"
-                  sizes="(max-width: 768px) 100vw, 33vw"
-                />
-              </motion.div>
+        {/* ===== BRIEF SECTION — i6 photo + quick intro ===== */}
+        <section className="py-32 md:py-40 px-8 md:px-16 lg:px-24">
+          <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            {/* i6 photo */}
+            <motion.div
+              className="relative aspect-[3/4] max-w-[380px] rounded-2xl overflow-hidden mx-auto lg:mx-0"
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+            >
+              <Image
+                src="/images/i6.jpeg"
+                alt="Mallika at Amazon office"
+                fill
+                className="object-contain"
+                sizes="380px"
+              />
+            </motion.div>
 
-              {/* Center text */}
-              <motion.div
-                className="text-center px-2"
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-              >
-                <h2 className="text-3xl md:text-4xl font-[var(--font-playfair)] font-bold mb-6 leading-tight">
-                  I was a writer
-                  <br />
-                  <span className="text-gradient">before I coded.</span>
-                </h2>
-                <p className="text-sm text-white/35 leading-relaxed mb-6">
-                  Self-prepared for JEE in 2.5 months. Built AI agents at Amazon
-                  that hit 100% accuracy. Published co-author. 9.01 CPI.
-                </p>
-                <div className="flex flex-wrap justify-center gap-2">
-                  {["Amazon", "MNNIT", "9.01 CPI", "Author", "450+ LeetCode"].map((tag) => (
-                    <span key={tag} className="px-3 py-1.5 text-[10px] text-white/30 border border-white/8 rounded-full">
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </motion.div>
-
-              {/* me2 — portrait, face is centered */}
-              <motion.div
-                className="relative aspect-[4/5] rounded-xl overflow-hidden"
-                initial={{ opacity: 0, x: 30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8 }}
-              >
-                <Image
-                  src="/images/me2.jpeg"
-                  alt="Mallika"
-                  fill
-                  className="object-cover object-top"
-                  sizes="(max-width: 768px) 100vw, 33vw"
-                />
-              </motion.div>
-            </div>
-
-            {/* Skills marquee */}
-            <div className="overflow-hidden relative mt-24">
-              <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-[#0a0a0a] to-transparent z-10" />
-              <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-[#0a0a0a] to-transparent z-10" />
-              <div className="flex animate-marquee whitespace-nowrap py-4">
-                {[...skills, ...skills].map((skill, i) => (
-                  <span key={i} className="mx-4 text-sm text-white/15">{skill}</span>
+            {/* Text */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+            >
+              <h2 className="text-3xl md:text-4xl font-[var(--font-playfair)] font-bold mb-6 leading-tight">
+                I was a writer
+                <br />
+                <span className="text-gradient">before I was an engineer.</span>
+              </h2>
+              <p className="text-base text-white/40 leading-relaxed mb-6">
+                SDE Intern at Amazon, Bengaluru. Building autonomous AI agents and
+                distributed pipelines for 22 global marketplaces. CSE @ MNNIT Allahabad.
+                9.01 CPI. Published co-author. 450+ LeetCode.
+              </p>
+              <p className="text-sm text-white/30 leading-relaxed mb-8">
+                Self-prepared for JEE in 2.5 months. Learned discipline from my mother.
+                Haven&apos;t stopped sprinting since.
+              </p>
+              <div className="flex flex-wrap gap-2">
+                {["Amazon", "MNNIT", "9.01 CPI", "Published Author", "450+ LC"].map((tag) => (
+                  <span key={tag} className="px-3 py-1.5 text-[10px] text-white/30 border border-white/8 rounded-full">
+                    {tag}
+                  </span>
                 ))}
               </div>
-            </div>
+            </motion.div>
           </div>
         </section>
 
-        {/* ===== BENGALURU — with story captions ===== */}
-        <section className="py-28 overflow-hidden">
+        {/* ===== BENGALURU STRIP ===== */}
+        <section className="py-20 overflow-hidden">
           <div className="px-8 md:px-16 lg:px-24 mb-12">
             <h3 className="text-3xl font-[var(--font-playfair)] font-bold text-white/80">Bengaluru, 2026</h3>
             <p className="text-sm text-white/25 mt-2">8 weeks. Most of it wasn&apos;t in the job description.</p>
           </div>
           <div className="flex gap-5 overflow-x-auto no-scrollbar px-8 md:px-16 lg:px-24 pb-4">
             {[
-              { src: "/images/i7.jpeg", caption: "Day 1 — the wall said DAY 1 and that felt like permission to not know anything yet." },
-              { src: "/images/i3.jpeg", caption: "Nobody tells you how much of engineering is just sitting with a problem." },
-              { src: "/images/i4.jpeg", caption: "'You are what you believe yourself to be.' Week 2, when the agent was failing on 6/14 criteria." },
-              { src: "/images/i1.jpeg", caption: "Building things nobody had built before. From a window seat in Bengaluru." },
-              { src: "/images/i5.jpeg", caption: "The badge comes off. The intern title disappears. But the code stays deployed." },
-              { src: "/images/i2.jpeg", caption: "This desk saw v1 through v7. The first CR approved. The first moment I thought: maybe I belong here." },
+              { src: "/images/i7.jpeg", caption: "Day 1 — permission to not know anything yet." },
+              { src: "/images/i3.jpeg", caption: "Sitting with a problem. Not solving it. Sitting with it." },
+              { src: "/images/i4.jpeg", caption: "'You are what you believe yourself to be.'" },
+              { src: "/images/i1.jpeg", caption: "Building from a window seat in Bengaluru." },
+              { src: "/images/i5.jpeg", caption: "The badge comes off. The code stays deployed." },
+              { src: "/images/i2.jpeg", caption: "This desk saw v1 through v7." },
             ].map((photo, i) => (
               <motion.div
                 key={photo.src}
-                className="flex-shrink-0 relative w-[240px] md:w-[300px] rounded-xl overflow-hidden group"
+                className="flex-shrink-0 relative w-[240px] md:w-[280px] rounded-xl overflow-hidden group"
                 initial={{ opacity: 0, x: 30 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.08 }}
               >
-                <div className="relative h-[320px] md:h-[400px]">
-                  <Image src={photo.src} alt="Amazon Bengaluru" fill className="object-cover object-center group-hover:scale-105 transition-transform duration-700" sizes="300px" />
+                <div className="relative h-[320px] md:h-[370px]">
+                  <Image src={photo.src} alt="Amazon Bengaluru" fill className="object-cover group-hover:scale-105 transition-transform duration-700" sizes="280px" />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
                 </div>
                 <div className="absolute bottom-0 left-0 right-0 p-4">
@@ -263,9 +249,9 @@ export default function Home() {
         </section>
 
         {/* ===== FOOTER ===== */}
-        <footer className="py-16 px-8 md:px-16 text-center border-t border-white/5">
-          <p className="text-xs text-white/20 font-[var(--font-playfair)] italic">
-            Built by Mallika — writer, engineer, eternal work in progress.
+        <footer className="py-12 px-8 md:px-16 text-center border-t border-white/5">
+          <p className="text-xs text-white/20">
+            © 2026 Mallika Verma. Built with Next.js & Tailwind.
           </p>
         </footer>
       </main>
