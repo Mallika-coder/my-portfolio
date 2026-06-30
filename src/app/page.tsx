@@ -169,7 +169,7 @@ export default function Home() {
 
           {/* Name — top, biggest element, unique style */}
           <motion.h1
-            className="text-5xl md:text-7xl lg:text-9xl font-[var(--font-mono)] font-black tracking-[-0.04em] mb-10 text-center z-20 uppercase"
+            className="text-4xl md:text-6xl lg:text-7xl font-[var(--font-mono)] font-black tracking-[-0.04em] mb-10 text-center z-20 uppercase"
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.5, duration: 0.8 }}
@@ -254,7 +254,7 @@ export default function Home() {
                 href={item.href}
                 className={`nav-bubble transition-all duration-300 ${pressedKey === item.key ? "ring-2 ring-white/40 scale-110 bg-white/15" : ""}`}
               >
-                <span className="w-2 h-2 rounded-full" style={{ background: item.color }} />
+                <span className="w-2.5 h-2.5 rounded-full" style={{ background: item.color }} />
                 {item.label}
                 <span className="text-[9px] text-white/20 ml-1 hidden md:inline">[{item.key}]</span>
               </Link>
