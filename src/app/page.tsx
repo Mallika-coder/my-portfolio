@@ -45,12 +45,12 @@ function CountUp({ target, suffix = "", decimals = 0 }: { target: number; suffix
 }
 
 const socials = [
-  { icon: FaLinkedinIn, href: "https://www.linkedin.com/in/mallikaverma58/", label: "LinkedIn" },
-  { icon: FaGithub, href: "https://github.com/Mallika-coder", label: "GitHub" },
-  { icon: FaInstagram, href: "https://www.instagram.com/creative_mallika_0542/", label: "Instagram" },
-  { icon: FaMediumM, href: "https://medium.com/@mallikav", label: "Medium" },
-  { icon: SiLeetcode, href: "https://leetcode.com/u/Mallikaaaa", label: "LeetCode" },
-  { icon: FaTrophy, href: "https://unstop.com/u/malliver21097", label: "Unstop" },
+  { icon: FaLinkedinIn, href: "https://www.linkedin.com/in/mallikaverma58/", label: "LinkedIn", tip: "/mallikaverma58" },
+  { icon: FaGithub, href: "https://github.com/Mallika-coder", label: "GitHub", tip: "@Mallika-coder" },
+  { icon: FaInstagram, href: "https://www.instagram.com/creative_mallika_0542/", label: "Instagram", tip: "@creative_mallika" },
+  { icon: FaMediumM, href: "https://medium.com/@mallikav", label: "Medium", tip: "Read my writing" },
+  { icon: SiLeetcode, href: "https://leetcode.com/u/Mallikaaaa", label: "LeetCode", tip: "450+ solved" },
+  { icon: FaTrophy, href: "https://unstop.com/u/malliver21097", label: "Unstop", tip: "Mentor profile" },
 ];
 
 export default function Home() {
@@ -71,12 +71,16 @@ export default function Home() {
     initLenis();
   }, []);
 
+  const [pressedKey, setPressedKey] = useState<string | null>(null);
+
   useEffect(() => {
     const handleKeyPress = (e: KeyboardEvent) => {
       const routes: Record<string, string> = { p: "/projects", e: "/experience", w: "/writing", b: "/beyond", c: "/contact" };
-      const route = routes[e.key.toLowerCase()];
+      const key = e.key.toLowerCase();
+      const route = routes[key];
       if (route && !e.ctrlKey && !e.metaKey && !e.altKey) {
-        window.location.href = route;
+        setPressedKey(key.toUpperCase());
+        setTimeout(() => { window.location.href = route; }, 300);
       }
     };
     window.addEventListener("keypress", handleKeyPress);
@@ -121,10 +125,13 @@ export default function Home() {
               href={social.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-9 h-9 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/40 hover:text-white hover:bg-white/10 hover:border-white/30 hover:scale-110 transition-all duration-300"
+              className="relative w-9 h-9 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/40 hover:text-white hover:bg-white/10 hover:border-white/30 hover:scale-110 transition-all duration-300 group"
               aria-label={social.label}
             >
               <social.icon className="w-3.5 h-3.5" />
+              <span className="absolute right-full mr-3 px-2 py-1 rounded bg-white/10 backdrop-blur-sm text-[9px] text-white/60 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none">
+                {social.tip}
+              </span>
             </a>
           ))}
         </div>
@@ -239,7 +246,7 @@ export default function Home() {
               <Link
                 key={item.label}
                 href={item.href}
-                className="nav-bubble"
+                className={`nav-bubble transition-all duration-300 ${pressedKey === item.key ? "ring-2 ring-white/40 scale-110 bg-white/15" : ""}`}
               >
                 <span className="w-2 h-2 rounded-full" style={{ background: item.color }} />
                 {item.label}
@@ -300,7 +307,7 @@ export default function Home() {
                 <p className="text-xs text-white/35 leading-relaxed mb-4">Marketplaces automated. AI agents, distributed pipelines, and event-driven architecture.</p>
                 <div className="flex flex-wrap gap-2">
                   {["Claude 4.5", "CDK", "Spark", "EventBridge"].map((tag) => (
-                    <span key={tag} className="px-2 py-0.5 text-[9px] font-[var(--font-mono)] text-orange-400/60 border border-orange-500/20 rounded-full">{tag}</span>
+                    <span key={tag} className="px-2 py-0.5 text-[9px] font-[var(--font-mono)] text-orange-400/60 border border-orange-500/20 rounded-full hover:text-orange-300 hover:border-orange-400/40 hover:bg-orange-500/5 transition-all duration-200 cursor-default">{tag}</span>
                   ))}
                 </div>
               </motion.div>
