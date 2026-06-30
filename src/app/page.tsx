@@ -71,6 +71,39 @@ export default function Home() {
     initLenis();
   }, []);
 
+  useEffect(() => {
+    const handleKeyPress = (e: KeyboardEvent) => {
+      const routes: Record<string, string> = { p: "/projects", e: "/experience", w: "/writing", b: "/beyond", c: "/contact" };
+      const route = routes[e.key.toLowerCase()];
+      if (route && !e.ctrlKey && !e.metaKey && !e.altKey) {
+        window.location.href = route;
+      }
+    };
+    window.addEventListener("keypress", handleKeyPress);
+    return () => window.removeEventListener("keypress", handleKeyPress);
+  }, []);
+
+  const [taglineIndex, setTaglineIndex] = useState(0);
+  const [taglineText, setTaglineText] = useState("");
+  const [isDeleting, setIsDeleting] = useState(false);
+  const taglines = ["Engineer who writes.", "Builder who ships.", "Still just getting started."];
+
+  useEffect(() => {
+    const current = taglines[taglineIndex];
+    let timeout: NodeJS.Timeout;
+    if (!isDeleting && taglineText === current) {
+      timeout = setTimeout(() => setIsDeleting(true), 2500);
+    } else if (isDeleting && taglineText === "") {
+      setIsDeleting(false);
+      setTaglineIndex((prev) => (prev + 1) % taglines.length);
+    } else {
+      timeout = setTimeout(() => {
+        setTaglineText(isDeleting ? current.slice(0, taglineText.length - 1) : current.slice(0, taglineText.length + 1));
+      }, isDeleting ? 30 : 60);
+    }
+    return () => clearTimeout(timeout);
+  }, [taglineText, isDeleting, taglineIndex]);
+
   return (
     <>
       <LoadingScreen />
@@ -101,25 +134,28 @@ export default function Home() {
           {/* Floating skills in background */}
           <div className="absolute inset-0 pointer-events-none z-[1]">
             {[
-              { text: "Python", top: "8%", left: "12%", delay: "0s", size: "text-xs" },
-              { text: "React", top: "15%", right: "18%", delay: "0.5s", size: "text-sm" },
-              { text: "AI Agents", bottom: "22%", left: "8%", delay: "1s", size: "text-xs" },
-              { text: "AWS", bottom: "12%", right: "14%", delay: "1.5s", size: "text-xs" },
-              { text: "Java", top: "45%", left: "4%", delay: "2s", size: "text-[10px]" },
-              { text: "TypeScript", top: "35%", right: "6%", delay: "2.5s", size: "text-[10px]" },
-              { text: "Spark", bottom: "35%", left: "18%", delay: "3s", size: "text-[10px]" },
-              { text: "Claude", top: "65%", right: "10%", delay: "3.5s", size: "text-xs" },
-              { text: "PyTorch", top: "80%", left: "15%", delay: "1.2s", size: "text-[10px]" },
-              { text: "Next.js", top: "25%", left: "25%", delay: "2.8s", size: "text-[10px]" },
-              { text: "MongoDB", bottom: "8%", left: "35%", delay: "0.8s", size: "text-[10px]" },
-              { text: "LangChain", top: "55%", right: "20%", delay: "1.8s", size: "text-[10px]" },
+              { text: "Python", top: "8%", left: "12%", delay: "0s", size: "text-xs", tip: "ML pipelines & automation" },
+              { text: "React", top: "15%", right: "18%", delay: "0.5s", size: "text-sm", tip: "Frontend & portfolio" },
+              { text: "AI Agents", bottom: "22%", left: "8%", delay: "1s", size: "text-xs", tip: "AgentZ @ Amazon" },
+              { text: "AWS", bottom: "12%", right: "14%", delay: "1.5s", size: "text-xs", tip: "S3, Lambda, EMR, CDK" },
+              { text: "Java", top: "45%", left: "4%", delay: "2s", size: "text-[10px]", tip: "First CR shipped" },
+              { text: "TypeScript", top: "35%", right: "6%", delay: "2.5s", size: "text-[10px]", tip: "CDK infrastructure" },
+              { text: "Spark", bottom: "35%", left: "18%", delay: "3s", size: "text-[10px]", tip: "Distributed pipelines @ Amazon" },
+              { text: "Claude", top: "65%", right: "10%", delay: "3.5s", size: "text-xs", tip: "AI agent backbone" },
+              { text: "PyTorch", top: "80%", left: "15%", delay: "1.2s", size: "text-[10px]", tip: "MindGuard BERT model" },
+              { text: "Next.js", top: "25%", left: "25%", delay: "2.8s", size: "text-[10px]", tip: "This portfolio" },
+              { text: "MongoDB", bottom: "8%", left: "35%", delay: "0.8s", size: "text-[10px]", tip: "CureCue backend" },
+              { text: "LangChain", top: "55%", right: "20%", delay: "1.8s", size: "text-[10px]", tip: "RAG pipelines" },
             ].map((skill, i) => (
               <div
                 key={i}
-                className={`absolute ${skill.size} text-white/30 font-[var(--font-mono)] animate-[particle-float_5s_ease-in-out_infinite]`}
+                className={`absolute ${skill.size} text-white/30 font-[var(--font-mono)] animate-[particle-float_5s_ease-in-out_infinite] hover:text-white/70 hover:drop-shadow-[0_0_8px_rgba(196,181,253,0.5)] transition-all duration-300 cursor-default group pointer-events-auto`}
                 style={{ top: skill.top, left: skill.left, right: skill.right, bottom: skill.bottom, animationDelay: skill.delay } as React.CSSProperties}
               >
                 {skill.text}
+                <span className="absolute -bottom-6 left-1/2 -translate-x-1/2 px-2 py-1 bg-white/10 backdrop-blur-sm rounded text-[8px] text-white/50 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none">
+                  {skill.tip}
+                </span>
               </div>
             ))}
           </div>
@@ -173,22 +209,18 @@ export default function Home() {
             </Link>
           </motion.div>
 
-          {/* "Engineer who writes." — 3D effect, biggest tagline */}
-          <motion.p
-            className="text-3xl md:text-5xl lg:text-6xl font-[var(--font-playfair)] font-bold italic mb-10 z-20 text-center"
+          {/* Typewriter tagline */}
+          <motion.div
+            className="text-3xl md:text-5xl lg:text-6xl font-[var(--font-playfair)] font-bold italic mb-10 z-20 text-center h-[1.2em]"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 2.2, duration: 0.8 }}
-            style={{
-              background: "linear-gradient(135deg, #7dd3fc, #c4b5fd, #f9a8d4)",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              textShadow: "0 4px 12px rgba(196,181,253,0.3), 0 8px 30px rgba(125,211,252,0.2)",
-              filter: "drop-shadow(0 2px 4px rgba(0,0,0,0.5))",
-            }}
           >
-            Engineer who writes.
-          </motion.p>
+            <span style={{ background: "linear-gradient(135deg, #7dd3fc, #c4b5fd, #f9a8d4)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", filter: "drop-shadow(0 2px 4px rgba(0,0,0,0.5))" }}>
+              {taglineText}
+            </span>
+            <span className="text-sky-400 animate-pulse">|</span>
+          </motion.div>
 
           {/* Navigation bubbles */}
           <motion.div
@@ -198,11 +230,11 @@ export default function Home() {
             transition={{ delay: 2.8, duration: 0.8 }}
           >
             {[
-              { label: "Projects", href: "/projects", color: "#ff6b6b" },
-              { label: "Experience", href: "/experience", color: "#feca57" },
-              { label: "Writing", href: "/writing", color: "#48dbfb" },
-              { label: "Beyond Code", href: "/beyond", color: "#ff9ff3" },
-              { label: "Contact", href: "/contact", color: "#54a0ff" },
+              { label: "Projects", href: "/projects", color: "#ff6b6b", key: "P" },
+              { label: "Experience", href: "/experience", color: "#feca57", key: "E" },
+              { label: "Writing", href: "/writing", color: "#48dbfb", key: "W" },
+              { label: "Beyond Code", href: "/beyond", color: "#ff9ff3", key: "B" },
+              { label: "Contact", href: "/contact", color: "#54a0ff", key: "C" },
             ].map((item) => (
               <Link
                 key={item.label}
@@ -211,8 +243,22 @@ export default function Home() {
               >
                 <span className="w-2 h-2 rounded-full" style={{ background: item.color }} />
                 {item.label}
+                <span className="text-[9px] text-white/20 ml-1 hidden md:inline">[{item.key}]</span>
               </Link>
             ))}
+          </motion.div>
+
+          {/* Currently building status */}
+          <motion.div
+            className="mt-8 z-20 flex items-center gap-2"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 3.2 }}
+          >
+            <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
+            <span className="text-[11px] font-[var(--font-mono)] text-white/30">
+              currently building: <span className="text-green-400/60">portfolio v2.0</span>
+            </span>
           </motion.div>
         </section>
 
