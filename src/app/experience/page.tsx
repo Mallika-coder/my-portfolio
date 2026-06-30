@@ -10,7 +10,7 @@ const experienceItems = [
     overview:
       "Engineered 2 autonomous AI agents on Amazon's AgentZ platform using Claude Sonnet 4.5 + Cybernaut browser automation. Automated competitor feasibility evaluation across 14 SOP criteria. Iterated v1→v7 in 2 days.",
     tags: ["AI Agent", "Claude Sonnet 4.5", "Cybernaut", "AgentZ"],
-    image: "/images/i8.jpeg",
+    image: "/images/projects/ai-agents-feasibility.png",
   },
   {
     title: "Distributed Pipeline Across 22 Marketplaces",
