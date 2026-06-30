@@ -467,22 +467,22 @@ export default function Home() {
               </h2>
               <div className="space-y-4 text-sm md:text-base text-white/40 leading-relaxed">
                 <p>
-                  I cracked JEE at 98.9 percentile with 3 months of self-preparation. No coaching. No backup plan. Just discipline I inherited from a woman who never had the luxury of quitting.
+                  I cracked JEE at 98.9 percentile with 3 months of self-preparation. No coaching. No backup plan. Just discipline I inherited from my mother — a woman who never had the luxury of quitting.
                 </p>
                 <p>
-                  CSE student at MNNIT Allahabad. 9.01 CPI. Not because I chase numbers — because when I decide to show up, I don&apos;t do it halfway.
+                  CSE at MNNIT Allahabad. 9.01 CPI. Not because I chase numbers — because when I decide to show up, I show up completely.
                 </p>
                 <p>
-                  At 17, I was a published co-author. At 19, I&apos;m an SDE Intern at Amazon, Bengaluru — building autonomous AI agents that hit 100% accuracy across 26 competitors, and distributed pipelines that serve 22 global marketplaces.
+                  At 17, I was a published co-author. At 19, I&apos;m an SDE Intern at Amazon, Bengaluru — building autonomous AI agents that hit 100% accuracy across 26 competitors, and distributed pipelines serving 22 global marketplaces.
                 </p>
                 <p>
-                  I shipped my first code review in Week 2. Built from v1 to v7 in two days. Designed systems that still run in production after I left.
+                  I shipped my first code review in Week 2. Iterated from v1 to v7 in 48 hours. Designed systems that kept running in production long after I walked out the door.
                 </p>
                 <p>
-                  450+ LeetCode problems. 5+ podiums in speeches and debates. Unstop Mentor — because teaching someone who&apos;s struggling is still the fastest way I learn.
+                  450+ LeetCode problems solved. 5+ podiums in speeches and debates. Unstop Mentor — because teaching someone who&apos;s stuck is still the fastest way I learn.
                 </p>
                 <p className="text-white/50 font-medium">
-                  I code at midnight. I write at dawn. I ask more questions than anyone in the room and I stopped apologizing for it a long time ago.
+                  I code at midnight. I write at dawn. I ask more questions than anyone in the room — and I stopped apologizing for it a long time ago.
                 </p>
                 <p className="text-white/60 font-bold text-base md:text-lg mt-4">
                   Engineer who writes. Builder who ships. Still just getting started.
