@@ -91,8 +91,7 @@ export default function ExperiencePage() {
                 {/* Image */}
                 <div className={`${i % 2 === 1 ? "md:order-2" : ""}`}>
                   <div className="relative aspect-[4/3] rounded-xl overflow-hidden">
-                    <Image src={item.image} alt={item.title} fill className="object-cover" sizes="(max-width: 768px) 100vw, 50vw" />
-                    <div className="absolute inset-0 bg-black/20" />
+                    <Image src={item.image} alt={item.title} fill className="object-contain" sizes="(max-width: 768px) 100vw, 50vw" />
                   </div>
                 </div>
 
