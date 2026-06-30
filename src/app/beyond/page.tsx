@@ -5,12 +5,12 @@ import Image from "next/image";
 
 const sections = [
   {
-    title: "1st Place Speech & Many More Podiums",
+    title: "1st Place Speech, National Poet, & Many More Podiums",
     quote: "The best writing, like the best engineering, is honest and precise. Every word has a reason.",
     description:
-      "Won 1st place at Jan Jatiya Gaurav Diwas speech competition (Dec 2024). Multiple podiums in debates across college fests. Public speaking taught me to think on my feet — a skill that shows up in every design review and every stand-up.",
+      "Won 1st place at Jan Jatiya Gaurav Diwas speech competition (Dec 2024). Ranked 108th nationally in S7 poetry competition. Published co-author at 17 (Blue Star Publication). Dramatics Committee writer at MNNIT. Multiple podiums in debates across college fests. Public speaking and writing taught me to think on my feet — a skill that shows up in every design review and every stand-up.",
     image: "/images/my-achievements.jpeg",
-    tag: "Public Speaking · Debates",
+    tag: "Public Speaking · Poetry · Debates",
     aspect: "aspect-[3/4]",
   },
   {
