@@ -458,40 +458,134 @@ export default function Home() {
           </div>
         </section>
 
-        {/* ===== SECTION 4: Bengaluru strip ===== */}
-        <section className="py-24 overflow-hidden">
-          <div className="px-8 md:px-16 lg:px-24 mb-12">
-            <h3 className="text-3xl font-[var(--font-playfair)] font-bold text-white/80">Bengaluru, 2026</h3>
-            <p className="text-sm text-white/25 mt-2">8 weeks. Most of it wasn&apos;t in the job description.</p>
-          </div>
-          <div className="flex gap-5 overflow-x-auto no-scrollbar px-8 md:px-16 lg:px-24 pb-4">
-            {[
-              { src: "/images/i7.jpeg", caption: "Day 1 — permission to not know anything yet." },
-              { src: "/images/i3.jpeg", caption: "Sitting with a problem. Not solving it." },
-              { src: "/images/i4.jpeg", caption: "'You are what you believe yourself to be.'" },
-              { src: "/images/i1.jpeg", caption: "Building from a window seat." },
-              { src: "/images/i5.jpeg", caption: "The badge comes off. The code stays." },
-              { src: "/images/i2.jpeg", caption: "This desk saw v1 through v7." },
-            ].map((photo, i) => (
+        {/* ===== SECTION 4: "The 8 Weeks" — Bengaluru ===== */}
+        <section className="py-32 md:py-40 px-8 md:px-16 lg:px-24">
+          <div className="max-w-5xl mx-auto">
+            {/* Heading */}
+            <motion.div
+              className="text-center mb-16 md:mb-20"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.8 }}
+            >
+              <h3 className="text-3xl md:text-5xl font-[var(--font-playfair)] font-bold text-white/90 mb-3">Bengaluru, 2026</h3>
+              <p className="text-sm text-white/25">8 weeks. 4 lessons. Most of it wasn&apos;t in the job description.</p>
+            </motion.div>
+
+            {/* Desktop: Photo center + floating cards around it */}
+            <div className="relative hidden md:block">
+              {/* Connector lines (mind-map style) */}
+              <svg className="absolute inset-0 w-full h-full z-10 pointer-events-none" viewBox="0 0 800 600" fill="none" preserveAspectRatio="xMidYMid meet">
+                <line x1="400" y1="200" x2="180" y2="80" stroke="rgba(255,255,255,0.05)" strokeWidth="1" strokeDasharray="4 4" />
+                <line x1="400" y1="200" x2="620" y2="80" stroke="rgba(255,255,255,0.05)" strokeWidth="1" strokeDasharray="4 4" />
+                <line x1="400" y1="400" x2="180" y2="520" stroke="rgba(255,255,255,0.05)" strokeWidth="1" strokeDasharray="4 4" />
+                <line x1="400" y1="400" x2="620" y2="520" stroke="rgba(255,255,255,0.05)" strokeWidth="1" strokeDasharray="4 4" />
+              </svg>
+
+              {/* Photo — center */}
               <motion.div
-                key={photo.src}
-                className="flex-shrink-0 relative w-[220px] md:w-[270px] rounded-xl overflow-hidden group"
-                initial={{ opacity: 0, x: 30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: i * 0.08 }}
+                className="relative mx-auto w-[280px] md:w-[320px] aspect-[3/5] rounded-2xl overflow-hidden z-20"
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.8 }}
               >
-                <div className="relative h-[300px] md:h-[360px]">
-                  <Image src={photo.src} alt="Amazon Bengaluru" fill className="object-cover group-hover:scale-105 transition-transform duration-700" sizes="270px" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-                </div>
-                <div className="absolute bottom-0 left-0 right-0 p-3">
-                  <p className="text-[10px] text-white/70 font-[var(--font-playfair)] italic backdrop-blur-sm bg-black/30 rounded-lg px-3 py-2">
-                    {photo.caption}
-                  </p>
-                </div>
+                <div className="absolute -inset-2 bg-gradient-to-br from-sky-500/15 via-purple-500/15 to-pink-500/15 rounded-2xl blur-xl z-[-1]" />
+                <Image src="/images/i5.jpeg" alt="Mallika with Amazon badge" fill className="object-cover" sizes="320px" />
               </motion.div>
-            ))}
+
+              {/* Card 1: top-left */}
+              <motion.div
+                className="absolute top-0 left-[5%] z-30 max-w-[240px] px-5 py-4 rounded-xl bg-white/5 backdrop-blur-md border border-white/10 hover:border-white/20 hover:scale-[1.03] transition-all duration-200 cursor-default"
+                initial={{ opacity: 0, x: -30, y: -20 }}
+                whileInView={{ opacity: 1, x: 0, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                animate={{ y: [0, -6, 0] }}
+                style={{ animationDuration: "4s", animationIterationCount: "infinite", animationTimingFunction: "ease-in-out" } as React.CSSProperties}
+              >
+                <p className="text-sm md:text-base text-white/60 italic font-[var(--font-playfair)]">&ldquo;Ask questions louder than your ego.&rdquo;</p>
+              </motion.div>
+
+              {/* Card 2: top-right */}
+              <motion.div
+                className="absolute top-0 right-[5%] z-30 max-w-[240px] px-5 py-4 rounded-xl bg-white/5 backdrop-blur-md border border-white/10 hover:border-white/20 hover:scale-[1.03] transition-all duration-200 cursor-default"
+                initial={{ opacity: 0, x: 30, y: -20 }}
+                whileInView={{ opacity: 1, x: 0, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.6, delay: 0.35 }}
+                animate={{ y: [0, -6, 0] }}
+                style={{ animationDuration: "5s", animationDelay: "1s", animationIterationCount: "infinite", animationTimingFunction: "ease-in-out" } as React.CSSProperties}
+              >
+                <p className="text-sm md:text-base text-white/60 italic font-[var(--font-playfair)]">&ldquo;Ship in Week 2. Iterate forever.&rdquo;</p>
+              </motion.div>
+
+              {/* Card 3: bottom-left */}
+              <motion.div
+                className="absolute bottom-0 left-[5%] z-30 max-w-[240px] px-5 py-4 rounded-xl bg-white/5 backdrop-blur-md border border-white/10 hover:border-white/20 hover:scale-[1.03] transition-all duration-200 cursor-default"
+                initial={{ opacity: 0, x: -30, y: 20 }}
+                whileInView={{ opacity: 1, x: 0, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.6, delay: 0.5 }}
+                animate={{ y: [0, 6, 0] }}
+                style={{ animationDuration: "4.5s", animationDelay: "0.5s", animationIterationCount: "infinite", animationTimingFunction: "ease-in-out" } as React.CSSProperties}
+              >
+                <p className="text-sm md:text-base text-white/60 italic font-[var(--font-playfair)]">&ldquo;Think in systems, not features.&rdquo;</p>
+              </motion.div>
+
+              {/* Card 4: bottom-right */}
+              <motion.div
+                className="absolute bottom-0 right-[5%] z-30 max-w-[240px] px-5 py-4 rounded-xl bg-white/5 backdrop-blur-md border border-white/10 hover:border-white/20 hover:scale-[1.03] transition-all duration-200 cursor-default"
+                initial={{ opacity: 0, x: 30, y: 20 }}
+                whileInView={{ opacity: 1, x: 0, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.6, delay: 0.65 }}
+                animate={{ y: [0, 6, 0] }}
+                style={{ animationDuration: "5.5s", animationDelay: "1.5s", animationIterationCount: "infinite", animationTimingFunction: "ease-in-out" } as React.CSSProperties}
+              >
+                <p className="text-sm md:text-base text-white/60 italic font-[var(--font-playfair)]">&ldquo;The badge comes off. The builder stays.&rdquo;</p>
+              </motion.div>
+            </div>
+
+            {/* Mobile: Photo + stacked cards */}
+            <div className="md:hidden">
+              <motion.div
+                className="relative mx-auto w-full max-w-[280px] aspect-[3/5] rounded-2xl overflow-hidden mb-8"
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8 }}
+              >
+                <div className="absolute -inset-2 bg-gradient-to-br from-sky-500/15 via-purple-500/15 to-pink-500/15 rounded-2xl blur-xl z-[-1]" />
+                <Image src="/images/i5.jpeg" alt="Mallika with Amazon badge" fill className="object-cover" sizes="280px" />
+              </motion.div>
+
+              <div className="space-y-4">
+                {[
+                  "Ask questions louder than your ego.",
+                  "Ship in Week 2. Iterate forever.",
+                  "Think in systems, not features.",
+                  "The badge comes off. The builder stays.",
+                ].map((quote, i) => (
+                  <motion.div
+                    key={quote}
+                    className={`max-w-[240px] px-5 py-4 rounded-xl bg-white/5 backdrop-blur-md border border-white/10 ${i % 2 === 0 ? "" : "ml-auto"}`}
+                    initial={{ opacity: 0, x: i % 2 === 0 ? -20 : 20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: i * 0.15 }}
+                  >
+                    <p className="text-sm text-white/60 italic font-[var(--font-playfair)]">&ldquo;{quote}&rdquo;</p>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+
+            {/* Closing line */}
+            <p className="text-xs text-white/15 text-center mt-16 font-[var(--font-playfair)] italic">
+              — Bengaluru taught me this.
+            </p>
           </div>
         </section>
 
