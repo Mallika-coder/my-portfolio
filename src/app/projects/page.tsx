@@ -127,7 +127,7 @@ export default function ProjectsPage() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-center mt-8">
                   <div>
                     <motion.div className="relative aspect-[16/10] rounded-xl overflow-hidden group" whileHover={{ scale: 1.02 }} transition={{ duration: 0.4 }} style={{ background: "linear-gradient(135deg, #0a0a1a, #1a1a3e, #0f1a2e)", border: "1px solid rgba(255,153,0,0.15)" }}>
-                      <Image src="/images/projects/ai-agents.png" alt="Amazon System Modernization" fill className="object-cover group-hover:brightness-110 transition-all duration-500" sizes="(max-width: 768px) 100vw, 50vw" />
+                      <Image src="/images/projects/amazon-dashboard.jpeg" alt="Amazon System Modernization" fill className="object-cover group-hover:brightness-110 transition-all duration-500" sizes="(max-width: 768px) 100vw, 50vw" />
                     </motion.div>
                   </div>
                   <div>
