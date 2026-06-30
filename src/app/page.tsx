@@ -347,9 +347,9 @@ export default function Home() {
                 <p className="text-xs text-white/35 leading-relaxed">Talks. Never read from a script.</p>
               </motion.div>
 
-              {/* Card 7: Mentor — span 2 */}
+              {/* Card 7: Unstop Mentor */}
               <motion.div
-                className="col-span-2 p-6 md:p-8 rounded-2xl border border-teal-500/20 backdrop-blur-sm relative overflow-hidden group cursor-default"
+                className="col-span-1 p-6 md:p-8 rounded-2xl border border-teal-500/20 backdrop-blur-sm relative overflow-hidden group cursor-default"
                 style={{ background: "linear-gradient(135deg, #1a2e2e, #0a2e2e, #1b5069)" }}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -362,17 +362,35 @@ export default function Home() {
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#14b8a6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
                   </div>
                   <span className="text-[10px] font-[var(--font-mono)] text-white/40 tracking-wider uppercase flex items-center gap-2">
-                    Mentor
+                    Unstop Mentor
                     <span className="w-1.5 h-1.5 rounded-full bg-teal-500 animate-pulse" />
                   </span>
                 </div>
-                <p className="text-3xl md:text-4xl font-bold text-white/90 mb-2">Mentor</p>
-                <p className="text-xs text-white/35 leading-relaxed mb-4">Teaching what I&apos;m still learning. Because the best way to learn is to give it away.</p>
-                <div className="flex flex-wrap gap-2">
-                  {["Unstop", "DSA", "Career Guidance"].map((tag) => (
-                    <span key={tag} className="px-2 py-0.5 text-[9px] font-[var(--font-mono)] text-teal-400/60 border border-teal-500/20 rounded-full">{tag}</span>
-                  ))}
+                <p className="text-3xl md:text-4xl font-bold text-white/90 mb-2">Unstop</p>
+                <p className="text-xs text-white/35 leading-relaxed">Teaching what I&apos;m still learning.</p>
+              </motion.div>
+
+              {/* Card 8: Self-employed Tutor */}
+              <motion.div
+                className="col-span-1 p-6 md:p-8 rounded-2xl border border-violet-500/20 backdrop-blur-sm relative overflow-hidden group cursor-default"
+                style={{ background: "linear-gradient(135deg, #1e1a2e, #2a1b4e, #1a1040)" }}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.7 }}
+                whileHover={{ y: -4, scale: 1.02, boxShadow: "0 20px 40px rgba(139,92,246,0.15)" }}
+              >
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-9 h-9 rounded-lg bg-violet-500/10 flex items-center justify-center">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#8b5cf6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+                  </div>
+                  <span className="text-[10px] font-[var(--font-mono)] text-white/40 tracking-wider uppercase flex items-center gap-2">
+                    Tutor
+                    <span className="w-1.5 h-1.5 rounded-full bg-violet-500 animate-pulse" />
+                  </span>
                 </div>
+                <p className="text-3xl md:text-4xl font-bold text-white/90 mb-2">2.5 yrs</p>
+                <p className="text-xs text-white/35 leading-relaxed">Self-employed tutor in school days. Taught before I was taught.</p>
               </motion.div>
             </div>
           </div>
