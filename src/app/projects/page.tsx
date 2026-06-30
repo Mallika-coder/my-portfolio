@@ -1,9 +1,24 @@
 "use client";
+import React from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
 
 const projects = [
+  {
+    title: "CureCue",
+    subtitle: "Gamified Wellness Platform",
+    year: "2024",
+    role: "Full-Stack Developer",
+    overview:
+      "Wellness platform with generative AI Oracle. Gamified progress tracking. JWT + bcrypt auth. Scalable MongoDB architecture.",
+    results: ["AI Oracle", "Gamified UX", "Full-stack"],
+    stack: ["Next.js", "MongoDB", "LLM APIs", "JWT"],
+    live: "https://curecue312.vercel.app/",
+    github: "",
+    image: "/images/projects/curecue.png",
+    status: "live",
+  },
   {
     title: "DriveSafer AI",
     subtitle: "Real-time Drowsiness Detection",
@@ -31,20 +46,7 @@ const projects = [
     github: "",
     image: "/images/projects/mindguard.png",
     status: "live",
-  },
-  {
-    title: "CureCue",
-    subtitle: "Gamified Wellness Platform",
-    year: "2024",
-    role: "Full-Stack Developer",
-    overview:
-      "Wellness platform with generative AI Oracle. Gamified progress tracking. JWT + bcrypt auth. Scalable MongoDB architecture.",
-    results: ["AI Oracle", "Gamified UX", "Full-stack"],
-    stack: ["Next.js", "MongoDB", "LLM APIs", "JWT"],
-    live: "https://curecue312.vercel.app/",
-    github: "",
-    image: "/images/projects/curecue.png",
-    status: "live",
+    insertAmazonAfter: true,
   },
   {
     title: "MallikaAI",
@@ -108,87 +110,58 @@ export default function ProjectsPage() {
       {/* Projects — alternating image/text like Experience page, with real screenshots */}
       <section className="pb-32 px-8 md:px-16 lg:px-24">
         <div className="max-w-6xl mx-auto">
-          {/* FEATURED: Amazon Internship */}
-            <motion.div
-              className="border-t border-white/8 py-16 md:py-24 relative"
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-80px" }}
-              transition={{ duration: 0.8 }}
-            >
-              {/* Featured badge */}
-              <div className="absolute top-8 left-0 px-4 py-1.5 rounded-full text-[10px] font-[var(--font-mono)] uppercase tracking-wider" style={{ background: "rgba(255,153,0,0.15)", border: "1px solid rgba(255,153,0,0.3)", color: "#ff9900" }}>
-                ⭐ Featured
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-center mt-8">
-                {/* Image */}
-                <div>
-                  <motion.div
-                    className="relative aspect-[16/10] rounded-xl overflow-hidden group"
-                    whileHover={{ scale: 1.02 }}
-                    transition={{ duration: 0.4 }}
-                    style={{ background: "linear-gradient(135deg, #0a0a1a, #1a1a3e, #0f1a2e)", border: "1px solid rgba(255,153,0,0.15)" }}
-                  >
-                    <Image
-                      src="/images/projects/ai-agents.png"
-                      alt="Amazon System Modernization"
-                      fill
-                      className="object-cover group-hover:brightness-110 transition-all duration-500"
-                      sizes="(max-width: 768px) 100vw, 50vw"
-                    />
-                  </motion.div>
+          {projects.map((project, i) => (
+            <React.Fragment key={project.title}>
+            {/* Insert Amazon after MindGuard (index 2) */}
+            {i === 3 && (
+              <motion.div
+                className="border-t border-white/8 py-16 md:py-24 relative"
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-80px" }}
+                transition={{ duration: 0.8 }}
+              >
+                <div className="absolute top-8 left-0 px-4 py-1.5 rounded-full text-[10px] font-[var(--font-mono)] uppercase tracking-wider" style={{ background: "rgba(255,153,0,0.15)", border: "1px solid rgba(255,153,0,0.3)", color: "#ff9900" }}>
+                  ⭐ Featured
                 </div>
-
-                {/* Content */}
-                <div>
-                  <div className="flex items-center gap-2 mb-2">
-                    <span className="w-2 h-2 rounded-full bg-[#ff9900]" />
-                    <span className="text-[10px] font-[var(--font-mono)] text-[#ff9900]/70 tracking-wider">AMAZON</span>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-center mt-8">
+                  <div>
+                    <motion.div className="relative aspect-[16/10] rounded-xl overflow-hidden group" whileHover={{ scale: 1.02 }} transition={{ duration: 0.4 }} style={{ background: "linear-gradient(135deg, #0a0a1a, #1a1a3e, #0f1a2e)", border: "1px solid rgba(255,153,0,0.15)" }}>
+                      <Image src="/images/projects/ai-agents.png" alt="Amazon System Modernization" fill className="object-cover group-hover:brightness-110 transition-all duration-500" sizes="(max-width: 768px) 100vw, 50vw" />
+                    </motion.div>
                   </div>
-                  <h2 className="text-2xl md:text-3xl font-[var(--font-playfair)] font-bold text-white/90 mb-1">
-                    System Modernization & Automation
-                  </h2>
-                  <p className="text-base text-white/40 mb-6">Reporting, Framework Onboarding, and Competitor Feasibility Workflows</p>
-
-                  <div className="flex items-center gap-3 mb-6 text-[11px] text-white/25 font-[var(--font-mono)]">
-                    <span>2026</span>
-                    <span className="w-1 h-1 rounded-full bg-white/15" />
-                    <span>SDE Intern</span>
-                    <span className="w-1 h-1 rounded-full bg-white/15" />
-                    <span>Bengaluru</span>
-                  </div>
-
-                  <div className="mb-6">
-                    <p className="text-[10px] font-[var(--font-mono)] text-white/20 tracking-wider mb-3">OVERVIEW</p>
-                    <p className="text-sm text-white/40 leading-relaxed">Engineered 2 autonomous AI agents, deployed distributed pipelines across 22 marketplaces, migrated legacy architecture to event-driven Scala.</p>
-                  </div>
-
-                  <div className="mb-6">
-                    <p className="text-[10px] font-[var(--font-mono)] text-white/20 tracking-wider mb-3">KEY RESULTS</p>
+                  <div>
+                    <div className="flex items-center gap-2 mb-2">
+                      <span className="w-2 h-2 rounded-full bg-[#ff9900]" />
+                      <span className="text-[10px] font-[var(--font-mono)] text-[#ff9900]/70 tracking-wider">AMAZON</span>
+                    </div>
+                    <h2 className="text-2xl md:text-3xl font-[var(--font-playfair)] font-bold text-white/90 mb-1">System Modernization & Automation</h2>
+                    <p className="text-base text-white/40 mb-6">Reporting, Framework Onboarding, and Competitor Feasibility Workflows</p>
+                    <div className="flex items-center gap-3 mb-6 text-[11px] text-white/25 font-[var(--font-mono)]">
+                      <span>2026</span><span className="w-1 h-1 rounded-full bg-white/15" /><span>SDE Intern</span><span className="w-1 h-1 rounded-full bg-white/15" /><span>Bengaluru</span>
+                    </div>
+                    <div className="mb-6">
+                      <p className="text-[10px] font-[var(--font-mono)] text-white/20 tracking-wider mb-3">OVERVIEW</p>
+                      <p className="text-sm text-white/40 leading-relaxed">Engineered 2 autonomous AI agents, deployed distributed pipelines across 22 marketplaces, migrated legacy architecture to event-driven Scala.</p>
+                    </div>
+                    <div className="mb-6">
+                      <p className="text-[10px] font-[var(--font-mono)] text-white/20 tracking-wider mb-3">KEY RESULTS</p>
+                      <div className="flex flex-wrap gap-2">
+                        {["100% accuracy", "60→11 min", "22 marketplaces", "$0.55/run"].map((r) => (
+                          <span key={r} className="px-3 py-1.5 text-xs text-[#ff9900]/70 border border-[#ff9900]/20 rounded-full bg-[#ff9900]/5">{r}</span>
+                        ))}
+                      </div>
+                    </div>
                     <div className="flex flex-wrap gap-2">
-                      {["100% accuracy", "60→11 min", "22 marketplaces", "$0.55/run"].map((r) => (
-                        <span key={r} className="px-3 py-1.5 text-xs text-[#ff9900]/70 border border-[#ff9900]/20 rounded-full bg-[#ff9900]/5">
-                          {r}
-                        </span>
+                      {["Claude 4.5", "CDK", "Spark", "Scala", "EventBridge", "EMR", "Java"].map((tech) => (
+                        <span key={tech} className="px-2.5 py-1 text-[10px] font-[var(--font-mono)] text-white/20 border border-white/6 rounded-md">{tech}</span>
                       ))}
                     </div>
                   </div>
-
-                  <div className="flex flex-wrap gap-2">
-                    {["Claude 4.5", "CDK", "Spark", "Scala", "EventBridge", "EMR", "Java"].map((tech) => (
-                      <span key={tech} className="px-2.5 py-1 text-[10px] font-[var(--font-mono)] text-white/20 border border-white/6 rounded-md">
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
                 </div>
-              </div>
-            </motion.div>
-
-          {projects.map((project, i) => (
+              </motion.div>
+            )}
             <motion.div
-              key={project.title}
               className="border-t border-white/8 py-16 md:py-24 hover:shadow-[0_20px_60px_rgba(255,255,255,0.03)] transition-all duration-300"
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -290,6 +263,7 @@ export default function ProjectsPage() {
                 </div>
               </div>
             </motion.div>
+            </React.Fragment>
           ))}
           <div className="border-t border-white/8" />
         </div>
