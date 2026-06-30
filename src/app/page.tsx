@@ -160,12 +160,27 @@ export default function Home() {
             Writer who codes.
           </motion.p>
 
+          {/* Primary CTA */}
+          <motion.div
+            className="mb-8 z-20"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 2.5, duration: 0.6 }}
+          >
+            <Link
+              href="/projects"
+              className="inline-block px-8 py-4 bg-gradient-to-r from-purple-500 to-sky-500 text-white font-medium rounded-full hover:shadow-lg hover:shadow-purple-500/25 hover:scale-105 transition-all duration-300 text-sm"
+            >
+              See my work →
+            </Link>
+          </motion.div>
+
           {/* Navigation bubbles */}
           <motion.div
             className="flex flex-wrap justify-center gap-3 z-20 max-w-2xl"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 2.6, duration: 0.8 }}
+            transition={{ delay: 2.8, duration: 0.8 }}
           >
             {[
               { label: "Projects", href: "/projects", color: "#ff6b6b" },
@@ -184,6 +199,76 @@ export default function Home() {
               </Link>
             ))}
           </motion.div>
+        </section>
+
+        {/* ===== BENTO GRID STATS — between hero and about ===== */}
+        <section className="py-24 md:py-32 px-8 md:px-16 lg:px-24">
+          <div className="max-w-5xl mx-auto">
+            {/* Tier 1 — Jaw-Droppers (big cards) */}
+            <motion.div
+              className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+            >
+              {/* JEE — large card */}
+              <motion.div
+                className="md:col-span-1 p-8 rounded-2xl border border-purple-500/15 bg-purple-500/[0.03] hover:border-purple-500/30 transition-all duration-300 group"
+                whileHover={{ scale: 1.02, rotateY: 3 }}
+                style={{ perspective: "800px" }}
+              >
+                <p className="text-4xl md:text-5xl font-bold text-gradient mb-2">98.9<span className="text-2xl">%ile</span></p>
+                <p className="text-xs text-white/30">3 months. No coaching. 98.9%ile.</p>
+              </motion.div>
+
+              {/* Amazon */}
+              <motion.div
+                className="p-8 rounded-2xl border border-sky-500/15 bg-sky-500/[0.03] hover:border-sky-500/30 transition-all duration-300 animate-[pulse-ring_4s_ease-in-out_infinite]"
+                whileHover={{ scale: 1.02, rotateY: -3 }}
+                style={{ perspective: "800px" }}
+              >
+                <p className="text-4xl md:text-5xl font-bold text-white/90 mb-2">Amazon</p>
+                <p className="text-xs text-white/30">Building for 22 countries.</p>
+              </motion.div>
+
+              {/* CPI */}
+              <motion.div
+                className="p-8 rounded-2xl border border-purple-500/15 bg-purple-500/[0.03] hover:border-purple-500/30 transition-all duration-300"
+                whileHover={{ scale: 1.02, rotateY: 3 }}
+                style={{ perspective: "800px" }}
+              >
+                <p className="text-4xl md:text-5xl font-bold text-gradient mb-2">9.01</p>
+                <p className="text-xs text-white/30">Top of class. MNNIT CSE.</p>
+              </motion.div>
+            </motion.div>
+
+            {/* Tier 2 — Depth (smaller cards) */}
+            <motion.div
+              className="grid grid-cols-2 md:grid-cols-4 gap-3"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+            >
+              <motion.div className="p-5 rounded-xl border border-green-500/10 bg-green-500/[0.02] hover:border-green-500/25 transition-all" whileHover={{ scale: 1.04 }}>
+                <p className="text-2xl font-bold text-white/80 mb-1">450+</p>
+                <p className="text-[10px] text-white/25">Still counting.</p>
+              </motion.div>
+              <motion.div className="p-5 rounded-xl border border-amber-500/10 bg-amber-500/[0.02] hover:border-amber-500/25 transition-all" whileHover={{ scale: 1.04 }}>
+                <p className="text-2xl font-bold text-white/80 mb-1">Co-author</p>
+                <p className="text-[10px] text-white/25">Published before I could vote.</p>
+              </motion.div>
+              <motion.div className="p-5 rounded-xl border border-green-500/10 bg-green-500/[0.02] hover:border-green-500/25 transition-all" whileHover={{ scale: 1.04 }}>
+                <p className="text-2xl font-bold text-white/80 mb-1">5+</p>
+                <p className="text-[10px] text-white/25">Never read from a script.</p>
+              </motion.div>
+              <motion.div className="p-5 rounded-xl border border-sky-500/10 bg-sky-500/[0.02] hover:border-sky-500/25 transition-all" whileHover={{ scale: 1.04 }}>
+                <p className="text-2xl font-bold text-white/80 mb-1">Mentor</p>
+                <p className="text-[10px] text-white/25">Teaching what I&apos;m still learning.</p>
+              </motion.div>
+            </motion.div>
+          </div>
         </section>
 
         {/* ===== SECTION 2: About — i6 + intro ===== */}
@@ -221,19 +306,15 @@ export default function Home() {
               <p className="text-base text-white/40 leading-relaxed mb-6">
                 SDE Intern at Amazon, Bengaluru. Building autonomous AI agents and
                 distributed pipelines for 22 global marketplaces. CSE @ MNNIT Allahabad.
-                9.01 CPI. Published co-author.
+              </p>
+              <p className="text-sm text-white/35 leading-relaxed mb-4">
+                Cracked JEE in 3 months of self-preparation — 98.9 percentile.
+                Learned everything I know about discipline from my mother.
               </p>
               <p className="text-sm text-white/30 leading-relaxed mb-8">
-                Self-prepared for JEE in 2.5 months. Learned discipline from my mother.
-                Haven&apos;t stopped sprinting since.
+                I mentor students on Unstop because the best way to learn something
+                is to teach it to someone struggling.
               </p>
-              <div className="flex flex-wrap gap-2">
-                {["Amazon", "MNNIT", "9.01 CPI", "Published Author", "450+ LeetCode"].map((tag) => (
-                  <span key={tag} className="px-3 py-1.5 text-[10px] text-white/30 border border-white/8 rounded-full">
-                    {tag}
-                  </span>
-                ))}
-              </div>
             </motion.div>
           </div>
         </section>
