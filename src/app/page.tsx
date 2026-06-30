@@ -549,9 +549,9 @@ export default function Home() {
                 transition={{ duration: 0.8, delay: 0.2 }}
               >
                 {/* SSH connect */}
-                <div className="py-4 text-xs">
-                  <p className="text-green-400/60">$ ssh mallikkv@amazon-bengaluru --first-time</p>
-                  <p className="text-white/20 mt-1">&gt; Connection established. Imposter syndrome loaded. Ctrl+C won&apos;t save you here.</p>
+                <div className="py-5 text-sm">
+                  <p className="text-green-400/70 font-semibold">$ ssh mallikkv@amazon-bengaluru --first-time</p>
+                  <p className="text-white/30 mt-2">&gt; Connection established. Imposter syndrome loaded. Ctrl+C won&apos;t save you here.</p>
                 </div>
 
                 {/* Log entries */}
@@ -564,41 +564,41 @@ export default function Home() {
                 ].map((entry, i) => (
                   <motion.div
                     key={entry.week}
-                    className="border-b border-white/5 py-5 hover:bg-white/[0.02] transition-colors px-4 -mx-4 rounded-lg group"
+                    className="border-b border-white/5 py-7 hover:bg-white/[0.02] transition-colors px-4 -mx-4 rounded-lg group"
                     initial={{ opacity: 0, y: 15 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.5, delay: 0.3 + i * 0.12 }}
                   >
-                    <div className="flex items-center gap-3 mb-2">
-                      <span className="text-[10px] text-white/20 w-12">{entry.week}</span>
-                      <span className={`text-[10px] font-bold ${entry.color} px-2 py-0.5 rounded bg-white/[0.03]`}>
+                    <div className="flex items-center gap-3 mb-3">
+                      <span className="text-xs text-white/30 font-semibold w-14">{entry.week}</span>
+                      <span className={`text-xs font-bold ${entry.color} px-2.5 py-1 rounded bg-white/[0.04]`}>
                         [{entry.level}]
                       </span>
                     </div>
-                    <p className="text-sm text-white/70 font-medium mb-1 group-hover:text-white/90 transition-colors">
+                    <p className="text-base text-white/80 font-bold mb-2 group-hover:text-white transition-colors">
                       {entry.msg}
                     </p>
-                    <p className="text-xs text-white/25">
+                    <p className="text-sm text-white/35 font-medium">
                       → {entry.detail}
                     </p>
                   </motion.div>
                 ))}
 
                 {/* System output */}
-                <div className="pt-8 space-y-3 text-xs">
-                  <p className="text-white/15">
-                    <span className="text-green-400/50">$</span> echo $LESSON_LEARNED
+                <div className="pt-10 space-y-4 text-sm">
+                  <p className="text-white/25 font-semibold">
+                    <span className="text-green-400/60">$</span> echo $LESSON_LEARNED
                   </p>
-                  <p className="text-white/30 italic">
+                  <p className="text-white/40 italic font-medium">
                     &quot;The person who left wasn&apos;t the same one who walked in.&quot;
                   </p>
-                  <div className="pt-4">
-                    <p className="text-white/15"><span className="text-green-400/50">$</span> exit</p>
-                    <p className="text-white/15 mt-1">logout</p>
-                    <p className="text-white/20 mt-1">Connection to amazon-bengaluru closed.</p>
+                  <div className="pt-5">
+                    <p className="text-white/25 font-semibold"><span className="text-green-400/60">$</span> exit</p>
+                    <p className="text-white/20 mt-2">logout</p>
+                    <p className="text-white/30 mt-2 font-medium">Connection to amazon-bengaluru closed.</p>
                   </div>
-                  <p className="text-white/10 mt-6 italic">// But the build never stops.</p>
+                  <p className="text-white/20 mt-8 italic font-semibold">// But the build never stops.</p>
                 </div>
               </motion.div>
             </div>
