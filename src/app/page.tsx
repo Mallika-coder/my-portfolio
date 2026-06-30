@@ -246,14 +246,14 @@ export default function Home() {
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#f97316" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
                   </div>
                   <span className="text-[10px] font-[var(--font-mono)] text-white/40 tracking-wider uppercase flex items-center gap-2">
-                    Amazon
+                    Amazon SDE Intern &middot; 2026
                     <span className="w-1.5 h-1.5 rounded-full bg-orange-500 animate-pulse" />
                   </span>
                 </div>
                 <p className="text-4xl md:text-5xl font-bold text-white/90 mb-2"><CountUp target={22} /></p>
-                <p className="text-xs text-white/35 leading-relaxed mb-4">Countries. One pipeline. Autonomous AI agents shipping across global marketplaces.</p>
+                <p className="text-xs text-white/35 leading-relaxed mb-4">Marketplaces automated. AI agents, distributed pipelines, and event-driven architecture.</p>
                 <div className="flex flex-wrap gap-2">
-                  {["Bengaluru", "2026", "AI Agents"].map((tag) => (
+                  {["Claude 4.5", "CDK", "Spark", "EventBridge"].map((tag) => (
                     <span key={tag} className="px-2 py-0.5 text-[9px] font-[var(--font-mono)] text-orange-400/60 border border-orange-500/20 rounded-full">{tag}</span>
                   ))}
                 </div>
