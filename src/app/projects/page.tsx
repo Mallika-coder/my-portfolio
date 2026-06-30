@@ -54,7 +54,7 @@ const projects = [
     stack: ["Next.js", "FastAPI", "LLaMA 3.1", "WebSocket"],
     live: "https://frontend-mauve-nine-89.vercel.app/",
     github: "https://github.com/Mallika-coder/mallika-ai",
-    image: "",
+    image: "/images/projects/mallikaai.png",
   },
 ];
 
