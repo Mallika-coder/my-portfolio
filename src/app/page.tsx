@@ -189,7 +189,7 @@ export default function Home() {
         <section className="py-28 md:py-36 px-8 md:px-16 lg:px-24">
           <div className="max-w-6xl mx-auto">
             <motion.h2
-              className="text-[11px] font-[var(--font-mono)] text-white/30 tracking-[6px] uppercase text-center mb-14"
+              className="text-[11px] font-[var(--font-mono)] text-white/30 tracking-[6px] uppercase text-center mb-0"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -197,6 +197,7 @@ export default function Home() {
             >
               What I bring to the table
             </motion.h2>
+            <div className="w-[60%] h-[1px] mx-auto mt-4 mb-8 bg-gradient-to-r from-transparent via-white/10 to-transparent" />
 
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-5">
               {/* Card 1: Amazon — span 2 */}
@@ -294,8 +295,9 @@ export default function Home() {
                 </div>
                 <p className="text-4xl md:text-5xl font-bold text-white/90 mb-2">450+</p>
                 <p className="text-xs text-white/35 leading-relaxed mb-4">Problems solved. Still counting. The grind doesn&apos;t stop.</p>
-                <div className="w-full h-2 rounded-full bg-white/5 overflow-hidden">
+                <div className="w-full h-2 rounded-full bg-white/5 relative overflow-hidden">
                   <div className="h-full rounded-full bg-gradient-to-r from-amber-500/80 to-amber-400/60" style={{ width: "75%" }} />
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-[shimmer_2s_infinite]" />
                 </div>
               </motion.div>
 
@@ -381,12 +383,13 @@ export default function Home() {
           <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             {/* i6 photo — full body */}
             <motion.div
-              className="relative aspect-[3/4] max-w-[380px] rounded-2xl overflow-hidden mx-auto lg:mx-0"
+              className="relative aspect-[3/4] max-w-[380px] rounded-2xl overflow-hidden mx-auto lg:mx-0 border border-white/5"
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
             >
+              <div className="absolute -inset-3 bg-gradient-to-br from-cyan-500/8 via-purple-500/8 to-pink-500/8 rounded-2xl blur-3xl z-[-1]" />
               <Image
                 src="/images/i6.jpeg"
                 alt="Mallika at Amazon office"
@@ -403,22 +406,32 @@ export default function Home() {
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
-              <h2 className="text-3xl md:text-4xl font-[var(--font-playfair)] font-bold mb-6 leading-tight">
-                <span className="text-gradient">Engineer who writes.</span>
+              <h2 className="text-3xl md:text-4xl font-[var(--font-playfair)] font-bold mb-8 leading-tight">
+                <span className="text-gradient animate-[gradient-shift_6s_linear_infinite] bg-[length:200%_auto]">Engineer who writes.</span>
               </h2>
-              <p className="text-base text-white/40 leading-relaxed mb-6">
-                SDE Intern at Amazon, Bengaluru — building autonomous AI agents and
-                distributed pipelines across 22 global marketplaces. CSE @ MNNIT Allahabad, 9.01 CPI.
-              </p>
-              <p className="text-sm text-white/35 leading-relaxed mb-4">
-                Cracked JEE at 98.9 percentile with 3 months of self-preparation.
-                No coaching. No backup plan. Just a mother who made quitting feel impossible.
-              </p>
-              <p className="text-sm text-white/30 leading-relaxed mb-8">
-                I mentor students on Unstop because explaining something to someone struggling
-                is still the fastest way I learn. I write on Medium because code disappears
-                into production — but words stay with people.
-              </p>
+              <div className="space-y-4 text-sm md:text-base text-white/40 leading-relaxed">
+                <p>
+                  I cracked JEE at 98.9 percentile with 3 months of self-preparation. No coaching. No backup plan. Just discipline I inherited from a woman who never had the luxury of quitting.
+                </p>
+                <p>
+                  CSE student at MNNIT Allahabad. 9.01 CPI. Not because I chase numbers — because when I decide to show up, I don&apos;t do it halfway.
+                </p>
+                <p>
+                  At 17, I was a published co-author. At 19, I&apos;m an SDE Intern at Amazon, Bengaluru — building autonomous AI agents that hit 100% accuracy across 26 competitors, and distributed pipelines that serve 22 global marketplaces.
+                </p>
+                <p>
+                  I shipped my first code review in Week 2. Built from v1 to v7 in two days. Designed systems that still run in production after I left.
+                </p>
+                <p>
+                  450+ LeetCode problems. 5+ podiums in speeches and debates. Unstop Mentor — because teaching someone who&apos;s struggling is still the fastest way I learn.
+                </p>
+                <p className="text-white/50 font-medium">
+                  I code at midnight. I write at dawn. I ask more questions than anyone in the room and I stopped apologizing for it a long time ago.
+                </p>
+                <p className="text-white/60 font-bold text-base md:text-lg mt-4">
+                  Engineer who writes. Builder who ships. Still just getting started.
+                </p>
+              </div>
             </motion.div>
           </div>
         </section>

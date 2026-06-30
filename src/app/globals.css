@@ -226,3 +226,21 @@ body {
   align-items: center;
   justify-content: center;
 }
+
+/* Gradient shift for tagline */
+@keyframes gradient-shift {
+  0% { background-position: 0% center; }
+  100% { background-position: 200% center; }
+}
+
+/* Shimmer for progress bar */
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+/* Count-up dot grid */
+.dot-grid-bg {
+  background-image: radial-gradient(circle, rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
