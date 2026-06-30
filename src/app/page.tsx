@@ -156,7 +156,7 @@ export default function Home() {
             ].map((skill, i) => (
               <div
                 key={i}
-                className={`absolute ${skill.size} text-white/40 font-[var(--font-mono)] font-bold animate-[particle-float_5s_ease-in-out_infinite] hover:text-white/80 hover:drop-shadow-[0_0_12px_rgba(196,181,253,0.6)] transition-all duration-300 cursor-default group pointer-events-auto drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)]`}
+                className={`absolute text-sm md:text-base text-white/50 font-[var(--font-mono)] font-black uppercase tracking-wider animate-[particle-float_5s_ease-in-out_infinite] hover:text-white hover:drop-shadow-[0_0_16px_rgba(196,181,253,0.7)] transition-all duration-300 cursor-default group pointer-events-auto drop-shadow-[0_3px_3px_rgba(0,0,0,0.9)]`}
                 style={{ top: skill.top, left: skill.left, right: skill.right, bottom: skill.bottom, animationDelay: skill.delay } as React.CSSProperties}
               >
                 {skill.text}
@@ -167,14 +167,20 @@ export default function Home() {
             ))}
           </div>
 
-          {/* Name — top, biggest element */}
+          {/* Name — top, biggest element, unique style */}
           <motion.h1
-            className="text-5xl md:text-7xl lg:text-8xl font-[var(--font-playfair)] font-bold tracking-[2px] mb-10 text-center z-20"
+            className="text-5xl md:text-7xl lg:text-9xl font-[var(--font-mono)] font-black tracking-[-0.04em] mb-10 text-center z-20 uppercase"
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.5, duration: 0.8 }}
           >
-            <span className="text-gradient drop-shadow-[0_0_40px_rgba(125,211,252,0.4)]">Mallika Verma</span>
+            <span className="text-transparent bg-clip-text" style={{ backgroundImage: "linear-gradient(135deg, #fff 0%, #7dd3fc 30%, #c4b5fd 60%, #f9a8d4 100%)", WebkitBackgroundClip: "text", filter: "drop-shadow(0 4px 20px rgba(125,211,252,0.3)) drop-shadow(0 0 60px rgba(196,181,253,0.2))" }}>
+              Mallika
+            </span>
+            <br />
+            <span className="text-transparent bg-clip-text" style={{ backgroundImage: "linear-gradient(135deg, #f9a8d4 0%, #c4b5fd 40%, #7dd3fc 80%, #fff 100%)", WebkitBackgroundClip: "text", filter: "drop-shadow(0 4px 20px rgba(249,168,212,0.3)) drop-shadow(0 0 60px rgba(196,181,253,0.2))" }}>
+              Verma
+            </span>
           </motion.h1>
 
           {/* Center piece: CIRCULAR photo + orbit ring + rotating text */}
