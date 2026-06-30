@@ -515,11 +515,12 @@ export default function Home() {
               <p className="text-sm font-[var(--font-mono)] text-white/30">// duration: 8 weeks · location: Amazon, Bengaluru · status: completed</p>
             </motion.div>
 
-            {/* Two column: Photo left, log entries right */}
+            {/* Two column: Content left, Photo right */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
-              {/* Photo — with terminal frame */}
+              {/* Photo — with terminal frame, ORDER 2 (right side) */}
               <motion.div
-                initial={{ opacity: 0, x: -30 }}
+                className="lg:order-2"
+                initial={{ opacity: 0, x: 30 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8 }}
@@ -534,15 +535,15 @@ export default function Home() {
                   </div>
                   {/* Photo */}
                   <div className="relative aspect-[4/5]">
-                    <Image src="/images/i5.jpeg" alt="Mallika at Amazon" fill className="object-cover" sizes="(max-width: 1024px) 100vw, 50vw" />
+                    <Image src="/images/i8.jpeg" alt="Mallika at Amazon" fill className="object-cover" sizes="(max-width: 1024px) 100vw, 50vw" />
                   </div>
                 </div>
               </motion.div>
 
-              {/* Log entries — full terminal session */}
+              {/* Log entries — full terminal session, ORDER 1 (left side) */}
               <motion.div
-                className="space-y-0 font-[var(--font-mono)]"
-                initial={{ opacity: 0, x: 30 }}
+                className="space-y-0 font-[var(--font-mono)] lg:order-1"
+                initial={{ opacity: 0, x: -30 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: 0.2 }}
