@@ -530,7 +530,7 @@ export default function Home() {
                     <div className="w-2.5 h-2.5 rounded-full bg-red-400/80" />
                     <div className="w-2.5 h-2.5 rounded-full bg-yellow-400/80" />
                     <div className="w-2.5 h-2.5 rounded-full bg-green-400/80" />
-                    <span className="ml-3 text-[10px] font-[var(--font-mono)] text-white/25">mallika@amazon ~/bengaluru</span>
+                    <span className="ml-3 text-[10px] font-[var(--font-mono)] text-white/25">mallikkv@amazon ~/bengaluru</span>
                   </div>
                   {/* Photo */}
                   <div className="relative aspect-[4/5]">
@@ -539,51 +539,65 @@ export default function Home() {
                 </div>
               </motion.div>
 
-              {/* Log entries — technical system log style */}
+              {/* Log entries — full terminal session */}
               <motion.div
-                className="space-y-0"
+                className="space-y-0 font-[var(--font-mono)]"
                 initial={{ opacity: 0, x: 30 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: 0.2 }}
               >
+                {/* SSH connect */}
+                <div className="py-4 text-xs">
+                  <p className="text-green-400/60">$ ssh mallikkv@amazon-bengaluru --first-time</p>
+                  <p className="text-white/20 mt-1">&gt; Connection established. Imposter syndrome loaded. Ctrl+C won&apos;t save you here.</p>
+                </div>
+
+                {/* Log entries */}
                 {[
                   { week: "W1-W2", level: "INFO", msg: "Ask questions louder than your ego.", detail: "3 hours of struggle → 1 question → unstuck in 5 min", color: "text-cyan-400" },
                   { week: "W2-W3", level: "SHIP", msg: "Ship in Week 2. Iterate forever.", detail: "First CR merged. v1→v7 in 48 hours.", color: "text-green-400" },
                   { week: "W4-W6", level: "ARCH", msg: "Think in systems, not features.", detail: "22 marketplaces. 88 jobs. Blast-radius isolation.", color: "text-amber-400" },
+                  { week: "W6-W7", level: "WRITE", msg: "If you can't explain it, you didn't build it.", detail: "3 Medium articles. 1 design doc that actually got read.", color: "text-sky-400" },
                   { week: "W7-W8", level: "EXIT", msg: "The badge comes off. The builder stays.", detail: "Code in production. Agents still running. 100% accuracy.", color: "text-purple-400" },
                 ].map((entry, i) => (
                   <motion.div
                     key={entry.week}
-                    className="border-b border-white/5 py-6 hover:bg-white/[0.02] transition-colors px-4 -mx-4 rounded-lg group"
+                    className="border-b border-white/5 py-5 hover:bg-white/[0.02] transition-colors px-4 -mx-4 rounded-lg group"
                     initial={{ opacity: 0, y: 15 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: 0.3 + i * 0.15 }}
+                    transition={{ duration: 0.5, delay: 0.3 + i * 0.12 }}
                   >
                     <div className="flex items-center gap-3 mb-2">
-                      <span className="text-[10px] font-[var(--font-mono)] text-white/20 w-14">{entry.week}</span>
-                      <span className={`text-[10px] font-[var(--font-mono)] font-bold ${entry.color} px-2 py-0.5 rounded bg-white/[0.03]`}>
+                      <span className="text-[10px] text-white/20 w-12">{entry.week}</span>
+                      <span className={`text-[10px] font-bold ${entry.color} px-2 py-0.5 rounded bg-white/[0.03]`}>
                         [{entry.level}]
                       </span>
                     </div>
-                    <p className="text-base font-[var(--font-mono)] text-white/70 font-medium mb-1 group-hover:text-white/90 transition-colors">
+                    <p className="text-sm text-white/70 font-medium mb-1 group-hover:text-white/90 transition-colors">
                       {entry.msg}
                     </p>
-                    <p className="text-xs font-[var(--font-mono)] text-white/25">
+                    <p className="text-xs text-white/25">
                       → {entry.detail}
                     </p>
                   </motion.div>
                 ))}
 
                 {/* System output */}
-                <div className="pt-8 font-[var(--font-mono)]">
-                  <p className="text-xs text-white/15">
+                <div className="pt-8 space-y-3 text-xs">
+                  <p className="text-white/15">
                     <span className="text-green-400/50">$</span> echo $LESSON_LEARNED
                   </p>
-                  <p className="text-xs text-white/30 mt-2 italic">
+                  <p className="text-white/30 italic">
                     &quot;The person who left wasn&apos;t the same one who walked in.&quot;
                   </p>
+                  <div className="pt-4">
+                    <p className="text-white/15"><span className="text-green-400/50">$</span> exit</p>
+                    <p className="text-white/15 mt-1">logout</p>
+                    <p className="text-white/20 mt-1">Connection to amazon-bengaluru closed.</p>
+                  </div>
+                  <p className="text-white/10 mt-6 italic">// But the build never stops.</p>
                 </div>
               </motion.div>
             </div>
