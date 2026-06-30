@@ -1,5 +1,5 @@
 "use client";
-import { useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 import dynamic from "next/dynamic";
 import Link from "next/link";
 import Image from "next/image";
@@ -12,6 +12,37 @@ import ScrollProgress from "@/components/ScrollProgress";
 const CustomCursor = dynamic(() => import("@/components/CustomCursor"), { ssr: false });
 const EasterEgg = dynamic(() => import("@/components/EasterEgg"), { ssr: false });
 const Terminal = dynamic(() => import("@/components/Terminal"), { ssr: false });
+
+function CountUp({ target, suffix = "", decimals = 0 }: { target: number; suffix?: string; decimals?: number }) {
+  const ref = useRef<HTMLSpanElement>(null);
+  const [count, setCount] = useState(0);
+  const [hasAnimated, setHasAnimated] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !hasAnimated) {
+          setHasAnimated(true);
+          const duration = 1500;
+          const start = performance.now();
+          const animate = (now: number) => {
+            const elapsed = now - start;
+            const progress = Math.min(elapsed / duration, 1);
+            const eased = 1 - Math.pow(1 - progress, 4);
+            setCount(eased * target);
+            if (progress < 1) requestAnimationFrame(animate);
+          };
+          requestAnimationFrame(animate);
+        }
+      },
+      { threshold: 0.3 }
+    );
+    if (ref.current) observer.observe(ref.current);
+    return () => observer.disconnect();
+  }, [target, hasAnimated]);
+
+  return <span ref={ref}>{decimals > 0 ? count.toFixed(decimals) : Math.floor(count)}{suffix}</span>;
+}
 
 const socials = [
   { icon: FaLinkedinIn, href: "https://www.linkedin.com/in/mallikaverma58/", label: "LinkedIn" },
@@ -186,7 +217,7 @@ export default function Home() {
         </section>
 
         {/* ===== BENTO GRID — What I bring to the table ===== */}
-        <section className="py-28 md:py-36 px-8 md:px-16 lg:px-24">
+        <section className="py-28 md:py-36 px-8 md:px-16 lg:px-24 dot-grid-bg">
           <div className="max-w-6xl mx-auto">
             <motion.h2
               className="text-[11px] font-[var(--font-mono)] text-white/30 tracking-[6px] uppercase text-center mb-0"
@@ -219,7 +250,7 @@ export default function Home() {
                     <span className="w-1.5 h-1.5 rounded-full bg-orange-500 animate-pulse" />
                   </span>
                 </div>
-                <p className="text-4xl md:text-5xl font-bold text-white/90 mb-2">22</p>
+                <p className="text-4xl md:text-5xl font-bold text-white/90 mb-2"><CountUp target={22} /></p>
                 <p className="text-xs text-white/35 leading-relaxed mb-4">Countries. One pipeline. Autonomous AI agents shipping across global marketplaces.</p>
                 <div className="flex flex-wrap gap-2">
                   {["Bengaluru", "2026", "AI Agents"].map((tag) => (
@@ -247,7 +278,7 @@ export default function Home() {
                     <span className="w-1.5 h-1.5 rounded-full bg-purple-500 animate-pulse" />
                   </span>
                 </div>
-                <p className="text-3xl md:text-4xl font-bold text-white/90 mb-2">98.9%</p>
+                <p className="text-3xl md:text-4xl font-bold text-white/90 mb-2"><CountUp target={98.9} suffix="%" decimals={1} /></p>
                 <p className="text-xs text-white/35 leading-relaxed">3 months. No coaching. Just obsession.</p>
               </motion.div>
 
@@ -270,7 +301,7 @@ export default function Home() {
                     <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
                   </span>
                 </div>
-                <p className="text-3xl md:text-4xl font-bold text-white/90 mb-2">9.01</p>
+                <p className="text-3xl md:text-4xl font-bold text-white/90 mb-2"><CountUp target={9.01} decimals={2} /></p>
                 <p className="text-xs text-white/35 leading-relaxed">CPI. Top of class.</p>
               </motion.div>
 
@@ -293,10 +324,16 @@ export default function Home() {
                     <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse" />
                   </span>
                 </div>
-                <p className="text-4xl md:text-5xl font-bold text-white/90 mb-2">450+</p>
+                <p className="text-4xl md:text-5xl font-bold text-white/90 mb-2"><CountUp target={450} suffix="+" /></p>
                 <p className="text-xs text-white/35 leading-relaxed mb-4">Problems solved. Still counting. The grind doesn&apos;t stop.</p>
                 <div className="w-full h-2 rounded-full bg-white/5 relative overflow-hidden">
-                  <div className="h-full rounded-full bg-gradient-to-r from-amber-500/80 to-amber-400/60" style={{ width: "75%" }} />
+                  <motion.div
+                    className="h-full rounded-full bg-gradient-to-r from-amber-500/80 to-amber-400/60"
+                    initial={{ width: "0%" }}
+                    whileInView={{ width: "75%" }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 1.5, ease: "easeOut", delay: 0.5 }}
+                  />
                   <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-[shimmer_2s_infinite]" />
                 </div>
               </motion.div>
@@ -343,7 +380,7 @@ export default function Home() {
                     <span className="w-1.5 h-1.5 rounded-full bg-pink-500 animate-pulse" />
                   </span>
                 </div>
-                <p className="text-3xl md:text-4xl font-bold text-white/90 mb-2">5+</p>
+                <p className="text-3xl md:text-4xl font-bold text-white/90 mb-2"><CountUp target={5} suffix="+" /></p>
                 <p className="text-xs text-white/35 leading-relaxed">Talks. Never read from a script.</p>
               </motion.div>
 
@@ -455,7 +492,8 @@ export default function Home() {
         </section>
 
         {/* ===== SECTION 3: me1 photo + quick quote ===== */}
-        <section className="py-20 px-8 md:px-16 lg:px-24">
+        <div className="w-[30%] h-[1px] mx-auto bg-gradient-to-r from-transparent via-white/5 to-transparent" />
+        <section className="py-32 px-8 md:px-16 lg:px-24">
           <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <motion.div
               className="order-2 md:order-1"
@@ -490,6 +528,7 @@ export default function Home() {
         </section>
 
         {/* ===== SECTION 4: "The 8 Weeks" — Bengaluru ===== */}
+        <div className="w-[30%] h-[1px] mx-auto bg-gradient-to-r from-transparent via-white/5 to-transparent" />
         <section className="py-32 md:py-40 px-8 md:px-16 lg:px-24 relative">
           {/* Subtle spotlight behind photo */}
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-white/[0.02] rounded-full blur-3xl pointer-events-none" />
@@ -497,7 +536,7 @@ export default function Home() {
           <div className="max-w-5xl mx-auto">
             {/* Heading */}
             <motion.div
-              className="text-center mb-20 md:mb-24"
+              className="text-center mb-12"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.2 }}
@@ -506,17 +545,17 @@ export default function Home() {
               <h3 className="text-4xl md:text-6xl font-[var(--font-playfair)] font-bold mb-2 tracking-[-0.02em]" style={{ background: "linear-gradient(to right, white, rgba(255,255,255,0.9), rgba(255,255,255,0.6))", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
                 Bengaluru, 2026
               </h3>
-              <p className="text-sm text-white/30 font-light mt-2">8 weeks. 4 lessons. Most of it wasn&apos;t in the job description.</p>
+              <p className="text-sm text-white/30 font-light mt-3">8 weeks. 4 lessons. Most of it wasn&apos;t in the job description.</p>
             </motion.div>
 
             {/* Desktop: Photo center + colorful speech bubbles + animated connectors */}
             <div className="relative hidden md:block min-h-[620px]">
               {/* Animated connector lines with flowing dots */}
               <svg className="absolute inset-0 w-full h-full z-[5] pointer-events-none" viewBox="0 0 800 620" fill="none" preserveAspectRatio="xMidYMid meet">
-                <line x1="400" y1="240" x2="160" y2="70" stroke="rgba(168,85,247,0.2)" strokeWidth="1.5" strokeDasharray="4 6" className="animate-[dash_3s_linear_infinite]" />
-                <line x1="400" y1="240" x2="640" y2="70" stroke="rgba(6,182,212,0.2)" strokeWidth="1.5" strokeDasharray="4 6" className="animate-[dash_3s_linear_infinite]" style={{ animationDelay: "0.5s" } as React.CSSProperties} />
-                <line x1="400" y1="380" x2="160" y2="550" stroke="rgba(16,185,129,0.2)" strokeWidth="1.5" strokeDasharray="4 6" className="animate-[dash_3s_linear_infinite]" style={{ animationDelay: "1s" } as React.CSSProperties} />
-                <line x1="400" y1="380" x2="640" y2="550" stroke="rgba(244,63,94,0.2)" strokeWidth="1.5" strokeDasharray="4 6" className="animate-[dash_3s_linear_infinite]" style={{ animationDelay: "1.5s" } as React.CSSProperties} />
+                <line x1="400" y1="240" x2="160" y2="70" stroke="rgba(168,85,247,0.3)" strokeWidth="1.5" strokeDasharray="4 6" className="animate-[dash_3s_linear_infinite]" />
+                <line x1="400" y1="240" x2="640" y2="70" stroke="rgba(6,182,212,0.3)" strokeWidth="1.5" strokeDasharray="4 6" className="animate-[dash_3s_linear_infinite]" style={{ animationDelay: "0.5s" } as React.CSSProperties} />
+                <line x1="400" y1="380" x2="160" y2="550" stroke="rgba(16,185,129,0.3)" strokeWidth="1.5" strokeDasharray="4 6" className="animate-[dash_3s_linear_infinite]" style={{ animationDelay: "1s" } as React.CSSProperties} />
+                <line x1="400" y1="380" x2="640" y2="550" stroke="rgba(244,63,94,0.3)" strokeWidth="1.5" strokeDasharray="4 6" className="animate-[dash_3s_linear_infinite]" style={{ animationDelay: "1.5s" } as React.CSSProperties} />
                 {/* Glow dots at card endpoints */}
                 <circle cx="160" cy="70" r="4" fill="rgba(168,85,247,0.6)" className="animate-pulse" />
                 <circle cx="640" cy="70" r="4" fill="rgba(6,182,212,0.6)" className="animate-pulse" style={{ animationDelay: "0.5s" } as React.CSSProperties} />
@@ -538,7 +577,7 @@ export default function Home() {
 
               {/* Card 1: top-left — purple bubble */}
               <motion.div
-                className="absolute top-0 left-[5%] z-30 max-w-[220px] px-5 py-4 rounded-2xl backdrop-blur-md border border-purple-500/30 hover:border-purple-400/50 hover:scale-[1.03] transition-all duration-200 cursor-default"
+                className="absolute top-0 left-[12%] z-30 max-w-[220px] px-5 py-4 rounded-2xl backdrop-blur-md border border-purple-500/30 hover:border-purple-400/50 hover:scale-[1.03] transition-all duration-200 cursor-default"
                 style={{ background: "linear-gradient(135deg, rgba(168,85,247,0.15), rgba(99,102,241,0.1))" }}
                 initial={{ opacity: 0, x: -30, y: -20 }}
                 whileInView={{ opacity: 1, x: 0, y: 0 }}
@@ -552,7 +591,7 @@ export default function Home() {
 
               {/* Card 2: top-right — cyan bubble */}
               <motion.div
-                className="absolute top-0 right-[5%] z-30 max-w-[220px] px-5 py-4 rounded-2xl backdrop-blur-md border border-cyan-500/30 hover:border-cyan-400/50 hover:scale-[1.03] transition-all duration-200 cursor-default"
+                className="absolute top-0 right-[12%] z-30 max-w-[220px] px-5 py-4 rounded-2xl backdrop-blur-md border border-cyan-500/30 hover:border-cyan-400/50 hover:scale-[1.03] transition-all duration-200 cursor-default"
                 style={{ background: "linear-gradient(135deg, rgba(6,182,212,0.15), rgba(59,130,246,0.1))" }}
                 initial={{ opacity: 0, x: 30, y: -20 }}
                 whileInView={{ opacity: 1, x: 0, y: 0 }}
@@ -566,7 +605,7 @@ export default function Home() {
 
               {/* Card 3: bottom-left — emerald bubble */}
               <motion.div
-                className="absolute bottom-0 left-[5%] z-30 max-w-[220px] px-5 py-4 rounded-2xl backdrop-blur-md border border-emerald-500/30 hover:border-emerald-400/50 hover:scale-[1.03] transition-all duration-200 cursor-default"
+                className="absolute bottom-0 left-[12%] z-30 max-w-[220px] px-5 py-4 rounded-2xl backdrop-blur-md border border-emerald-500/30 hover:border-emerald-400/50 hover:scale-[1.03] transition-all duration-200 cursor-default"
                 style={{ background: "linear-gradient(135deg, rgba(16,185,129,0.15), rgba(20,184,166,0.1))" }}
                 initial={{ opacity: 0, x: -30, y: 20 }}
                 whileInView={{ opacity: 1, x: 0, y: 0 }}
@@ -580,7 +619,7 @@ export default function Home() {
 
               {/* Card 4: bottom-right — rose bubble */}
               <motion.div
-                className="absolute bottom-0 right-[5%] z-30 max-w-[220px] px-5 py-4 rounded-2xl backdrop-blur-md border border-rose-500/30 hover:border-rose-400/50 hover:scale-[1.03] transition-all duration-200 cursor-default"
+                className="absolute bottom-0 right-[12%] z-30 max-w-[220px] px-5 py-4 rounded-2xl backdrop-blur-md border border-rose-500/30 hover:border-rose-400/50 hover:scale-[1.03] transition-all duration-200 cursor-default"
                 style={{ background: "linear-gradient(135deg, rgba(244,63,94,0.15), rgba(249,115,22,0.1))" }}
                 initial={{ opacity: 0, x: 30, y: 20 }}
                 whileInView={{ opacity: 1, x: 0, y: 0 }}
@@ -629,7 +668,7 @@ export default function Home() {
             </div>
 
             {/* Closing line */}
-            <p className="text-xs text-white/15 text-center mt-20 font-[var(--font-playfair)] italic">
+            <p className="text-xs text-white/15 text-center mt-24 font-[var(--font-playfair)] italic">
               — Bengaluru taught me this.
             </p>
           </div>
