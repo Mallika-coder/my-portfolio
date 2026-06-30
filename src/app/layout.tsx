@@ -22,9 +22,9 @@ const jetbrains = JetBrains_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://portfolio-web-booster12.vercel.app"),
-  title: "Mallika Verma — Writer Who Codes",
+  title: "Mallika Verma — Engineer Who Writes",
   description:
-    "Portfolio of Mallika Verma — CSE @ MNNIT Allahabad, SDE Intern @ Amazon. Writer who codes. Engineer who thinks in stories.",
+    "Portfolio of Mallika Verma — CSE @ MNNIT Allahabad, SDE Intern @ Amazon. Engineer who writes. Building AI agents at Amazon.",
   keywords: [
     "Mallika Verma",
     "SDE Intern",
@@ -35,17 +35,17 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "Mallika Verma" }],
   openGraph: {
-    title: "Mallika Verma — Writer Who Codes",
+    title: "Mallika Verma — Engineer Who Writes",
     description:
-      "CSE @ MNNIT Allahabad · SDE Intern @ Amazon. Writer who codes. Engineer who thinks in stories.",
+      "CSE @ MNNIT Allahabad · SDE Intern @ Amazon. Engineer who writes. Building AI agents at Amazon.",
     type: "website",
     images: ["/images/me.jpeg"],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Mallika Verma — Writer Who Codes",
+    title: "Mallika Verma — Engineer Who Writes",
     description:
-      "CSE @ MNNIT Allahabad · SDE Intern @ Amazon. Writer who codes. Engineer who thinks in stories.",
+      "CSE @ MNNIT Allahabad · SDE Intern @ Amazon. Engineer who writes. Building AI agents at Amazon.",
     images: ["/images/me.jpeg"],
   },
 };

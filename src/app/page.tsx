@@ -117,7 +117,7 @@ export default function Home() {
                   <path id="orbitPath" d="M 210,210 m -190,0 a 190,190 0 1,1 380,0 a 190,190 0 1,1 -380,0" />
                 </defs>
                 <text fill="rgba(255,255,255,0.6)" fontSize="12" fontFamily="monospace" letterSpacing="5" fontWeight="bold">
-                  <textPath href="#orbitPath">✦ MALLIKA VERMA ✦ WRITER WHO CODES ✦ BUILD ✦ CREATE ✦ INSPIRE ✦</textPath>
+                  <textPath href="#orbitPath">✦ MALLIKA VERMA ✦ ENGINEER WHO WRITES ✦ BUILD ✦ CREATE ✦ INSPIRE ✦</textPath>
                 </text>
               </svg>
             </div>
@@ -142,7 +142,7 @@ export default function Home() {
             </Link>
           </motion.div>
 
-          {/* "Writer who codes." — 3D effect, biggest tagline */}
+          {/* "Engineer who writes." — 3D effect, biggest tagline */}
           <motion.p
             className="text-3xl md:text-5xl lg:text-6xl font-[var(--font-playfair)] font-bold italic mb-10 z-20 text-center"
             initial={{ opacity: 0, y: 20 }}
@@ -156,7 +156,7 @@ export default function Home() {
               filter: "drop-shadow(0 2px 4px rgba(0,0,0,0.5))",
             }}
           >
-            Writer who codes.
+            Engineer who writes.
           </motion.p>
 
           {/* Navigation bubbles */}
@@ -283,21 +283,20 @@ export default function Home() {
               transition={{ duration: 0.8, delay: 0.2 }}
             >
               <h2 className="text-3xl md:text-4xl font-[var(--font-playfair)] font-bold mb-6 leading-tight">
-                I was a writer
-                <br />
-                <span className="text-gradient">before I was an engineer.</span>
+                <span className="text-gradient">Engineer who writes.</span>
               </h2>
               <p className="text-base text-white/40 leading-relaxed mb-6">
-                SDE Intern at Amazon, Bengaluru. Building autonomous AI agents and
-                distributed pipelines for 22 global marketplaces. CSE @ MNNIT Allahabad.
+                SDE Intern at Amazon, Bengaluru — building autonomous AI agents and
+                distributed pipelines across 22 global marketplaces. CSE @ MNNIT Allahabad, 9.01 CPI.
               </p>
               <p className="text-sm text-white/35 leading-relaxed mb-4">
-                Cracked JEE in 3 months of self-preparation — 98.9 percentile.
-                Learned everything I know about discipline from my mother.
+                Cracked JEE at 98.9 percentile with 3 months of self-preparation.
+                No coaching. No backup plan. Just a mother who made quitting feel impossible.
               </p>
               <p className="text-sm text-white/30 leading-relaxed mb-8">
-                I mentor students on Unstop because the best way to learn something
-                is to teach it to someone struggling.
+                I mentor students on Unstop because explaining something to someone struggling
+                is still the fastest way I learn. I write on Medium because code disappears
+                into production — but words stay with people.
               </p>
             </motion.div>
           </div>

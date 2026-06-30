@@ -10,7 +10,7 @@ const experienceItems = [
     overview:
       "Engineered 2 autonomous AI agents on Amazon's AgentZ platform using Claude Sonnet 4.5 + Cybernaut browser automation. Automated competitor feasibility evaluation across 14 SOP criteria. Iterated v1→v7 in 2 days.",
     tags: ["AI Agent", "Claude Sonnet 4.5", "Cybernaut", "AgentZ"],
-    image: "/images/i8.jpeg",
+    image: "/images/i6.jpeg",
   },
   {
     title: "Distributed Pipeline Across 22 Marketplaces",
@@ -18,7 +18,7 @@ const experienceItems = [
     overview:
       "Onboarded LMS into GAIA governance framework. CDK TypeScript infrastructure, 22 blast-radius-isolated EventBridge schedulers, 88 Cradle/Dryad ingestion jobs, Spark transformation on EMR.",
     tags: ["TypeScript", "CDK", "EventBridge", "Spark", "EMR"],
-    image: "/images/i3.jpeg",
+    image: "/images/projects/pipeline.png",
   },
   {
     title: "Legacy to Event-Driven Architecture",
@@ -26,7 +26,7 @@ const experienceItems = [
     overview:
       "Migrated Spark transformation from legacy Sagittarius workflow to modern event-driven architecture in Scala. Factory-pattern routing across enricher types.",
     tags: ["Scala", "Spark", "Event-Driven", "Factory Pattern"],
-    image: "/images/i1.jpeg",
+    image: "/images/projects/spark-migration.png",
   },
   {
     title: "First CR Shipped — Week 2",
@@ -34,7 +34,7 @@ const experienceItems = [
     overview:
       "Replaced hardcoded individual email with team distribution list in Cognitum alerting system. Eliminated single-point-of-failure for 15+ report notifications/quarter.",
     tags: ["Java", "Testing", "Reliability"],
-    image: "/images/i2.jpeg",
+    image: "/images/projects/ai-agents.png",
   },
 ];
 

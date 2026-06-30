@@ -49,7 +49,7 @@ export default function LoadingScreen() {
             animate={{ opacity: 1 }}
             transition={{ delay: 1 }}
           >
-            writer who codes
+            engineer who writes
           </motion.p>
 
           <motion.div
