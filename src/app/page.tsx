@@ -459,131 +459,146 @@ export default function Home() {
         </section>
 
         {/* ===== SECTION 4: "The 8 Weeks" — Bengaluru ===== */}
-        <section className="py-32 md:py-40 px-8 md:px-16 lg:px-24">
+        <section className="py-32 md:py-40 px-8 md:px-16 lg:px-24 relative">
+          {/* Subtle spotlight behind photo */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-white/[0.02] rounded-full blur-3xl pointer-events-none" />
+
           <div className="max-w-5xl mx-auto">
             {/* Heading */}
             <motion.div
-              className="text-center mb-16 md:mb-20"
+              className="text-center mb-20 md:mb-24"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.2 }}
               transition={{ duration: 0.8 }}
             >
-              <h3 className="text-3xl md:text-5xl font-[var(--font-playfair)] font-bold text-white/90 mb-3">Bengaluru, 2026</h3>
-              <p className="text-sm text-white/25">8 weeks. 4 lessons. Most of it wasn&apos;t in the job description.</p>
+              <h3 className="text-4xl md:text-6xl font-[var(--font-playfair)] font-bold mb-2 tracking-[-0.02em]" style={{ background: "linear-gradient(to right, white, rgba(255,255,255,0.9), rgba(255,255,255,0.6))", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
+                Bengaluru, 2026
+              </h3>
+              <p className="text-sm text-white/30 font-light mt-2">8 weeks. 4 lessons. Most of it wasn&apos;t in the job description.</p>
             </motion.div>
 
-            {/* Desktop: Photo center + floating cards around it */}
-            <div className="relative hidden md:block">
-              {/* Connector lines (mind-map style) */}
-              <svg className="absolute inset-0 w-full h-full z-10 pointer-events-none" viewBox="0 0 800 600" fill="none" preserveAspectRatio="xMidYMid meet">
-                <line x1="400" y1="200" x2="180" y2="80" stroke="rgba(255,255,255,0.05)" strokeWidth="1" strokeDasharray="4 4" />
-                <line x1="400" y1="200" x2="620" y2="80" stroke="rgba(255,255,255,0.05)" strokeWidth="1" strokeDasharray="4 4" />
-                <line x1="400" y1="400" x2="180" y2="520" stroke="rgba(255,255,255,0.05)" strokeWidth="1" strokeDasharray="4 4" />
-                <line x1="400" y1="400" x2="620" y2="520" stroke="rgba(255,255,255,0.05)" strokeWidth="1" strokeDasharray="4 4" />
+            {/* Desktop: Photo center + colorful speech bubbles + animated connectors */}
+            <div className="relative hidden md:block min-h-[620px]">
+              {/* Animated connector lines with flowing dots */}
+              <svg className="absolute inset-0 w-full h-full z-[5] pointer-events-none" viewBox="0 0 800 620" fill="none" preserveAspectRatio="xMidYMid meet">
+                <line x1="400" y1="240" x2="160" y2="70" stroke="rgba(168,85,247,0.2)" strokeWidth="1.5" strokeDasharray="4 6" className="animate-[dash_3s_linear_infinite]" />
+                <line x1="400" y1="240" x2="640" y2="70" stroke="rgba(6,182,212,0.2)" strokeWidth="1.5" strokeDasharray="4 6" className="animate-[dash_3s_linear_infinite]" style={{ animationDelay: "0.5s" } as React.CSSProperties} />
+                <line x1="400" y1="380" x2="160" y2="550" stroke="rgba(16,185,129,0.2)" strokeWidth="1.5" strokeDasharray="4 6" className="animate-[dash_3s_linear_infinite]" style={{ animationDelay: "1s" } as React.CSSProperties} />
+                <line x1="400" y1="380" x2="640" y2="550" stroke="rgba(244,63,94,0.2)" strokeWidth="1.5" strokeDasharray="4 6" className="animate-[dash_3s_linear_infinite]" style={{ animationDelay: "1.5s" } as React.CSSProperties} />
+                {/* Glow dots at card endpoints */}
+                <circle cx="160" cy="70" r="4" fill="rgba(168,85,247,0.6)" className="animate-pulse" />
+                <circle cx="640" cy="70" r="4" fill="rgba(6,182,212,0.6)" className="animate-pulse" style={{ animationDelay: "0.5s" } as React.CSSProperties} />
+                <circle cx="160" cy="550" r="4" fill="rgba(16,185,129,0.6)" className="animate-pulse" style={{ animationDelay: "1s" } as React.CSSProperties} />
+                <circle cx="640" cy="550" r="4" fill="rgba(244,63,94,0.6)" className="animate-pulse" style={{ animationDelay: "1.5s" } as React.CSSProperties} />
               </svg>
 
-              {/* Photo — center */}
+              {/* Photo — dead center */}
               <motion.div
-                className="relative mx-auto w-[280px] md:w-[320px] aspect-[3/5] rounded-2xl overflow-hidden z-20"
+                className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[320px] md:w-[360px] aspect-[3/5] rounded-2xl overflow-hidden z-20 border-2 border-white/10"
                 initial={{ opacity: 0, scale: 0.9 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true, amount: 0.2 }}
                 transition={{ duration: 0.8 }}
               >
-                <div className="absolute -inset-2 bg-gradient-to-br from-sky-500/15 via-purple-500/15 to-pink-500/15 rounded-2xl blur-xl z-[-1]" />
-                <Image src="/images/i5.jpeg" alt="Mallika with Amazon badge" fill className="object-cover" sizes="320px" />
+                <div className="absolute -inset-4 bg-gradient-radial from-purple-500/12 via-cyan-500/8 to-pink-500/12 rounded-2xl blur-3xl z-[-1]" style={{ background: "radial-gradient(circle, rgba(168,85,247,0.12), rgba(6,182,212,0.08), rgba(236,72,153,0.12))" }} />
+                <Image src="/images/i5.jpeg" alt="Mallika with Amazon badge" fill className="object-cover" sizes="360px" />
               </motion.div>
 
-              {/* Card 1: top-left */}
+              {/* Card 1: top-left — purple bubble */}
               <motion.div
-                className="absolute top-0 left-[5%] z-30 max-w-[240px] px-5 py-4 rounded-xl bg-white/5 backdrop-blur-md border border-white/10 hover:border-white/20 hover:scale-[1.03] transition-all duration-200 cursor-default"
+                className="absolute top-0 left-[5%] z-30 max-w-[220px] px-5 py-4 rounded-2xl backdrop-blur-md border border-purple-500/30 hover:border-purple-400/50 hover:scale-[1.03] transition-all duration-200 cursor-default"
+                style={{ background: "linear-gradient(135deg, rgba(168,85,247,0.15), rgba(99,102,241,0.1))" }}
                 initial={{ opacity: 0, x: -30, y: -20 }}
                 whileInView={{ opacity: 1, x: 0, y: 0 }}
                 viewport={{ once: true, amount: 0.2 }}
                 transition={{ duration: 0.6, delay: 0.2 }}
-                animate={{ y: [0, -6, 0] }}
-                style={{ animationDuration: "4s", animationIterationCount: "infinite", animationTimingFunction: "ease-in-out" } as React.CSSProperties}
               >
-                <p className="text-sm md:text-base text-white/60 italic font-[var(--font-playfair)]">&ldquo;Ask questions louder than your ego.&rdquo;</p>
+                <motion.div animate={{ y: [0, -6, 0] }} transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}>
+                  <p className="text-sm text-white/70 italic font-[var(--font-playfair)]">&ldquo;Ask questions louder than your ego.&rdquo;</p>
+                </motion.div>
               </motion.div>
 
-              {/* Card 2: top-right */}
+              {/* Card 2: top-right — cyan bubble */}
               <motion.div
-                className="absolute top-0 right-[5%] z-30 max-w-[240px] px-5 py-4 rounded-xl bg-white/5 backdrop-blur-md border border-white/10 hover:border-white/20 hover:scale-[1.03] transition-all duration-200 cursor-default"
+                className="absolute top-0 right-[5%] z-30 max-w-[220px] px-5 py-4 rounded-2xl backdrop-blur-md border border-cyan-500/30 hover:border-cyan-400/50 hover:scale-[1.03] transition-all duration-200 cursor-default"
+                style={{ background: "linear-gradient(135deg, rgba(6,182,212,0.15), rgba(59,130,246,0.1))" }}
                 initial={{ opacity: 0, x: 30, y: -20 }}
                 whileInView={{ opacity: 1, x: 0, y: 0 }}
                 viewport={{ once: true, amount: 0.2 }}
-                transition={{ duration: 0.6, delay: 0.35 }}
-                animate={{ y: [0, -6, 0] }}
-                style={{ animationDuration: "5s", animationDelay: "1s", animationIterationCount: "infinite", animationTimingFunction: "ease-in-out" } as React.CSSProperties}
+                transition={{ duration: 0.6, delay: 0.4 }}
               >
-                <p className="text-sm md:text-base text-white/60 italic font-[var(--font-playfair)]">&ldquo;Ship in Week 2. Iterate forever.&rdquo;</p>
+                <motion.div animate={{ y: [0, -6, 0] }} transition={{ duration: 5, delay: 1, repeat: Infinity, ease: "easeInOut" }}>
+                  <p className="text-sm text-white/70 italic font-[var(--font-playfair)]">&ldquo;Ship in Week 2. Iterate forever.&rdquo;</p>
+                </motion.div>
               </motion.div>
 
-              {/* Card 3: bottom-left */}
+              {/* Card 3: bottom-left — emerald bubble */}
               <motion.div
-                className="absolute bottom-0 left-[5%] z-30 max-w-[240px] px-5 py-4 rounded-xl bg-white/5 backdrop-blur-md border border-white/10 hover:border-white/20 hover:scale-[1.03] transition-all duration-200 cursor-default"
+                className="absolute bottom-0 left-[5%] z-30 max-w-[220px] px-5 py-4 rounded-2xl backdrop-blur-md border border-emerald-500/30 hover:border-emerald-400/50 hover:scale-[1.03] transition-all duration-200 cursor-default"
+                style={{ background: "linear-gradient(135deg, rgba(16,185,129,0.15), rgba(20,184,166,0.1))" }}
                 initial={{ opacity: 0, x: -30, y: 20 }}
                 whileInView={{ opacity: 1, x: 0, y: 0 }}
                 viewport={{ once: true, amount: 0.2 }}
-                transition={{ duration: 0.6, delay: 0.5 }}
-                animate={{ y: [0, 6, 0] }}
-                style={{ animationDuration: "4.5s", animationDelay: "0.5s", animationIterationCount: "infinite", animationTimingFunction: "ease-in-out" } as React.CSSProperties}
+                transition={{ duration: 0.6, delay: 0.6 }}
               >
-                <p className="text-sm md:text-base text-white/60 italic font-[var(--font-playfair)]">&ldquo;Think in systems, not features.&rdquo;</p>
+                <motion.div animate={{ y: [0, 6, 0] }} transition={{ duration: 4.5, delay: 0.5, repeat: Infinity, ease: "easeInOut" }}>
+                  <p className="text-sm text-white/70 italic font-[var(--font-playfair)]">&ldquo;Think in systems, not features.&rdquo;</p>
+                </motion.div>
               </motion.div>
 
-              {/* Card 4: bottom-right */}
+              {/* Card 4: bottom-right — rose bubble */}
               <motion.div
-                className="absolute bottom-0 right-[5%] z-30 max-w-[240px] px-5 py-4 rounded-xl bg-white/5 backdrop-blur-md border border-white/10 hover:border-white/20 hover:scale-[1.03] transition-all duration-200 cursor-default"
+                className="absolute bottom-0 right-[5%] z-30 max-w-[220px] px-5 py-4 rounded-2xl backdrop-blur-md border border-rose-500/30 hover:border-rose-400/50 hover:scale-[1.03] transition-all duration-200 cursor-default"
+                style={{ background: "linear-gradient(135deg, rgba(244,63,94,0.15), rgba(249,115,22,0.1))" }}
                 initial={{ opacity: 0, x: 30, y: 20 }}
                 whileInView={{ opacity: 1, x: 0, y: 0 }}
                 viewport={{ once: true, amount: 0.2 }}
-                transition={{ duration: 0.6, delay: 0.65 }}
-                animate={{ y: [0, 6, 0] }}
-                style={{ animationDuration: "5.5s", animationDelay: "1.5s", animationIterationCount: "infinite", animationTimingFunction: "ease-in-out" } as React.CSSProperties}
+                transition={{ duration: 0.6, delay: 0.8 }}
               >
-                <p className="text-sm md:text-base text-white/60 italic font-[var(--font-playfair)]">&ldquo;The badge comes off. The builder stays.&rdquo;</p>
+                <motion.div animate={{ y: [0, 6, 0] }} transition={{ duration: 5.5, delay: 1.5, repeat: Infinity, ease: "easeInOut" }}>
+                  <p className="text-sm text-white/70 italic font-[var(--font-playfair)]">&ldquo;The badge comes off. The builder stays.&rdquo;</p>
+                </motion.div>
               </motion.div>
             </div>
 
-            {/* Mobile: Photo + stacked cards */}
+            {/* Mobile: Photo + stacked colorful cards */}
             <div className="md:hidden">
               <motion.div
-                className="relative mx-auto w-full max-w-[280px] aspect-[3/5] rounded-2xl overflow-hidden mb-8"
+                className="relative mx-auto w-full max-w-[280px] aspect-[3/5] rounded-2xl overflow-hidden mb-10 border-2 border-white/10"
                 initial={{ opacity: 0, scale: 0.9 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8 }}
               >
-                <div className="absolute -inset-2 bg-gradient-to-br from-sky-500/15 via-purple-500/15 to-pink-500/15 rounded-2xl blur-xl z-[-1]" />
+                <div className="absolute -inset-3 rounded-2xl blur-2xl z-[-1]" style={{ background: "radial-gradient(circle, rgba(168,85,247,0.12), rgba(6,182,212,0.08), rgba(236,72,153,0.12))" }} />
                 <Image src="/images/i5.jpeg" alt="Mallika with Amazon badge" fill className="object-cover" sizes="280px" />
               </motion.div>
 
-              <div className="space-y-4">
+              <div className="space-y-3">
                 {[
-                  "Ask questions louder than your ego.",
-                  "Ship in Week 2. Iterate forever.",
-                  "Think in systems, not features.",
-                  "The badge comes off. The builder stays.",
-                ].map((quote, i) => (
+                  { quote: "Ask questions louder than your ego.", bg: "rgba(168,85,247,0.12)", border: "border-purple-500/25" },
+                  { quote: "Ship in Week 2. Iterate forever.", bg: "rgba(6,182,212,0.12)", border: "border-cyan-500/25" },
+                  { quote: "Think in systems, not features.", bg: "rgba(16,185,129,0.12)", border: "border-emerald-500/25" },
+                  { quote: "The badge comes off. The builder stays.", bg: "rgba(244,63,94,0.12)", border: "border-rose-500/25" },
+                ].map((item, i) => (
                   <motion.div
-                    key={quote}
-                    className={`max-w-[240px] px-5 py-4 rounded-xl bg-white/5 backdrop-blur-md border border-white/10 ${i % 2 === 0 ? "" : "ml-auto"}`}
+                    key={item.quote}
+                    className={`max-w-[240px] px-5 py-4 rounded-2xl backdrop-blur-md border ${item.border} ${i % 2 === 0 ? "" : "ml-auto"}`}
+                    style={{ background: item.bg }}
                     initial={{ opacity: 0, x: i % 2 === 0 ? -20 : 20 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.5, delay: i * 0.15 }}
                   >
-                    <p className="text-sm text-white/60 italic font-[var(--font-playfair)]">&ldquo;{quote}&rdquo;</p>
+                    <p className="text-sm text-white/70 italic font-[var(--font-playfair)]">&ldquo;{item.quote}&rdquo;</p>
                   </motion.div>
                 ))}
               </div>
             </div>
 
             {/* Closing line */}
-            <p className="text-xs text-white/15 text-center mt-16 font-[var(--font-playfair)] italic">
+            <p className="text-xs text-white/15 text-center mt-20 font-[var(--font-playfair)] italic">
               — Bengaluru taught me this.
             </p>
           </div>
