@@ -185,73 +185,194 @@ export default function Home() {
           </motion.div>
         </section>
 
-        {/* ===== BENTO GRID STATS — between hero and about ===== */}
+        {/* ===== BENTO GRID — What I bring to the table ===== */}
         <section className="py-28 md:py-36 px-8 md:px-16 lg:px-24">
-          <div className="max-w-5xl mx-auto">
-            {/* Tier 1 — Jaw-Droppers (big cards) */}
-            <motion.div
-              className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6 mb-5 md:mb-6"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-            >
-              {/* JEE — large card */}
-              <motion.div
-                className="md:col-span-1 p-8 rounded-2xl border border-purple-500/15 bg-purple-500/[0.03] hover:border-purple-500/30 transition-all duration-300 group"
-                whileHover={{ scale: 1.02, rotateY: 3 }}
-                style={{ perspective: "800px" }}
-              >
-                <p className="text-4xl md:text-5xl font-bold text-gradient mb-2">98.9<span className="text-2xl">%ile</span></p>
-                <p className="text-xs text-white/30">3 months. No coaching. 98.9%ile.</p>
-              </motion.div>
-
-              {/* Amazon */}
-              <motion.div
-                className="p-8 rounded-2xl border border-sky-500/15 bg-sky-500/[0.03] hover:border-sky-500/30 transition-all duration-300 animate-[pulse-ring_4s_ease-in-out_infinite]"
-                whileHover={{ scale: 1.02, rotateY: -3 }}
-                style={{ perspective: "800px" }}
-              >
-                <p className="text-4xl md:text-5xl font-bold text-white/90 mb-2">Amazon</p>
-                <p className="text-xs text-white/30">Building for 22 countries.</p>
-              </motion.div>
-
-              {/* CPI */}
-              <motion.div
-                className="p-8 rounded-2xl border border-purple-500/15 bg-purple-500/[0.03] hover:border-purple-500/30 transition-all duration-300"
-                whileHover={{ scale: 1.02, rotateY: 3 }}
-                style={{ perspective: "800px" }}
-              >
-                <p className="text-4xl md:text-5xl font-bold text-gradient mb-2">9.01</p>
-                <p className="text-xs text-white/30">Top of class. MNNIT CSE.</p>
-              </motion.div>
-            </motion.div>
-
-            {/* Tier 2 — Depth (smaller cards) */}
-            <motion.div
-              className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-5"
+          <div className="max-w-6xl mx-auto">
+            <motion.h2
+              className="text-[11px] font-[var(--font-mono)] text-white/30 tracking-[6px] uppercase text-center mb-14"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.2 }}
+              transition={{ duration: 0.6 }}
             >
-              <motion.div className="p-5 rounded-xl border border-green-500/10 bg-green-500/[0.02] hover:border-green-500/25 transition-all" whileHover={{ scale: 1.04 }}>
-                <p className="text-2xl font-bold text-white/80 mb-1">450+</p>
-                <p className="text-[10px] text-white/25">Still counting.</p>
+              What I bring to the table
+            </motion.h2>
+
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-5">
+              {/* Card 1: Amazon — span 2 */}
+              <motion.div
+                className="col-span-2 p-6 md:p-8 rounded-2xl border border-orange-500/20 backdrop-blur-sm relative overflow-hidden group cursor-default"
+                style={{ background: "linear-gradient(135deg, #1a1a2e, #16213e, #0f3460)" }}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0 }}
+                whileHover={{ y: -4, scale: 1.02, boxShadow: "0 20px 40px rgba(249,115,22,0.15)" }}
+              >
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-9 h-9 rounded-lg bg-orange-500/10 flex items-center justify-center">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#f97316" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+                  </div>
+                  <span className="text-[10px] font-[var(--font-mono)] text-white/40 tracking-wider uppercase flex items-center gap-2">
+                    Amazon
+                    <span className="w-1.5 h-1.5 rounded-full bg-orange-500 animate-pulse" />
+                  </span>
+                </div>
+                <p className="text-4xl md:text-5xl font-bold text-white/90 mb-2">22</p>
+                <p className="text-xs text-white/35 leading-relaxed mb-4">Countries. One pipeline. Autonomous AI agents shipping across global marketplaces.</p>
+                <div className="flex flex-wrap gap-2">
+                  {["Bengaluru", "2026", "AI Agents"].map((tag) => (
+                    <span key={tag} className="px-2 py-0.5 text-[9px] font-[var(--font-mono)] text-orange-400/60 border border-orange-500/20 rounded-full">{tag}</span>
+                  ))}
+                </div>
               </motion.div>
-              <motion.div className="p-5 rounded-xl border border-amber-500/10 bg-amber-500/[0.02] hover:border-amber-500/25 transition-all" whileHover={{ scale: 1.04 }}>
-                <p className="text-2xl font-bold text-white/80 mb-1">Co-author</p>
-                <p className="text-[10px] text-white/25">Published before I could vote.</p>
+
+              {/* Card 2: JEE */}
+              <motion.div
+                className="col-span-1 p-6 md:p-8 rounded-2xl border border-purple-500/20 backdrop-blur-sm relative overflow-hidden group cursor-default"
+                style={{ background: "linear-gradient(135deg, #1a0a2e, #2d1b69)" }}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.1 }}
+                whileHover={{ y: -4, scale: 1.02, boxShadow: "0 20px 40px rgba(168,85,247,0.15)" }}
+              >
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-9 h-9 rounded-lg bg-purple-500/10 flex items-center justify-center">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#a855f7" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                  </div>
+                  <span className="text-[10px] font-[var(--font-mono)] text-white/40 tracking-wider uppercase flex items-center gap-2">
+                    JEE
+                    <span className="w-1.5 h-1.5 rounded-full bg-purple-500 animate-pulse" />
+                  </span>
+                </div>
+                <p className="text-3xl md:text-4xl font-bold text-white/90 mb-2">98.9%</p>
+                <p className="text-xs text-white/35 leading-relaxed">3 months. No coaching. Just obsession.</p>
               </motion.div>
-              <motion.div className="p-5 rounded-xl border border-green-500/10 bg-green-500/[0.02] hover:border-green-500/25 transition-all" whileHover={{ scale: 1.04 }}>
-                <p className="text-2xl font-bold text-white/80 mb-1">5+</p>
-                <p className="text-[10px] text-white/25">Never read from a script.</p>
+
+              {/* Card 3: CPI */}
+              <motion.div
+                className="col-span-1 p-6 md:p-8 rounded-2xl border border-green-500/20 backdrop-blur-sm relative overflow-hidden group cursor-default"
+                style={{ background: "linear-gradient(135deg, #0a2e1a, #1b6940)" }}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                whileHover={{ y: -4, scale: 1.02, boxShadow: "0 20px 40px rgba(34,197,94,0.15)" }}
+              >
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-9 h-9 rounded-lg bg-green-500/10 flex items-center justify-center">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#22c55e" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                  </div>
+                  <span className="text-[10px] font-[var(--font-mono)] text-white/40 tracking-wider uppercase flex items-center gap-2">
+                    CPI
+                    <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
+                  </span>
+                </div>
+                <p className="text-3xl md:text-4xl font-bold text-white/90 mb-2">9.01</p>
+                <p className="text-xs text-white/35 leading-relaxed">CPI. Top of class.</p>
               </motion.div>
-              <motion.div className="p-5 rounded-xl border border-sky-500/10 bg-sky-500/[0.02] hover:border-sky-500/25 transition-all" whileHover={{ scale: 1.04 }}>
-                <p className="text-2xl font-bold text-white/80 mb-1">Mentor</p>
-                <p className="text-[10px] text-white/25">Teaching what I&apos;m still learning.</p>
+
+              {/* Card 4: LeetCode — span 2 */}
+              <motion.div
+                className="col-span-2 p-6 md:p-8 rounded-2xl border border-amber-500/20 backdrop-blur-sm relative overflow-hidden group cursor-default"
+                style={{ background: "linear-gradient(135deg, #2e1a0a, #1a1a2e)" }}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+                whileHover={{ y: -4, scale: 1.02, boxShadow: "0 20px 40px rgba(245,158,11,0.15)" }}
+              >
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-9 h-9 rounded-lg bg-amber-500/10 flex items-center justify-center">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+                  </div>
+                  <span className="text-[10px] font-[var(--font-mono)] text-white/40 tracking-wider uppercase flex items-center gap-2">
+                    LeetCode
+                    <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse" />
+                  </span>
+                </div>
+                <p className="text-4xl md:text-5xl font-bold text-white/90 mb-2">450+</p>
+                <p className="text-xs text-white/35 leading-relaxed mb-4">Problems solved. Still counting. The grind doesn&apos;t stop.</p>
+                <div className="w-full h-2 rounded-full bg-white/5 overflow-hidden">
+                  <div className="h-full rounded-full bg-gradient-to-r from-amber-500/80 to-amber-400/60" style={{ width: "75%" }} />
+                </div>
               </motion.div>
-            </motion.div>
+
+              {/* Card 5: Co-author */}
+              <motion.div
+                className="col-span-1 p-6 md:p-8 rounded-2xl border border-blue-500/20 backdrop-blur-sm relative overflow-hidden group cursor-default"
+                style={{ background: "linear-gradient(135deg, #0a1a2e, #1b4069)" }}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+                whileHover={{ y: -4, scale: 1.02, boxShadow: "0 20px 40px rgba(59,130,246,0.15)" }}
+              >
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-9 h-9 rounded-lg bg-blue-500/10 flex items-center justify-center">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+                  </div>
+                  <span className="text-[10px] font-[var(--font-mono)] text-white/40 tracking-wider uppercase flex items-center gap-2">
+                    Research
+                    <span className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse" />
+                  </span>
+                </div>
+                <p className="text-2xl md:text-3xl font-bold text-white/90 mb-2">Co-author</p>
+                <p className="text-xs text-white/35 leading-relaxed">Published before I could vote.</p>
+              </motion.div>
+
+              {/* Card 6: Speaking */}
+              <motion.div
+                className="col-span-1 p-6 md:p-8 rounded-2xl border border-pink-500/20 backdrop-blur-sm relative overflow-hidden group cursor-default"
+                style={{ background: "linear-gradient(135deg, #2e0a1a, #691b40)" }}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.5 }}
+                whileHover={{ y: -4, scale: 1.02, boxShadow: "0 20px 40px rgba(236,72,153,0.15)" }}
+              >
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-9 h-9 rounded-lg bg-pink-500/10 flex items-center justify-center">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ec4899" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+                  </div>
+                  <span className="text-[10px] font-[var(--font-mono)] text-white/40 tracking-wider uppercase flex items-center gap-2">
+                    Speaking
+                    <span className="w-1.5 h-1.5 rounded-full bg-pink-500 animate-pulse" />
+                  </span>
+                </div>
+                <p className="text-3xl md:text-4xl font-bold text-white/90 mb-2">5+</p>
+                <p className="text-xs text-white/35 leading-relaxed">Talks. Never read from a script.</p>
+              </motion.div>
+
+              {/* Card 7: Mentor — span 2 */}
+              <motion.div
+                className="col-span-2 p-6 md:p-8 rounded-2xl border border-teal-500/20 backdrop-blur-sm relative overflow-hidden group cursor-default"
+                style={{ background: "linear-gradient(135deg, #1a2e2e, #0a2e2e, #1b5069)" }}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.6 }}
+                whileHover={{ y: -4, scale: 1.02, boxShadow: "0 20px 40px rgba(20,184,166,0.15)" }}
+              >
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-9 h-9 rounded-lg bg-teal-500/10 flex items-center justify-center">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#14b8a6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                  </div>
+                  <span className="text-[10px] font-[var(--font-mono)] text-white/40 tracking-wider uppercase flex items-center gap-2">
+                    Mentor
+                    <span className="w-1.5 h-1.5 rounded-full bg-teal-500 animate-pulse" />
+                  </span>
+                </div>
+                <p className="text-3xl md:text-4xl font-bold text-white/90 mb-2">Mentor</p>
+                <p className="text-xs text-white/35 leading-relaxed mb-4">Teaching what I&apos;m still learning. Because the best way to learn is to give it away.</p>
+                <div className="flex flex-wrap gap-2">
+                  {["Unstop", "DSA", "Career Guidance"].map((tag) => (
+                    <span key={tag} className="px-2 py-0.5 text-[9px] font-[var(--font-mono)] text-teal-400/60 border border-teal-500/20 rounded-full">{tag}</span>
+                  ))}
+                </div>
+              </motion.div>
+            </div>
           </div>
         </section>
 
