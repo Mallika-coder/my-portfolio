@@ -5,6 +5,15 @@ import Image from "next/image";
 
 const sections = [
   {
+    title: "1st Place Speech & Many More Podiums",
+    quote: "The best writing, like the best engineering, is honest and precise. Every word has a reason.",
+    description:
+      "Won 1st place at Jan Jatiya Gaurav Diwas speech competition (Dec 2024). Multiple podiums in debates across college fests. Public speaking taught me to think on my feet — a skill that shows up in every design review and every stand-up.",
+    image: "/images/my-achievements.jpeg",
+    tag: "Public Speaking · Debates",
+    aspect: "aspect-[3/4]",
+  },
+  {
     title: "Unstop Mentor",
     quote: "The best way to learn something is to teach it to someone who's struggling with it.",
     description:
@@ -12,15 +21,6 @@ const sections = [
     image: "/images/mentor-id-3277841781252375.2626.png",
     tag: "Mentorship",
     aspect: "aspect-square",
-  },
-  {
-    title: "3 Years of Tutoring",
-    quote: "The students who improved fastest weren't the smartest — they were the ones who said 'I don't get it' without hesitation.",
-    description:
-      "Self-employed tutor for 3 years. Taught maths, science, and coding to students from class 6 to 12. Learned patience, communication, and that teaching is its own form of engineering.",
-    image: "/images/i5.jpeg",
-    tag: "Teaching · 3 Years",
-    aspect: "aspect-[3/4]",
   },
   {
     title: "Jersey #07 — Kho Kho",
@@ -32,12 +32,12 @@ const sections = [
     aspect: "aspect-[3/4]",
   },
   {
-    title: "1st Place Speech & Many More Podiums",
-    quote: "The best writing, like the best engineering, is honest and precise. Every word has a reason.",
+    title: "3 Years of Tutoring",
+    quote: "The students who improved fastest weren't the smartest — they were the ones who said 'I don't get it' without hesitation.",
     description:
-      "Won 1st place at Jan Jatiya Gaurav Diwas speech competition (Dec 2024). Multiple podiums in debates across college fests. Public speaking taught me to think on my feet — a skill that shows up in every design review and every stand-up.",
-    image: "/images/my-achievements.jpeg",
-    tag: "Public Speaking · Debates",
+      "Self-employed tutor for 3 years. Taught maths, science, and coding to students from class 6 to 12. Learned patience, communication, and that teaching is its own form of engineering.",
+    image: "/images/i5.jpeg",
+    tag: "Teaching · 3 Years",
     aspect: "aspect-[3/4]",
   },
 ];
