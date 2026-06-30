@@ -456,6 +456,7 @@ export default function Home() {
 
             {/* Text */}
             <motion.div
+              className="max-w-[500px] pr-16"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -491,44 +492,9 @@ export default function Home() {
           </div>
         </section>
 
-        {/* ===== SECTION 3: me1 photo + quick quote ===== */}
-        <div className="w-[30%] h-[1px] mx-auto bg-gradient-to-r from-transparent via-white/5 to-transparent" />
-        <section className="py-32 px-8 md:px-16 lg:px-24">
-          <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-            <motion.div
-              className="order-2 md:order-1"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-            >
-              <blockquote className="border-l-2 border-purple-400/40 pl-6">
-                <p className="text-lg text-white/40 italic font-[var(--font-playfair)] leading-relaxed">
-                  &ldquo;The best 8 weeks of my life were at Amazon Bengaluru — building things
-                  nobody had built before.&rdquo;
-                </p>
-              </blockquote>
-            </motion.div>
-            <motion.div
-              className="relative aspect-[4/3] rounded-xl overflow-hidden order-1 md:order-2 max-w-[350px] mx-auto"
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-            >
-              <Image
-                src="/images/me1.jpeg"
-                alt="Mallika"
-                fill
-                className="object-cover object-right"
-                sizes="350px"
-              />
-            </motion.div>
-          </div>
-        </section>
 
         {/* ===== SECTION 4: "The 8 Weeks" — Bengaluru ===== */}
-        <div className="w-[30%] h-[1px] mx-auto bg-gradient-to-r from-transparent via-white/5 to-transparent" />
+        <div className="mt-20 mb-10 w-[30%] h-[1px] mx-auto bg-gradient-to-r from-transparent via-white/[0.04] to-transparent" />
         <section className="py-32 md:py-40 px-8 md:px-16 lg:px-24 relative">
           {/* Subtle spotlight behind photo */}
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-white/[0.02] rounded-full blur-3xl pointer-events-none" />
@@ -536,7 +502,7 @@ export default function Home() {
           <div className="max-w-5xl mx-auto">
             {/* Heading */}
             <motion.div
-              className="text-center mb-12"
+              className="text-center mb-14"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.2 }}
@@ -577,8 +543,8 @@ export default function Home() {
 
               {/* Card 1: top-left — purple bubble */}
               <motion.div
-                className="absolute top-0 left-[12%] z-30 max-w-[220px] px-5 py-4 rounded-2xl backdrop-blur-md border border-purple-500/30 hover:border-purple-400/50 hover:scale-[1.03] transition-all duration-200 cursor-default"
-                style={{ background: "linear-gradient(135deg, rgba(168,85,247,0.15), rgba(99,102,241,0.1))" }}
+                className="absolute top-0 left-[12%] z-30 max-w-[220px] px-5 py-4 rounded-2xl backdrop-blur-md border border-purple-500/40 hover:border-purple-400/50 hover:scale-[1.03] transition-all duration-200 cursor-default"
+                style={{ background: "linear-gradient(135deg, rgba(139,92,246,0.2), rgba(99,102,241,0.1))" }}
                 initial={{ opacity: 0, x: -30, y: -20 }}
                 whileInView={{ opacity: 1, x: 0, y: 0 }}
                 viewport={{ once: true, amount: 0.2 }}
@@ -591,8 +557,8 @@ export default function Home() {
 
               {/* Card 2: top-right — cyan bubble */}
               <motion.div
-                className="absolute top-0 right-[12%] z-30 max-w-[220px] px-5 py-4 rounded-2xl backdrop-blur-md border border-cyan-500/30 hover:border-cyan-400/50 hover:scale-[1.03] transition-all duration-200 cursor-default"
-                style={{ background: "linear-gradient(135deg, rgba(6,182,212,0.15), rgba(59,130,246,0.1))" }}
+                className="absolute top-0 right-[12%] z-30 max-w-[220px] px-5 py-4 rounded-2xl backdrop-blur-md border border-cyan-500/40 hover:border-cyan-400/50 hover:scale-[1.03] transition-all duration-200 cursor-default"
+                style={{ background: "linear-gradient(135deg, rgba(34,211,238,0.2), rgba(59,130,246,0.1))" }}
                 initial={{ opacity: 0, x: 30, y: -20 }}
                 whileInView={{ opacity: 1, x: 0, y: 0 }}
                 viewport={{ once: true, amount: 0.2 }}
@@ -605,8 +571,8 @@ export default function Home() {
 
               {/* Card 3: bottom-left — emerald bubble */}
               <motion.div
-                className="absolute bottom-0 left-[12%] z-30 max-w-[220px] px-5 py-4 rounded-2xl backdrop-blur-md border border-emerald-500/30 hover:border-emerald-400/50 hover:scale-[1.03] transition-all duration-200 cursor-default"
-                style={{ background: "linear-gradient(135deg, rgba(16,185,129,0.15), rgba(20,184,166,0.1))" }}
+                className="absolute bottom-0 left-[12%] z-30 max-w-[220px] px-5 py-4 rounded-2xl backdrop-blur-md border border-emerald-500/40 hover:border-emerald-400/50 hover:scale-[1.03] transition-all duration-200 cursor-default"
+                style={{ background: "linear-gradient(135deg, rgba(34,197,94,0.2), rgba(20,184,166,0.1))" }}
                 initial={{ opacity: 0, x: -30, y: 20 }}
                 whileInView={{ opacity: 1, x: 0, y: 0 }}
                 viewport={{ once: true, amount: 0.2 }}
@@ -619,8 +585,8 @@ export default function Home() {
 
               {/* Card 4: bottom-right — rose bubble */}
               <motion.div
-                className="absolute bottom-0 right-[12%] z-30 max-w-[220px] px-5 py-4 rounded-2xl backdrop-blur-md border border-rose-500/30 hover:border-rose-400/50 hover:scale-[1.03] transition-all duration-200 cursor-default"
-                style={{ background: "linear-gradient(135deg, rgba(244,63,94,0.15), rgba(249,115,22,0.1))" }}
+                className="absolute bottom-0 right-[12%] z-30 max-w-[220px] px-5 py-4 rounded-2xl backdrop-blur-md border border-rose-500/40 hover:border-rose-400/50 hover:scale-[1.03] transition-all duration-200 cursor-default"
+                style={{ background: "linear-gradient(135deg, rgba(244,63,94,0.2), rgba(249,115,22,0.1))" }}
                 initial={{ opacity: 0, x: 30, y: 20 }}
                 whileInView={{ opacity: 1, x: 0, y: 0 }}
                 viewport={{ once: true, amount: 0.2 }}
@@ -647,10 +613,10 @@ export default function Home() {
 
               <div className="space-y-3">
                 {[
-                  { quote: "Ask questions louder than your ego.", bg: "rgba(168,85,247,0.12)", border: "border-purple-500/25" },
-                  { quote: "Ship in Week 2. Iterate forever.", bg: "rgba(6,182,212,0.12)", border: "border-cyan-500/25" },
-                  { quote: "Think in systems, not features.", bg: "rgba(16,185,129,0.12)", border: "border-emerald-500/25" },
-                  { quote: "The badge comes off. The builder stays.", bg: "rgba(244,63,94,0.12)", border: "border-rose-500/25" },
+                  { quote: "Ask questions louder than your ego.", bg: "rgba(139,92,246,0.2)", border: "border-purple-500/40" },
+                  { quote: "Ship in Week 2. Iterate forever.", bg: "rgba(34,211,238,0.2)", border: "border-cyan-500/40" },
+                  { quote: "Think in systems, not features.", bg: "rgba(34,197,94,0.2)", border: "border-emerald-500/40" },
+                  { quote: "The badge comes off. The builder stays.", bg: "rgba(244,63,94,0.2)", border: "border-rose-500/40" },
                 ].map((item, i) => (
                   <motion.div
                     key={item.quote}
@@ -668,7 +634,7 @@ export default function Home() {
             </div>
 
             {/* Closing line */}
-            <p className="text-xs text-white/15 text-center mt-24 font-[var(--font-playfair)] italic">
+            <p className="text-sm text-white/25 text-center mt-[72px] font-[var(--font-playfair)] italic tracking-wide">
               — Bengaluru taught me this.
             </p>
           </div>
