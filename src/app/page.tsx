@@ -126,21 +126,20 @@ export default function Home() {
             <div className="absolute w-[440px] h-[440px] md:w-[550px] md:h-[550px] rounded-full border-2 border-purple-500/20 animate-[pulse-ring_3s_ease-in-out_infinite]" style={{ top: "50%", left: "50%", transform: "translate(-50%, -50%)" }} />
             <div className="absolute w-[470px] h-[470px] md:w-[580px] md:h-[580px] rounded-full border border-sky-500/10 animate-[pulse-ring_3s_ease-in-out_infinite_1.5s]" style={{ top: "50%", left: "50%", transform: "translate(-50%, -50%)" }} />
 
-            {/* Photo — BIG circle, face+body+text all visible */}
-            <div className="relative w-[400px] h-[400px] md:w-[500px] md:h-[500px] z-10 animate-[float3d_5s_ease-in-out_infinite]">
-              <div className="relative w-full h-full rounded-full overflow-hidden border-[3px] border-white/15 shadow-[0_0_60px_rgba(102,126,234,0.4),0_0_100px_rgba(118,75,162,0.2)] bg-[#d4cfc4]">
+            {/* Photo — BIG circle, clickable "See my Work" */}
+            <Link href="/projects" className="relative w-[400px] h-[400px] md:w-[500px] md:h-[500px] z-10 animate-[float3d_5s_ease-in-out_infinite] block cursor-pointer group">
+              <div className="relative w-full h-full rounded-full overflow-hidden border-[3px] border-white/15 shadow-[0_0_60px_rgba(102,126,234,0.4),0_0_100px_rgba(118,75,162,0.2)] bg-[#d4cfc4] group-hover:shadow-[0_0_80px_rgba(102,126,234,0.5),0_0_140px_rgba(118,75,162,0.25)] transition-shadow duration-500">
                 <Image
                   src="/images/hero-cutout.jpeg"
-                  alt="Mallika Verma"
+                  alt="Mallika Verma — See my Work"
                   fill
                   className="object-contain object-bottom"
                   priority
                   sizes="500px"
                 />
-                {/* Glass shine effect */}
                 <div className="absolute inset-0 bg-[linear-gradient(135deg,transparent_40%,rgba(255,255,255,0.1)_50%,transparent_60%)]" />
               </div>
-            </div>
+            </Link>
           </motion.div>
 
           {/* "Writer who codes." — 3D effect, biggest tagline */}
@@ -159,21 +158,6 @@ export default function Home() {
           >
             Writer who codes.
           </motion.p>
-
-          {/* Primary CTA */}
-          <motion.div
-            className="mb-8 z-20"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 2.5, duration: 0.6 }}
-          >
-            <Link
-              href="/projects"
-              className="inline-block px-8 py-4 bg-gradient-to-r from-purple-500 to-sky-500 text-white font-medium rounded-full hover:shadow-lg hover:shadow-purple-500/25 hover:scale-105 transition-all duration-300 text-sm"
-            >
-              See my work →
-            </Link>
-          </motion.div>
 
           {/* Navigation bubbles */}
           <motion.div
@@ -202,11 +186,11 @@ export default function Home() {
         </section>
 
         {/* ===== BENTO GRID STATS — between hero and about ===== */}
-        <section className="py-24 md:py-32 px-8 md:px-16 lg:px-24">
+        <section className="py-28 md:py-36 px-8 md:px-16 lg:px-24">
           <div className="max-w-5xl mx-auto">
             {/* Tier 1 — Jaw-Droppers (big cards) */}
             <motion.div
-              className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4"
+              className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6 mb-5 md:mb-6"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -245,7 +229,7 @@ export default function Home() {
 
             {/* Tier 2 — Depth (smaller cards) */}
             <motion.div
-              className="grid grid-cols-2 md:grid-cols-4 gap-3"
+              className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-5"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
