@@ -110,8 +110,8 @@ export default function Home() {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 1.7, duration: 1 }}
           >
-            {/* Rotating text ring — clearly visible */}
-            <div className="absolute w-[480px] h-[480px] md:w-[620px] md:h-[620px] animate-[spin_20s_linear_infinite] z-[15]">
+            {/* Rotating text ring — clearly visible, pointer-events-none so photo is clickable */}
+            <div className="absolute w-[480px] h-[480px] md:w-[620px] md:h-[620px] animate-[spin_20s_linear_infinite] z-[15] pointer-events-none">
               <svg viewBox="0 0 420 420" className="w-full h-full">
                 <defs>
                   <path id="orbitPath" d="M 210,210 m -190,0 a 190,190 0 1,1 380,0 a 190,190 0 1,1 -380,0" />
@@ -123,11 +123,11 @@ export default function Home() {
             </div>
 
             {/* Pulsing glow rings */}
-            <div className="absolute w-[440px] h-[440px] md:w-[550px] md:h-[550px] rounded-full border-2 border-purple-500/20 animate-[pulse-ring_3s_ease-in-out_infinite]" style={{ top: "50%", left: "50%", transform: "translate(-50%, -50%)" }} />
-            <div className="absolute w-[470px] h-[470px] md:w-[580px] md:h-[580px] rounded-full border border-sky-500/10 animate-[pulse-ring_3s_ease-in-out_infinite_1.5s]" style={{ top: "50%", left: "50%", transform: "translate(-50%, -50%)" }} />
+            <div className="absolute w-[440px] h-[440px] md:w-[550px] md:h-[550px] rounded-full border-2 border-purple-500/20 animate-[pulse-ring_3s_ease-in-out_infinite] pointer-events-none" style={{ top: "50%", left: "50%", transform: "translate(-50%, -50%)" }} />
+            <div className="absolute w-[470px] h-[470px] md:w-[580px] md:h-[580px] rounded-full border border-sky-500/10 animate-[pulse-ring_3s_ease-in-out_infinite_1.5s] pointer-events-none" style={{ top: "50%", left: "50%", transform: "translate(-50%, -50%)" }} />
 
             {/* Photo — BIG circle, clickable "See my Work" */}
-            <Link href="/projects" className="relative w-[400px] h-[400px] md:w-[500px] md:h-[500px] z-10 animate-[float3d_5s_ease-in-out_infinite] block cursor-pointer group">
+            <Link href="/projects" className="relative w-[400px] h-[400px] md:w-[500px] md:h-[500px] z-[20] animate-[float3d_5s_ease-in-out_infinite] block cursor-pointer group">
               <div className="relative w-full h-full rounded-full overflow-hidden border-[3px] border-white/15 shadow-[0_0_60px_rgba(102,126,234,0.4),0_0_100px_rgba(118,75,162,0.2)] bg-[#d4cfc4] group-hover:shadow-[0_0_80px_rgba(102,126,234,0.5),0_0_140px_rgba(118,75,162,0.25)] transition-shadow duration-500">
                 <Image
                   src="/images/hero-cutout.jpeg"
