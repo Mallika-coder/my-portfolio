@@ -149,9 +149,8 @@ export default function Home() {
               { text: "TypeScript", top: "35%", right: "6%", delay: "2.5s", size: "text-[10px]", tip: "CDK infrastructure" },
               { text: "Spark", bottom: "35%", left: "18%", delay: "3s", size: "text-[10px]", tip: "Distributed pipelines @ Amazon" },
               { text: "Claude", top: "65%", right: "10%", delay: "3.5s", size: "text-xs", tip: "AI agent backbone" },
-              { text: "PyTorch", top: "80%", left: "15%", delay: "1.2s", size: "text-[10px]", tip: "MindGuard BERT model" },
+              { text: "MongoDB", top: "80%", left: "15%", delay: "1.2s", size: "text-[10px]", tip: "CureCue backend" },
               { text: "Next.js", top: "25%", left: "25%", delay: "2.8s", size: "text-[10px]", tip: "This portfolio" },
-              { text: "MongoDB", bottom: "8%", left: "35%", delay: "0.8s", size: "text-[10px]", tip: "CureCue backend" },
               { text: "LangChain", top: "55%", right: "20%", delay: "1.8s", size: "text-[10px]", tip: "RAG pipelines" },
             ].map((skill, i) => (
               <div
