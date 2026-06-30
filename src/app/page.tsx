@@ -156,7 +156,7 @@ export default function Home() {
             ].map((skill, i) => (
               <div
                 key={i}
-                className={`absolute ${skill.size} text-white/30 font-[var(--font-mono)] animate-[particle-float_5s_ease-in-out_infinite] hover:text-white/70 hover:drop-shadow-[0_0_8px_rgba(196,181,253,0.5)] transition-all duration-300 cursor-default group pointer-events-auto`}
+                className={`absolute ${skill.size} text-white/40 font-[var(--font-mono)] font-bold animate-[particle-float_5s_ease-in-out_infinite] hover:text-white/80 hover:drop-shadow-[0_0_12px_rgba(196,181,253,0.6)] transition-all duration-300 cursor-default group pointer-events-auto drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)]`}
                 style={{ top: skill.top, left: skill.left, right: skill.right, bottom: skill.bottom, animationDelay: skill.delay } as React.CSSProperties}
               >
                 {skill.text}
@@ -185,7 +185,7 @@ export default function Home() {
             transition={{ delay: 1.7, duration: 1 }}
           >
             {/* Rotating text ring — clearly visible, pointer-events-none so photo is clickable */}
-            <div className="absolute w-[480px] h-[480px] md:w-[620px] md:h-[620px] animate-[spin_20s_linear_infinite] z-[15] pointer-events-none">
+            <div className="absolute w-[420px] h-[420px] md:w-[560px] md:h-[560px] animate-[spin_20s_linear_infinite] z-[15] pointer-events-none">
               <svg viewBox="0 0 420 420" className="w-full h-full">
                 <defs>
                   <path id="orbitPath" d="M 210,210 m -190,0 a 190,190 0 1,1 380,0 a 190,190 0 1,1 -380,0" />
@@ -218,7 +218,7 @@ export default function Home() {
 
           {/* Typewriter tagline */}
           <motion.div
-            className="text-3xl md:text-5xl lg:text-6xl font-[var(--font-playfair)] font-bold italic mb-10 z-20 text-center h-[1.2em]"
+            className="text-3xl md:text-5xl lg:text-6xl font-[var(--font-playfair)] font-bold italic mb-10 z-[25] text-center h-[1.2em] mt-6"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 2.2, duration: 0.8 }}
