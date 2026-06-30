@@ -97,7 +97,7 @@ export default function ProjectsPage() {
             Projects
           </motion.h1>
           <motion.p
-            className="text-base text-white/30 max-w-md"
+            className="text-base text-white/50 max-w-md"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.3 }}
@@ -136,16 +136,16 @@ export default function ProjectsPage() {
                       <span className="text-[10px] font-[var(--font-mono)] text-[#ff9900]/70 tracking-wider">AMAZON</span>
                     </div>
                     <h2 className="text-2xl md:text-3xl font-[var(--font-playfair)] font-bold text-white/90 mb-1">System Modernization & Automation</h2>
-                    <p className="text-base text-white/40 mb-6">Reporting, Framework Onboarding, and Competitor Feasibility Workflows</p>
-                    <div className="flex items-center gap-3 mb-6 text-[11px] text-white/25 font-[var(--font-mono)]">
+                    <p className="text-base text-white/60 mb-6">Reporting, Framework Onboarding, and Competitor Feasibility Workflows</p>
+                    <div className="flex items-center gap-3 mb-6 text-[11px] text-white/40 font-[var(--font-mono)]">
                       <span>2026</span><span className="w-1 h-1 rounded-full bg-white/15" /><span>SDE Intern</span><span className="w-1 h-1 rounded-full bg-white/15" /><span>Bengaluru</span>
                     </div>
                     <div className="mb-6">
-                      <p className="text-[10px] font-[var(--font-mono)] text-white/20 tracking-wider mb-3">OVERVIEW</p>
-                      <p className="text-sm text-white/40 leading-relaxed">Engineered 2 autonomous AI agents, deployed distributed pipelines across 22 marketplaces, migrated legacy architecture to event-driven Scala.</p>
+                      <p className="text-[10px] font-[var(--font-mono)] text-white/35 tracking-wider mb-3">OVERVIEW</p>
+                      <p className="text-sm text-white/60 leading-relaxed">Engineered 2 autonomous AI agents, deployed distributed pipelines across 22 marketplaces, migrated legacy architecture to event-driven Scala.</p>
                     </div>
                     <div className="mb-6">
-                      <p className="text-[10px] font-[var(--font-mono)] text-white/20 tracking-wider mb-3">KEY RESULTS</p>
+                      <p className="text-[10px] font-[var(--font-mono)] text-white/35 tracking-wider mb-3">KEY RESULTS</p>
                       <div className="flex flex-wrap gap-2">
                         {["100% accuracy", "60→11 min", "22 marketplaces", "$0.55/run"].map((r) => (
                           <span key={r} className="px-3 py-1.5 text-xs text-[#ff9900]/70 border border-[#ff9900]/20 rounded-full bg-[#ff9900]/5">{r}</span>
@@ -154,7 +154,7 @@ export default function ProjectsPage() {
                     </div>
                     <div className="flex flex-wrap gap-2">
                       {["Claude 4.5", "CDK", "Spark", "Scala", "EventBridge", "EMR", "Java"].map((tech) => (
-                        <span key={tech} className="px-2.5 py-1 text-[10px] font-[var(--font-mono)] text-white/20 border border-white/6 rounded-md">{tech}</span>
+                        <span key={tech} className="px-2.5 py-1 text-[10px] font-[var(--font-mono)] text-white/40 border border-white/10 rounded-md">{tech}</span>
                       ))}
                     </div>
                   </div>
@@ -199,26 +199,26 @@ export default function ProjectsPage() {
                   <h2 className="text-2xl md:text-3xl font-[var(--font-playfair)] font-bold text-white/90 mb-1">
                     {project.title}
                   </h2>
-                  <p className="text-base text-white/40 mb-6">{project.subtitle}</p>
+                  <p className="text-base text-white/60 mb-6">{project.subtitle}</p>
 
                   <div className="flex items-center gap-2 mb-4">
                     <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
                     <span className="text-[10px] text-green-400/70 font-[var(--font-mono)]">Live</span>
                   </div>
 
-                  <div className="flex items-center gap-3 mb-6 text-[11px] text-white/25 font-[var(--font-mono)]">
+                  <div className="flex items-center gap-3 mb-6 text-[11px] text-white/40 font-[var(--font-mono)]">
                     <span>{project.year}</span>
                     <span className="w-1 h-1 rounded-full bg-white/15" />
                     <span>{project.role}</span>
                   </div>
 
                   <div className="mb-6">
-                    <p className="text-[10px] font-[var(--font-mono)] text-white/20 tracking-wider mb-3">OVERVIEW</p>
-                    <p className="text-sm text-white/40 leading-relaxed">{project.overview}</p>
+                    <p className="text-[10px] font-[var(--font-mono)] text-white/35 tracking-wider mb-3">OVERVIEW</p>
+                    <p className="text-sm text-white/60 leading-relaxed">{project.overview}</p>
                   </div>
 
                   <div className="mb-6">
-                    <p className="text-[10px] font-[var(--font-mono)] text-white/20 tracking-wider mb-3">KEY RESULTS</p>
+                    <p className="text-[10px] font-[var(--font-mono)] text-white/35 tracking-wider mb-3">KEY RESULTS</p>
                     <div className="flex flex-wrap gap-2">
                       {project.results.map((r) => (
                         <span key={r} className="px-3 py-1.5 text-xs text-white/50 border border-white/10 rounded-full bg-white/[0.02]">
@@ -230,7 +230,7 @@ export default function ProjectsPage() {
 
                   <div className="flex flex-wrap gap-2 mb-8">
                     {project.stack.map((tech) => (
-                      <span key={tech} className="px-2.5 py-1 text-[10px] font-[var(--font-mono)] text-white/20 border border-white/6 rounded-md">
+                      <span key={tech} className="px-2.5 py-1 text-[10px] font-[var(--font-mono)] text-white/40 border border-white/10 rounded-md">
                         {tech}
                       </span>
                     ))}
@@ -242,8 +242,8 @@ export default function ProjectsPage() {
                         href={project.live}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="px-6 py-3 text-xs font-medium border border-white/15 rounded-lg text-white/70 hover:bg-white hover:text-black transition-all duration-300"
-                        whileHover={{ y: -2 }}
+                        className="px-7 py-3.5 text-sm font-bold bg-gradient-to-r from-purple-500 to-sky-500 text-white rounded-lg hover:shadow-lg hover:shadow-purple-500/25 hover:scale-105 transition-all duration-300"
+                        whileHover={{ y: -3 }}
                       >
                         Visit Live ↗
                       </motion.a>
@@ -253,10 +253,10 @@ export default function ProjectsPage() {
                         href={project.github}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="px-6 py-3 text-xs text-white/30 hover:text-white/60 transition-colors"
-                        whileHover={{ y: -2 }}
+                        className="px-7 py-3.5 text-sm font-bold border-2 border-white/20 rounded-lg text-white/70 hover:border-purple-400/50 hover:text-white hover:bg-white/5 transition-all duration-300"
+                        whileHover={{ y: -3 }}
                       >
-                        Source ↗
+                        Source Code ↗
                       </motion.a>
                     )}
                   </div>
